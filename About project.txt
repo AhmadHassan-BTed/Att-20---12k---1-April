@@ -1,0 +1,93 @@
+are you comfortable modifying esf files in isos for 
+ps2 games
+basically model swapping from an older version of the game patching into the expansion version of the game
+editing esf files
+Everquest Online Adventures
+Everquest Online Adventures Frontiers
+those are the two titles]
+Playstation 2, 2003
+basically right now I took the esf file from the old version and pasted it into the new iso. But this causes many models to turn into question marks, since the old esf does not contain the assets for the new expansion in the esf
+11 models total
+everything else can remain as is
+to avoid the question marks
+Main eska existing code poochon?
+the first link is the original version
+second is expasion
+third is a custom that a previous contractor worked on for me, but we could not get it to run properly
+that's the report, toolkit, and the esf fileç
+there was one more patch after that report
+and that's the third iso I sent you, the one titled ORIGINAL MODELS
+it probably is very close to completion, maybe just a couple hours of work for you
+1. The project is to modify the ISO "Everquest Online Adventures Frontiers" to display the original character models from the previous version of the game "Everyquest Online Adventures."
+2. Currently the esf files for the isos have been worked on however when the game is loaded, it's not functional.
+3. Esf file has been rebuilt, but the game does not properly run. all reports should be contained in the deliverables folder that was linked previously.
+4. Tasks left would be to successfully patch in the original models into the Frontiers iso, without any problems such as models loading as large "question marks" when the game cannot find the proper assets.
+5. The end product should be a fully functional iso with original character models, that is playable on the Sandstorm private server via pcsx2 emulator.
+
+
+[1:22 pm, 25/05/2026] Atta Ul Ul Rehman: here is my original listing for the project
+just in case you need it
+Title:
+Reverse Engineer PS2 Game Files (ESF/CSF) – Fix Missing Model References (Advanced)
+
+Project Overview:
+I’m working with a custom ISO of EverQuest Online Adventures: Frontiers (PS2). I’ve successfully swapped in original game model files (ESF/CSF), but I’m encountering missing assets in-game that appear as large question marks.
+
+This indicates broken or missing model references—likely due to differences in asset indexing between versions of the game.
+
+I need an expert to analyze and fix this at the file level.
+
+What I Need Done:
+
+Reverse engineer ESF and CSF file structures
+Identify how models/assets are indexed and referenced
+Compare original vs Frontiers versions of these files
+Locate missing or broken asset references
+Patch or rebuild asset index tables so models load correctly in-game
+(Optional but preferred) Create a reusable script/tool to automate fixes
+
+Required Skills (Do NOT apply unless you have these):
+
+Strong experience with binary file analysis / reverse engineering
+Comfortable using hex editors and analyzing unknown file formats
+Experience identifying:
+File headers
+Offsets
+Pointer tables / index structures
+Programming ability (Python, C, or C++ preferred) to parse or rebuild files
+
+Big Plus If You Have:
+
+Experience modding PS2 or older console games
+Familiarity with game asset pipelines (models, textures, references)
+Experience creating tools to parse proprietary file formats
+Knowledge of 3D model structures (helpful but not required)
+
+What This Is NOT:
+
+❌ Not a simple model import/export task
+❌ Not Unity/Unreal modding
+❌ Not texture editing
+❌ Not beginner-friendly
+
+If you don’t have reverse engineering experience with binary formats, this will not be a good fit.
+
+Deliverables:
+
+Fixed ESF/CSF files OR clear patching method
+Documentation of findings (basic explanation of structure)
+(Preferred) Script/tool used to perform fixes
+
+To Apply, Please Include:
+
+Examples of similar work (file format reversing, game modding, etc.)
+Tools/languages you plan to use
+Brief explanation of how you would approach this problem
+
+Budget:
+Flexible for the right expert. This is a niche technical task and I’m willing to pay for quality work.
+
+Additional Notes:
+I can provide sample files and details of what’s currently working vs broken. The goal is to fully restore missing models without introducing new issues.
+here is my original listing for the project
+just in case you need it

@@ -1,0 +1,150 @@
+========================================================================
+ADVANCED AI AGENT RUNBOOK: EVERQUEST ONLINE ADVENTURES REVERSE ENGINEERING
+========================================================================
+VERSION: 2.0 (High-Fidelity Prompt Engineered)
+TARGET AGENTS: Claude Code, Google Antigravity, Advanced CLI-based LLMs
+FRAMEWORK: Strict Chain-of-Thought (CoT), Zero-Coupling Architecture, Checkpoint Validations
+========================================================================
+
+SYSTEM INSTRUCTION FOR AGENT: 
+You are acting as a Senior Reverse Engineer and Lead Software Architect. 
+You will receive one prompt at a time. Do NOT proceed to the next phase until the 
+[VALIDATION & STOP CONDITION] of the current prompt is explicitly confirmed by the human.
+Write all tools in modular Python 3.x using `construct`, `pycdlib`, and standard library modules.
+
+------------------------------------------------------------------------
+PHASE 1: ENVIRONMENT & BASELINE DISCOVERY
+------------------------------------------------------------------------
+
+### PROMPT 1: CONTEXT INGESTION & AUDIT
+[ROLE & DIRECTIVE]: Senior Reverse Engineer. Ingest legacy project data to establish a baseline.
+[CONTEXT]: A previous contractor attempted to merge 11 original character models into the EQOA: Frontiers Expansion `.esf` file, but the game fails to boot or displays question marks. 
+[ACTIONABLE TASK]: 
+1. Read `eqoa_toolkit.py`, `Report.md`, and `About project.txt`.
+2. Analyze the Python logic used by the previous contractor.
+[TECHNICAL CONSTRAINTS]: Do NOT write new code yet. Rely strictly on the provided texts.
+[CHAIN OF THOUGHT REQUIREMENT]: Detail your internal reasoning process regarding *why* the previous file failed. Did they break the Logical Block Addressing (LBA)? Did they fail to update the pointer tables? Did they break byte-alignment?
+[VALIDATION & STOP CONDITION]: Output a Markdown audit report. Pause and wait for human confirmation.
+
+### PROMPT 2: SAFE ISO EXTRACTION SCRIPT
+[ROLE & DIRECTIVE]: Software Architect. Build the Data Ingestion Layer.
+[CONTEXT]: Standard extraction tools corrupt PS2 ISO9660 LBA tables. We must extract files programmatically.
+[ACTIONABLE TASK]: Write `extract_assets.py` using `pycdlib`. Extract `CHAR.ESF` and `CHAR.CSF` (or equivalent character model archives) from both the Original ISO and the Expansion ISO.
+[TECHNICAL CONSTRAINTS]: 
+- Save Original files to `./workspace/original/`.
+- Save Expansion files to `./workspace/expansion/`.
+- Script must handle ISO9660 + UDF file systems.
+[CHAIN OF THOUGHT REQUIREMENT]: Explain how pycdlib targets specific paths inside the ISO without mounting it to the OS.
+[VALIDATION & STOP CONDITION]: The script executes. Output the exact byte sizes and SHA-256 hashes of the 4 extracted files. 
+
+------------------------------------------------------------------------
+PHASE 2: BINARY SCHEMA DESERIALIZATION
+------------------------------------------------------------------------
+
+### PROMPT 3: HEXADECIMAL DISCOVERY
+[ROLE & DIRECTIVE]: Binary Analyst.
+[CONTEXT]: We need to map the proprietary structure of the `.esf` file.
+[ACTIONABLE TASK]: Write `hex_analyzer.py`. Read the first 512 bytes of `original/CHAR.ESF`. Output a formatted hex dump (16 bytes per line with ASCII representation) to the terminal.
+[TECHNICAL CONSTRAINTS]: Assume Little-Endian (standard PS2 IOP/EE architecture).
+[CHAIN OF THOUGHT REQUIREMENT]: Analyze the hex dump. Identify the Magic Number (if any), the likely position of the file size integer, and the start of the Asset Pointer Table.
+[VALIDATION & STOP CONDITION]: Output the hex dump and your hypothesized byte map of the header. Wait for human review.
+
+### PROMPT 4: HEADER & POINTER TABLE SCHEMA DEFINITION
+[ROLE & DIRECTIVE]: Tooling Engineer.
+[CONTEXT]: We must programmatically read the file structure without hardcoded offsets.
+[ACTIONABLE TASK]: Create `esf_parser.py` using the Python `construct` library. Define two schemas:
+1. `EsfHeader`: Magic number, total file size, asset count.
+2. `PointerTableEntry`: Asset ID/Hash, Byte Offset, Byte Length.
+[TECHNICAL CONSTRAINTS]: Use strict Little-Endian types (e.g., `Int32ul`). Achieve 0% coupling (do not tie the parser to any specific file path).
+[CHAIN OF THOUGHT REQUIREMENT]: How will the parser handle potential padding bytes between the header and the pointer table?
+[VALIDATION & STOP CONDITION]: Write a `main` block that parses the Original `.esf`. Print the number of parsed assets. The parser must not throw an `EOFError`.
+
+### PROMPT 5: SANITY CHECK - THE SUMMATION TEST
+[ROLE & DIRECTIVE]: QA Automation Engineer.
+[CONTEXT]: If our pointer map is wrong, the injection math will corrupt the file.
+[ACTIONABLE TASK]: Add a `verify_integrity()` function to `esf_parser.py`. It must loop through every entry in the parsed Pointer Table.
+[TECHNICAL CONSTRAINTS]: Calculate: `(Sum of all Asset Byte Lengths) + (Size of Header) + (Size of Pointer Table) + (Total Padding Bytes)`. 
+[CHAIN OF THOUGHT REQUIREMENT]: Explain your calculation for accounting for dynamic byte-alignment padding between assets.
+[VALIDATION & STOP CONDITION]: The calculated total MUST exactly equal the OS-level file size of the `.esf`. If it does not, automatically adjust the schema padding rules until it matches.
+
+------------------------------------------------------------------------
+PHASE 3: DIFFING & ASSET ISOLATION
+------------------------------------------------------------------------
+
+### PROMPT 6: ASSET INDEX DIFFING
+[ROLE & DIRECTIVE]: Data Analyst.
+[CONTEXT]: We need to isolate the 11 character models.
+[ACTIONABLE TASK]: Write `esf_diff.py`. Import `esf_parser.py`. Parse both the Original and Expansion `.esf` pointer tables. Compare the Asset IDs.
+[TECHNICAL CONSTRAINTS]: Identify the 11 Asset IDs that exist in the Original but are missing (or stubbed out) in the Expansion.
+[CHAIN OF THOUGHT REQUIREMENT]: How do we differentiate between an asset that is missing vs. an asset that is simply updated? (Look for massive file size discrepancies or missing ID hashes).
+[VALIDATION & STOP CONDITION]: Output a JSON-formatted list of the 11 target Asset IDs, their original offsets, and lengths.
+
+### PROMPT 7: BINARY PAYLOAD EXTRACTION
+[ROLE & DIRECTIVE]: Binary Analyst.
+[ACTIONABLE TASK]: Write `payload_extractor.py`. Using the offsets mapped in Prompt 6, slice the exact raw byte chunks for the 11 character models out of the Original `.esf`.
+[TECHNICAL CONSTRAINTS]: Save each chunk as `./workspace/payloads/asset_[ID].bin`. 
+[CHAIN OF THOUGHT REQUIREMENT]: Ensure your slicing mechanism strictly obeys the `Byte Length` from the pointer table, avoiding trailing padding from adjacent assets.
+[VALIDATION & STOP CONDITION]: Verify that the physical file size of each `.bin` perfectly matches its expected length.
+
+------------------------------------------------------------------------
+PHASE 4: INJECTION & RE-SERIALIZATION
+------------------------------------------------------------------------
+
+### PROMPT 8: THE IDENTITY TEST (CRITICAL GATE)
+[ROLE & DIRECTIVE]: Software Architect.
+[CONTEXT]: Before modifying data, we must prove our re-serialization logic is flawless.
+[ACTIONABLE TASK]: Write `esf_rebuilder.py`. Use the `construct` library to parse the Expansion `.esf` into memory, and immediately serialize/build it back to `./workspace/IDENTITY_TEST.ESF` without making any changes.
+[TECHNICAL CONSTRAINTS]: Do not alter a single byte.
+[CHAIN OF THOUGHT REQUIREMENT]: Why is this identity test critical for proprietary binary formats?
+[VALIDATION & STOP CONDITION]: Perform a byte-for-byte or SHA-256 hash comparison between the original Expansion `.esf` and `IDENTITY_TEST.ESF`. They MUST match 100%. DO NOT PROCEED IF THIS FAILS.
+
+### PROMPT 9: OFFSET SHIFT MATHEMATICS
+[ROLE & DIRECTIVE]: Algorithm Designer.
+[CONTEXT]: Injecting 11 models will increase the file size. All subsequent pointers must be shifted.
+[ACTIONABLE TASK]: Draft the mathematical algorithm in Python to recalculate the Pointer Table.
+[TECHNICAL CONSTRAINTS]: 
+`New_Offset = Old_Offset + Total_Size_Of_Injected_Payloads`.
+You MUST calculate proper PS2 byte-alignment padding (usually align to nearest 16 bytes: `padding = (16 - (size % 16)) % 16`).
+[CHAIN OF THOUGHT REQUIREMENT]: Explain how you will handle injecting the assets sequentially vs at the end of the file, and how that impacts the pointer shifts.
+[VALIDATION & STOP CONDITION]: Output a dry-run log calculating the new offsets for the last 5 assets in the file. 
+
+### PROMPT 10: PAYLOAD INJECTION & REBUILD
+[ROLE & DIRECTIVE]: Senior Reverse Engineer.
+[ACTIONABLE TASK]: Update `esf_rebuilder.py`. 
+1. Deserialize the Expansion `.esf`.
+2. Append/Inject the 11 `.bin` payloads.
+3. Update the injected asset entries in the Pointer Table.
+4. Shift all subsequent pointers using the math from Prompt 9.
+5. Update the main Header file size integer.
+6. Serialize to `./workspace/FINAL_CHAR_MERGED.ESF`.
+[TECHNICAL CONSTRAINTS]: Maintain absolute structural integrity.
+[CHAIN OF THOUGHT REQUIREMENT]: Review the code for off-by-one errors in the offset shifting.
+[VALIDATION & STOP CONDITION]: Run `esf_parser.py` (from Prompt 5) on `FINAL_CHAR_MERGED.ESF`. It must pass the Summation Test.
+
+------------------------------------------------------------------------
+PHASE 5: REPACKAGING & DEPLOYMENT
+------------------------------------------------------------------------
+
+### PROMPT 11: CSF REFERENCE CHECK (CONDITIONAL)
+[ROLE & DIRECTIVE]: Binary Analyst.
+[CONTEXT]: In older games, the `.esf` holds the binary, but the `.csf` acts as the master lookup index.
+[ACTIONABLE TASK]: If the game uses a `.csf` file to point to the `.esf`, write `csf_patcher.py` to ensure the 11 Asset IDs are present in the Expansion's `.csf`.
+[TECHNICAL CONSTRAINTS]: Apply the same `construct` parsing methodology to the `.csf`.
+[CHAIN OF THOUGHT REQUIREMENT]: Hypothesize the relationship between `.esf` and `.csf` based on the file contents.
+[VALIDATION & STOP CONDITION]: Output the modified `.csf` if necessary, or confirm the original Expansion `.csf` already contains the IDs.
+
+### PROMPT 12: LBA-PRESERVING ISO COMPILATION
+[ROLE & DIRECTIVE]: Build Engineer.
+[CONTEXT]: The modified file is larger. We must rebuild the ISO and regenerate the LBA tables.
+[ACTIONABLE TASK]: Write `repack_iso.py`. Use the `subprocess` module to trigger the `ImgBurn` CLI.
+[TECHNICAL CONSTRAINTS]: 
+Command structure: `ImgBurn.exe /MODE BUILD /BUILDMODE IMAGEFILE /SRC [Directory] /DEST [New_ISO] /FILESYSTEM "ISO9660 + UDF" /START /CLOSESUCCESS`.
+[CHAIN OF THOUGHT REQUIREMENT]: Why is UDF 1.02 + ISO9660 the standard for PS2 bootables?
+[VALIDATION & STOP CONDITION]: The script executes and generates `FRONTIERS_FIXED.iso` with a 0 exit code.
+
+### PROMPT 13: QA HANDOFF & VISUAL VERIFICATION
+[ROLE & DIRECTIVE]: Lead Architect.
+[ACTIONABLE TASK]: Generate a final summary report for the human user.
+[TECHNICAL CONSTRAINTS]: Include exact offsets changed, final file sizes, and explicit instructions for testing.
+[CHAIN OF THOUGHT REQUIREMENT]: Anticipate emulator issues. 
+[VALIDATION & STOP CONDITION]: Instruct the human to boot `FRONTIERS_FIXED.iso` in PCSX2. Ask: "Do the 11 character models load without question marks? Provide the PCSX2 debug log if it crashes."
