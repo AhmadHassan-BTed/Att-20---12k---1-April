@@ -1,2 +1,9 @@
-[+] Found process: pcsx2-qt.exe (PID: 7300)
-[-] OpenProcess failed: 5
+[+] Found process: pcsx2-qt.exe (PID: 23012)
+[+] Process opened: 164
+[+] Module base address: 0x7FF789F90000
+[+] PE Architecture: 64-bit
+[+] Export Table RVA: 0xD67FD8, Size: 179
+[+] Exports count: 5 functions, 5 named
+[+] Found 'EEmem' export at RVA 0x15EC560 (Address: 0x7FF78B57C560)
+[+] Actual EE RAM Base Address (dereferenced EEmem): 0x7FF7C0000000
+[+] First 16 bytes of EE RAM: 01801a3c385959ff0068194001801a3c

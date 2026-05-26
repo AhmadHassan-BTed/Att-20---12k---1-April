@@ -1,42 +1,42 @@
 ================================================================================
   DYNAMIC MEMORY NODE TREE COMPARISON REPORT
-  Working Reference: PS2 0x001B67B1 | Patched Invisible: PS2 0x00F9DD37
+  Working Reference: PS2 0x001B6BC8 | Patched Invisible: PS2 0x00F9DD37
 ================================================================================
 
-[+] working reference tree (0x001B67B1):
-  - Frontiers Character Root (0x72700): size=457,095, children=17
+[+] working reference tree (0x001B6BC8):
+  - Frontiers Character Root (0x72700): size=453,597, children=17
     - Metadata/BBox (0x42710): size=48, children=0
     - Texture Container (0x11110): size=93,087, children=3
-      - Texture Asset Leaf (0x11111): size=4, children=0 -> Hash = 0x9C23B6FF
+      - Texture Asset Leaf (0x11111): size=4, children=0 -> Hash = 0x5B8E5BDC
       - Texture Data Payload (0x01001): size=91,487, children=11
         - UnknownNode_1000 (0x01000): size=6,537, children=0
-        - UnknownNode_1000 (0x01000): size=22,925, children=0
-        - UnknownNode_1000 (0x01000): size=6,537, children=0
-        - UnknownNode_1000 (0x01000): size=6,537, children=0
-        - UnknownNode_1000 (0x01000): size=2,437, children=0
-        - UnknownNode_1000 (0x01000): size=6,537, children=0
-        - UnknownNode_1000 (0x01000): size=2,437, children=0
         - UnknownNode_1000 (0x01000): size=1,409, children=0
         - UnknownNode_1000 (0x01000): size=6,537, children=0
         - UnknownNode_1000 (0x01000): size=22,925, children=0
+        - UnknownNode_1000 (0x01000): size=2,437, children=0
+        - UnknownNode_1000 (0x01000): size=2,437, children=0
         - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=22,925, children=0
       - UnknownNode_1101 (0x01101): size=1,560, children=14
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=148, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=148, children=0
         - UnknownNode_31100 (0x31100): size=148, children=0
         - UnknownNode_31100 (0x31100): size=80, children=0
         - UnknownNode_31100 (0x31100): size=80, children=0
         - UnknownNode_31100 (0x31100): size=148, children=0
-        - UnknownNode_31100 (0x31100): size=148, children=0
-        - UnknownNode_31100 (0x31100): size=148, children=0
-        - UnknownNode_31100 (0x31100): size=80, children=0
-        - UnknownNode_31100 (0x31100): size=80, children=0
-        - UnknownNode_31100 (0x31100): size=80, children=0
-        - UnknownNode_31100 (0x31100): size=80, children=0
         - UnknownNode_31100 (0x31100): size=80, children=0
         - UnknownNode_31100 (0x31100): size=80, children=0
         - UnknownNode_31100 (0x31100): size=80, children=0
         - UnknownNode_31100 (0x31100): size=80, children=0
     - UnknownNode_5000 (0x05000): size=120, children=0
-    - UnknownNode_B070 (0x0B070): size=47,488, children=11
+    - UnknownNode_B070 (0x0B070): size=45,296, children=11
       - UnknownNode_B000 (0x0B000): size=2,228, children=2
         - UnknownNode_B010 (0x0B010): size=28, children=0
         - UnknownNode_B020 (0x0B020): size=2,176, children=0
@@ -46,9 +46,9 @@
       - UnknownNode_B000 (0x0B000): size=5,812, children=2
         - UnknownNode_B010 (0x0B010): size=28, children=0
         - UnknownNode_B020 (0x0B020): size=5,760, children=0
-      - UnknownNode_B000 (0x0B000): size=8,148, children=2
+      - UnknownNode_B000 (0x0B000): size=6,644, children=2
         - UnknownNode_B010 (0x0B010): size=28, children=0
-        - UnknownNode_B020 (0x0B020): size=8,096, children=0
+        - UnknownNode_B020 (0x0B020): size=6,592, children=0
       - UnknownNode_B000 (0x0B000): size=2,164, children=2
         - UnknownNode_B010 (0x0B010): size=28, children=0
         - UnknownNode_B020 (0x0B020): size=2,112, children=0
@@ -64,19 +64,78 @@
       - UnknownNode_B000 (0x0B000): size=3,604, children=2
         - UnknownNode_B010 (0x0B010): size=28, children=0
         - UnknownNode_B020 (0x0B020): size=3,552, children=0
-      - UnknownNode_B000 (0x0B000): size=2,196, children=2
+      - UnknownNode_B000 (0x0B000): size=1,508, children=2
         - UnknownNode_B010 (0x0B010): size=28, children=0
-        - UnknownNode_B020 (0x0B020): size=2,144, children=0
+        - UnknownNode_B020 (0x0B020): size=1,456, children=0
       - UnknownNode_B000 (0x0B000): size=4,020, children=2
         - UnknownNode_B010 (0x0B010): size=28, children=0
         - UnknownNode_B020 (0x0B020): size=3,968, children=0
-    - Skeleton Joints Container (0x02800): size=81,516, children=1
-      - UnknownNode_2A40 (0x02A40): size=81,504, children=3
+    - Skeleton Joints Container (0x02800): size=80,850, children=1
+      - UnknownNode_2A40 (0x02A40): size=80,838, children=3
         - UnknownNode_2A50 (0x02A50): size=28, children=0
-        - UnknownNode_2A60 (0x02A60): size=81,420, children=2
-          - UnknownNode_2320 (0x02320): size=51,830, children=2
+        - UnknownNode_2A60 (0x02A60): size=80,754, children=2
+          - UnknownNode_2320 (0x02320): size=52,285, children=2
             - UnknownNode_2321 (0x02321): size=32, children=0
-            - UnknownNode_21210 (0x21210): size=51,774, children=0
+            - UnknownNode_21210 (0x21210): size=52,229, children=0
+          - UnknownNode_0 (0x00000): size=0, children=0
+          - UnknownNode_0 (0x00000): size=83, children=0
+          - UnknownNode_0 (0x00000): size=0, children=0
+          - UnknownNode_0 (0x00000): size=0, children=0
+          - UnknownNode_0 (0x00000): size=0, children=0
+          - UnknownNode_E10 (0x00E10): size=0, children=0
+          - UnknownNode_0 (0x00000): size=21,248, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_326272 (0x326272): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_FF565A (0xFF565A): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_424F4D (0x424F4D): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_7A6266 (0x7A6266): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_9D6260 (0x9D6260): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_706564 (0x706564): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_ABB0AB (0xABB0AB): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_FF8389 (0xFF8389): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_707163 (0x707163): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_6070A (0x6070A): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_FF7384 (0xFF7384): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_B45E59 (0xB45E59): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_A7E6D3 (0xA7E6D3): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=69,649, children=0
 
 [+] patched invisible tree (0x00F9DD37):
   - Frontiers Character Root (0x72700): size=505,931, children=17
@@ -123,28 +182,217 @@
         - UnknownNode_B010 (0x0B010): size=28, children=0
         - UnknownNode_B020 (0x0B020): size=6,912, children=0
       - UnknownNode_2 (0x00002): size=45,072, children=28
-        - UnknownNode_840 (0x00840): size=0, children=0
         - UnknownNode_0 (0x00000): size=0, children=0
+        - UnknownNode_0 (0x00000): size=0, children=0
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=4,880, children=0
+        - UnknownNode_B000 (0x0B000): size=6,900, children=2
+          - UnknownNode_B010 (0x0B010): size=28, children=0
+          - UnknownNode_B020 (0x0B020): size=6,848, children=0
+        - UnknownNode_B000 (0x0B000): size=3,604, children=2
+          - UnknownNode_B010 (0x0B010): size=28, children=0
+          - UnknownNode_B020 (0x0B020): size=3,552, children=0
+        - UnknownNode_B000 (0x0B000): size=2,500, children=2
+          - UnknownNode_B010 (0x0B010): size=28, children=0
+          - UnknownNode_B020 (0x0B020): size=2,448, children=0
+        - UnknownNode_B000 (0x0B000): size=4,020, children=2
+          - UnknownNode_B010 (0x0B010): size=28, children=0
+          - UnknownNode_B020 (0x0B020): size=3,968, children=0
+        - Skeleton Joints Container (0x02800): size=94,630, children=1
+          - UnknownNode_2A40 (0x02A40): size=94,618, children=3
+            - UnknownNode_2A50 (0x02A50): size=28, children=0
+            - UnknownNode_2A60 (0x02A60): size=94,534, children=2
+              ... (max depth reached, 2 children truncated)
+            - UnknownNode_2A70 (0x02A70): size=20, children=0
+    - UnknownNode_7FFF (0x07FFF): size=2,560, children=0
+    - UnknownNode_7FFF (0x07FFF): size=1,280, children=0
+    - UnknownNode_7F (0x0007F): size=3, children=1
+    - UnknownNode_7F (0x0007F): size=9, children=5
+    - UnknownNode_7F (0x0007F): size=6, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=5
+    - UnknownNode_7F (0x0007F): size=4, children=5
+    - UnknownNode_7F (0x0007F): size=4, children=5
+    - UnknownNode_7F (0x0007F): size=4, children=5
+    - UnknownNode_7F (0x0007F): size=3, children=5
+    - UnknownNode_7F (0x0007F): size=3, children=5
+    - UnknownNode_7F (0x0007F): size=5, children=6
+    - UnknownNode_1966 (0x01966): size=5, children=6
+    - UnknownNode_4C33 (0x04C33): size=5, children=6
+    - UnknownNode_D72 (0x00D72): size=5, children=6
+    - UnknownNode_7F (0x0007F): size=5, children=6
+    - UnknownNode_7F (0x0007F): size=5, children=6
+    - UnknownNode_7F (0x0007F): size=3, children=6
+    - UnknownNode_720D (0x0720D): size=3, children=6
+    - UnknownNode_3F40 (0x03F40): size=9, children=8
+    - UnknownNode_3F40 (0x03F40): size=7, children=8
+    - UnknownNode_7F (0x0007F): size=4, children=8
+    - UnknownNode_3F40 (0x03F40): size=4, children=8
+    - UnknownNode_3F40 (0x03F40): size=4, children=8
+    - UnknownNode_3F40 (0x03F40): size=4, children=8
+    - UnknownNode_3F40 (0x03F40): size=3, children=8
+    - UnknownNode_7F (0x0007F): size=3, children=8
+    - UnknownNode_7F (0x0007F): size=6, children=9
+    - UnknownNode_7F (0x0007F): size=3, children=9
+    - UnknownNode_7F (0x0007F): size=3, children=9
+    - UnknownNode_7F (0x0007F): size=3, children=9
+    - UnknownNode_7F (0x0007F): size=3, children=9
+    - UnknownNode_7F (0x0007F): size=8, children=10
+    - UnknownNode_7F (0x0007F): size=3, children=10
+    - UnknownNode_7F (0x0007F): size=3, children=12
+    - UnknownNode_7F (0x0007F): size=3, children=12
+    - UnknownNode_7F (0x0007F): size=3, children=12
+    - UnknownNode_7FFF (0x07FFF): size=2,304, children=0
+    - UnknownNode_7FFFFF (0x7FFFFF): size=196,608, children=0
+    - UnknownNode_C (0x0000C): size=9, children=1
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_0 (0x00000): size=0, children=0
+    - UnknownNode_3E4CCC (0x3E4CCC): size=0, children=0
+    - UnknownNode_3E4CCC (0x3E4CCC): size=0, children=0
+    - UnknownNode_3E4CCC (0x3E4CCC): size=0, children=0
+    - UnknownNode_3E4CCC (0x3E4CCC): size=0, children=0
+    - UnknownNode_3F8000 (0x3F8000): size=0, children=0
+    - UnknownNode_3ECCCC (0x3ECCCC): size=0, children=0
+    - UnknownNode_3ECCCC (0x3ECCCC): size=0, children=0
+    - UnknownNode_3ECCCC (0x3ECCCC): size=0, children=0
+    - UnknownNode_3ECCCC (0x3ECCCC): size=0, children=0
+    - UnknownNode_3F8000 (0x3F8000): size=0, children=0
+    - UnknownNode_3ECCCC (0x3ECCCC): size=0, children=0
+    - UnknownNode_3ECCCC (0x3ECCCC): size=0, children=0
+    - UnknownNode_3F8000 (0x3F8000): size=0, children=0
+    - UnknownNode_3F8000 (0x3F8000): size=0, children=0
 
 ================================================================================
   SUB-COMPONENT DETAILED COMPARISON
 ================================================================================
-Working Reference children count: 5
-Patched Invisible children count: 4
+Working Reference children count: 57
+Patched Invisible children count: 89
 
 Index  | Ref Component Type             (Size) | Pat Component Type             (Size) | Status
 ------------------------------------------------------------------------------------------
 0      | 0x42710 (48 bytes)                   | 0x42710 (48 bytes)                   | MATCH
 1      | 0x11110 (93,087 bytes)               | 0x11110 (89,081 bytes)               | MATCH
 2      | 0x05000 (120 bytes)                  | 0x05000 (120 bytes)                  | MATCH
-3      | 0x0B070 (47,488 bytes)               | 0x0B070 (46,608 bytes)               | MATCH
-4      | 0x02800 (81,516 bytes)               | None                                 | MISMATCH
+3      | 0x0B070 (45,296 bytes)               | 0x0B070 (46,608 bytes)               | MATCH
+4      | 0x02800 (80,850 bytes)               | 0x07FFF (2,560 bytes)                | MISMATCH
+5      | 0x00000 (0 bytes)                    | 0x07FFF (1,280 bytes)                | MISMATCH
+6      | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+7      | 0x00000 (0 bytes)                    | 0x0007F (9 bytes)                    | MISMATCH
+8      | 0x326272 (0 bytes)                   | 0x0007F (6 bytes)                    | MISMATCH
+9      | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+10     | 0xFF565A (0 bytes)                   | 0x0007F (5 bytes)                    | MISMATCH
+11     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+12     | 0x424F4D (0 bytes)                   | 0x0007F (5 bytes)                    | MISMATCH
+13     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+14     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+15     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+16     | 0x7A6266 (0 bytes)                   | 0x0007F (5 bytes)                    | MISMATCH
+17     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+18     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+19     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+20     | 0x9D6260 (0 bytes)                   | 0x0007F (5 bytes)                    | MISMATCH
+21     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+22     | 0x706564 (0 bytes)                   | 0x0007F (5 bytes)                    | MISMATCH
+23     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+24     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+25     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+26     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+27     | 0x00000 (0 bytes)                    | 0x0007F (4 bytes)                    | MISMATCH
+28     | 0x00000 (0 bytes)                    | 0x0007F (4 bytes)                    | MISMATCH
+29     | 0x00000 (0 bytes)                    | 0x0007F (4 bytes)                    | MISMATCH
+30     | 0xABB0AB (0 bytes)                   | 0x0007F (3 bytes)                    | MISMATCH
+31     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+32     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+33     | 0x00000 (0 bytes)                    | 0x01966 (5 bytes)                    | MISMATCH
+34     | 0xFF8389 (0 bytes)                   | 0x04C33 (5 bytes)                    | MISMATCH
+35     | 0x00000 (0 bytes)                    | 0x00D72 (5 bytes)                    | MISMATCH
+36     | 0x707163 (0 bytes)                   | 0x0007F (5 bytes)                    | MISMATCH
+37     | 0x00000 (0 bytes)                    | 0x0007F (5 bytes)                    | MISMATCH
+38     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+39     | 0x00000 (0 bytes)                    | 0x0720D (3 bytes)                    | MISMATCH
+40     | 0x6070A (0 bytes)                    | 0x03F40 (9 bytes)                    | MISMATCH
+41     | 0x00000 (0 bytes)                    | 0x03F40 (7 bytes)                    | MISMATCH
+42     | 0x00000 (0 bytes)                    | 0x0007F (4 bytes)                    | MISMATCH
+43     | 0x00000 (0 bytes)                    | 0x03F40 (4 bytes)                    | MISMATCH
+44     | 0xFF7384 (0 bytes)                   | 0x03F40 (4 bytes)                    | MISMATCH
+45     | 0x00000 (0 bytes)                    | 0x03F40 (4 bytes)                    | MISMATCH
+46     | 0xB45E59 (0 bytes)                   | 0x03F40 (3 bytes)                    | MISMATCH
+47     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+48     | 0x00000 (0 bytes)                    | 0x0007F (6 bytes)                    | MISMATCH
+49     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+50     | 0xA7E6D3 (0 bytes)                   | 0x0007F (3 bytes)                    | MISMATCH
+51     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+52     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+53     | 0x00000 (0 bytes)                    | 0x0007F (8 bytes)                    | MISMATCH
+54     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+55     | 0x00000 (0 bytes)                    | 0x0007F (3 bytes)                    | MISMATCH
+56     | 0x00000 (69,649 bytes)               | 0x0007F (3 bytes)                    | MISMATCH
+57     | None                                 | 0x0007F (3 bytes)                    | MISMATCH
+58     | None                                 | 0x07FFF (2,304 bytes)                | MISMATCH
+59     | None                                 | 0x7FFFFF (196,608 bytes)             | MISMATCH
+60     | None                                 | 0x0000C (9 bytes)                    | MISMATCH
+61     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+62     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+63     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+64     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+65     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+66     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+67     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+68     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+69     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+70     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+71     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+72     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+73     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+74     | None                                 | 0x00000 (0 bytes)                    | MISMATCH
+75     | None                                 | 0x3E4CCC (0 bytes)                   | MISMATCH
+76     | None                                 | 0x3E4CCC (0 bytes)                   | MISMATCH
+77     | None                                 | 0x3E4CCC (0 bytes)                   | MISMATCH
+78     | None                                 | 0x3E4CCC (0 bytes)                   | MISMATCH
+79     | None                                 | 0x3F8000 (0 bytes)                   | MISMATCH
+80     | None                                 | 0x3ECCCC (0 bytes)                   | MISMATCH
+81     | None                                 | 0x3ECCCC (0 bytes)                   | MISMATCH
+82     | None                                 | 0x3ECCCC (0 bytes)                   | MISMATCH
+83     | None                                 | 0x3ECCCC (0 bytes)                   | MISMATCH
+84     | None                                 | 0x3F8000 (0 bytes)                   | MISMATCH
+85     | None                                 | 0x3ECCCC (0 bytes)                   | MISMATCH
+86     | None                                 | 0x3ECCCC (0 bytes)                   | MISMATCH
+87     | None                                 | 0x3F8000 (0 bytes)                   | MISMATCH
+88     | None                                 | 0x3F8000 (0 bytes)                   | MISMATCH
 
 ================================================================================
   SKELETON & RIGGING NODE AUDIT
 ================================================================================
-Skeleton found in Working Ref:  YES
-Skeleton found in Patched:      NO
+Working Ref skeleton type:  0x02800 | size: 80,850 | children: 1
+Patched Invisible skel type:0x02800 | size: 94,630 | children: 1
 
 ================================================================================
   GEOMETRY & MESH NODE AUDIT

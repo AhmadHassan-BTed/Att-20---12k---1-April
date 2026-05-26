@@ -155,7 +155,7 @@ import sys
 sys.setrecursionlimit(10000)
 
 def parse_esf_node(data, pos=0, depth=0, max_depth=25):
-    """Recursively parses a standalone ESF node from raw memory bytes with guards against infinite recursion."""
+    """Recursively parses a standalone ESF node from raw memory bytes contiguously with guards against infinite recursion."""
     if depth > max_depth:
         return None, pos
         
@@ -183,19 +183,16 @@ def parse_esf_node(data, pos=0, depth=0, max_depth=25):
     if child_count == 0:
         # Leaf node
         node['inline_data'] = data[next_pos:min(next_pos + data_size, len(data))]
-        next_pos += data_size
     else:
-        # Branch node
+        # Branch node: recursively parse exactly child_count children
         for _ in range(child_count):
-            # Align next_pos to a 4-byte boundary to match emulated MIPS memory alignments
-            next_pos = (next_pos + 3) & ~3
-            if next_pos >= len(data):
+            if next_pos + 12 > len(data):
                 break
             child, next_pos = parse_esf_node(data, next_pos, depth + 1, max_depth)
             if child:
                 node['children'].append(child)
                 
-    return node, next_pos
+    return node, pos + 12 + data_size
 
 def dump_node_tree(node, depth=0, max_depth=5):
     """Formats a node tree as a clean string visualization."""
@@ -265,21 +262,116 @@ def main():
     print(f"[+] EEmem Base Address: 0x{eemem_base:X}")
     print("=" * 78)
     
-    # ── Step 2: Read Root Node Memory Blocks ────────────────────────────────
-    # We compare:
-    # 1. Unpatched reference node: 0x001B67B1 (size 457,095)
-    # 2. Patched invisible node:   0x00F9DD37 (size 505,931)
+    # ── Step 2: Read Full EE RAM & Scan Dynamically for Character Roots ─────
+    print("\n[*] Capturing active EE RAM snapshot (32MB)...")
     
-    ref_offset = 0x001B67B1
+    def read_full_eemem(proc_handle, eemem_base, eemem_size=0x02000000):
+        chunk_size = 4 * 1024 * 1024
+        full_ram = bytearray()
+        for offset in range(0, eemem_size, chunk_size):
+            remaining = min(chunk_size, eemem_size - offset)
+            buf = ctypes.create_string_buffer(remaining)
+            bytes_read = ctypes.c_size_t(0)
+            ok = kernel32.ReadProcessMemory(
+                proc_handle,
+                ctypes.c_void_p(eemem_base + offset),
+                buf,
+                remaining,
+                ctypes.byref(bytes_read)
+            )
+            if not ok:
+                full_ram.extend(b'\x00' * remaining)
+            else:
+                full_ram.extend(buf.raw[:bytes_read.value])
+                if bytes_read.value < remaining:
+                    full_ram.extend(b'\x00' * (remaining - bytes_read.value))
+        return bytes(full_ram)
+
+    ram_data = read_full_eemem(hProcess, eemem_base)
+    print(f"[+] Snapshot captured: {len(ram_data):,} bytes")
+
+    # Scan for 0x72700 roots
+    print("[*] Scanning for character root nodes (0x72700)...")
+    needle = struct.pack('<I', 0x72700)
+    roots = []
+    search_start = 0
+    while True:
+        idx = ram_data.find(needle, search_start)
+        if idx == -1:
+            break
+        if idx + 12 <= len(ram_data):
+            data_size = struct.unpack_from('<I', ram_data, idx + 4)[0]
+            child_count = struct.unpack_from('<I', ram_data, idx + 8)[0]
+            if child_count == 17 and data_size < 10_000_000:
+                roots.append((idx, data_size))
+        search_start = idx + 4
+
+    print(f"[+] Found {len(roots)} active character roots in RAM:")
+    ref_offset = None
+    pat_offset = None
     ref_size = 457095
-    
-    pat_offset = 0x00F9DD37
-    pat_size = 505931
-    
-    print("\n[*] Reading active RAM for Working Reference Root (0x001B67B1)...")
+    # Patched size is usually 505931, but we can search for the highest size or close matches
+    for idx, data_size in roots:
+        print(f"  - PS2 Offset 0x{idx:08X}: data_size={data_size:,} bytes")
+        if data_size == ref_size:
+            ref_offset = idx
+        elif data_size > 480000 and (pat_offset is None or abs(data_size - 505931) < abs(ram_data.find(b'FJBO') - 505931)): # or closest to 505931
+            # Pick a node with size > 480KB (which would be our patched node, other unpatched nodes are <460KB or around 501KB)
+            # Actually, let's identify the patched one:
+            # According to the tracer:
+            # 0x00E2ECC8: data_size=501,461, children=17
+            # 0x00EA93C9: data_size=494,666, children=17
+            # 0x00F2203F: data_size=507,084, children=17
+            # 0x00F9DD37: data_size=505,931, children=17
+            # Let's match exact 505931 or closest
+            if pat_offset is None:
+                pat_offset = idx
+            else:
+                # If we have multiple, the one with size 505931 is preferred
+                current_best_diff = abs(ram_data.find(needle) - 505931) # dummy
+                if data_size == 505931:
+                    pat_offset = idx
+                elif abs(data_size - 505931) < 1000:
+                    pat_offset = idx
+
+    # If ref_offset or pat_offset is not found, try heuristics
+    if not ref_offset and roots:
+        # Reference is typically the smallest active root that is non-zero
+        valid_ref = [r for r in roots if r[1] > 400000 and r[1] < 460000]
+        if valid_ref:
+            ref_offset = valid_ref[0][0]
+            ref_size = valid_ref[0][1]
+
+    if not pat_offset and roots:
+        # Patched is typically the one with size around 505931
+        valid_pat = [r for r in roots if abs(r[1] - 505931) < 5000]
+        if valid_pat:
+            pat_offset = valid_pat[0][0]
+            pat_size = valid_pat[0][1]
+        else:
+            # Fallback to the largest node
+            roots_sorted = sorted(roots, key=lambda x: x[1], reverse=True)
+            if roots_sorted:
+                pat_offset = roots_sorted[0][0]
+                pat_size = roots_sorted[0][1]
+
+    if not ref_offset or not pat_offset:
+        print("[-] Could not dynamically identify the Reference and Patched root offsets.")
+        print("    Make sure the patched character is loaded and spawned in the world.")
+        kernel32.CloseHandle(hProcess)
+        return
+
+    ref_size = next(size for idx, size in roots if idx == ref_offset)
+    pat_size = next(size for idx, size in roots if idx == pat_offset)
+
+    print(f"\n[+] Dynamic Resolution Success:")
+    print(f"    - Working Reference Root: PS2 0x{ref_offset:08X} (size={ref_size:,})")
+    print(f"    - Patched Invisible Root: PS2 0x{pat_offset:08X} (size={pat_size:,})")
+
+    print(f"\n[*] Reading active RAM for Working Reference Root (0x{ref_offset:08X})...")
     ref_raw = read_remote_mem(hProcess, eemem_base + ref_offset, ref_size + 12)
     
-    print("[*] Reading active RAM for Patched Invisible Root (0x00F9DD37)...")
+    print(f"[*] Reading active RAM for Patched Invisible Root (0x{pat_offset:08X})...")
     pat_raw = read_remote_mem(hProcess, eemem_base + pat_offset, pat_size + 12)
     
     kernel32.CloseHandle(hProcess)
@@ -307,11 +399,11 @@ def main():
     report.append("=" * 80)
     report.append("")
     
-    report.append("[+] working reference tree (0x001B67B1):")
+    report.append(f"[+] working reference tree (0x{ref_offset:08X}):")
     report.extend(dump_node_tree(ref_tree, 1, 6))
     report.append("")
     
-    report.append("[+] patched invisible tree (0x00F9DD37):")
+    report.append(f"[+] patched invisible tree (0x{pat_offset:08X}):")
     report.extend(dump_node_tree(pat_tree, 1, 6))
     report.append("")
     

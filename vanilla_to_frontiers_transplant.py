@@ -202,44 +202,53 @@ def translate_texture_container(vanilla_container: dict, frontiers_container: di
     update_node_sizes(result)
     return result
 
-def clean_surgery(vanilla_bytes: bytes, frontiers_bytes: bytes, asset_label: str) -> bytes:
-    """Surgically graft Vanilla texture container and geometry container into Frontiers template."""
+def pristine_structural_upgrade(vanilla_bytes: bytes, asset_label: str) -> bytes:
+    """Surgically upgrades a pristine Vanilla model (0x62700, 15 children) into a Frontiers-compliant wrapper (0x72700, 17 children)."""
     van_node, _ = parse_node(vanilla_bytes, 0)
-    fro_node, _ = parse_node(frontiers_bytes, 0)
     
-    if van_node['type_id'] not in (0x62700, 0x72700) or fro_node['type_id'] not in (0x62700, 0x72700):
-        raise ValueError(f"Asset {asset_label} is not a valid character model!")
+    if van_node['type_id'] not in (0x62700, 0x72700):
+        raise ValueError(f"Asset {asset_label} is not a valid Vanilla character model!")
         
-    graft_root = copy.deepcopy(fro_node)
+    graft_root = copy.deepcopy(van_node)
     
-    # 1. Graft texture container (0x11110)
-    van_tex = next((c for c in van_node['children'] if c['type_id'] in (0x11100, 0x11110)), None)
-    fro_tex_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] == 0x11110), None)
-    
-    if van_tex and fro_tex_idx is not None:
-        graft_root['children'][fro_tex_idx] = translate_texture_container(
-            vanilla_container   = van_tex,
-            frontiers_container = graft_root['children'][fro_tex_idx],
-            asset_label         = asset_label
-        )
-        print(f"    [+] Grafted Vanilla texture container into slot {fro_tex_idx}")
-    else:
-        print(f"    [warn] Texture container missing for {asset_label}")
+    # 1. Upgrade root type ID from 0x62700 to 0x72700
+    if graft_root['type_id'] == 0x62700:
+        graft_root['type_id'] = 0x72700
+        print(f"    [+] Upgraded root type: 0x62700 -> 0x72700")
         
-    # 2. Replace geometry container (0x02610)
-    van_geom = next((c for c in van_node['children'] if c['type_id'] == 0x02610), None)
-    fro_geom_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] == 0x02610), None)
-    
-    if van_geom and fro_geom_idx is not None:
-        graft_root['children'][fro_geom_idx] = copy.deepcopy(van_geom)
-        print(f"    [+] Replaced geometry container at slot {fro_geom_idx} with Vanilla's container ({van_geom['child_count']} strips)")
-    else:
-        raise ValueError(f"Geometry container 0x02610 not found in Vanilla or Frontiers for {asset_label}!")
+    # 2. Add Frontiers-specific trailer child nodes (0x02950 and 0x02960) to expand 15 -> 17 children
+    if len(graft_root['children']) == 15:
+        # Create Child 15: type 0x02950, size 0
+        child15 = {
+            'type_id': 0x02950,
+            'data_size': 0,
+            'child_count': 0,
+            'children': [],
+            'inline_data': b''
+        }
+        # Create Child 16: type 0x02960, size 4
+        child16 = {
+            'type_id': 0x02960,
+            'data_size': 4,
+            'child_count': 0,
+            'children': [],
+            'inline_data': b'\x00\x00\x00\x00'
+        }
+        graft_root['children'].append(child15)
+        graft_root['children'].append(child16)
+        graft_root['child_count'] = 17
+        print(f"    [+] Appended trailer children 0x02950 and 0x02960 (children count: 15 -> 17)")
         
-    # 3. Update all node sizes recursively
+    # 3. Find and upgrade bone definitions container type ID from 0x12400 to 0x22400
+    for child in graft_root['children']:
+        if child['type_id'] == 0x12400:
+            child['type_id'] = 0x22400
+            print(f"    [+] Upgraded bone definitions: 0x12400 -> 0x22400")
+            
+    # 4. Recursively update all node sizes
     update_node_sizes(graft_root)
     
-    # 4. Serialize hybrid tree
+    # 5. Serialize
     final_payload = serialize_node(graft_root)
     return final_payload
 
@@ -304,10 +313,9 @@ def main():
         # Load frontiers template
         fro_entry = fro_map[h]
         frontiers_bytes = fro_esf_bytes[fro_entry.offset : fro_entry.offset + fro_entry.length]
-        
         try:
-            # Perform high-fidelity clean surgery
-            final_payload = clean_surgery(vanilla_bytes, frontiers_bytes, f"0x{h:08X}")
+            # Perform high-fidelity pristine structural upgrade
+            final_payload = pristine_structural_upgrade(vanilla_bytes, f"0x{h:08X}")
             
             # Save payload bin
             bin_path = os.path.join(payloads_dir, f"asset_0x{h:08X}.bin")
