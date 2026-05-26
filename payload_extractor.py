@@ -62,8 +62,10 @@ def extract_payloads(json_path, esf_path, output_dir):
         physical_size = os.path.getsize(out_path)
         mismatch = "PASS" if physical_size == length else "FAIL"
         
+        end_offset = offset + length
+        
         extracted_summary.append((out_name, length, physical_size, mismatch))
-        print(f"  [{idx+1:2d}/11] Extracted {out_name} | Offset: 0x{offset:X} | Expected: {length:,} B | Sliced: {physical_size:,} B | Verification: {mismatch}")
+        print(f"  [{idx+1:2d}/11] ID: 0x{int(h, 16):08X} | Start Offset: 0x{offset:X} | End Offset: 0x{end_offset:X} | Total Bytes Extracted: {physical_size:,}")
 
     # 5. Output Verification Report
     print("\n=== Slicing Verification Report ===")

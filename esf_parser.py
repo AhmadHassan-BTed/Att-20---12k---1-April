@@ -153,10 +153,17 @@ class ESFParser:
             # Find the unique Asset ID (hash) inside the model's subtree
             asset_hash = self._find_hash_in_subtree(model_node)
             
-            # Total size of the model node is header (12) + data_size
-            length = 12 + model_node['data_size']
             offset = model_node['offset']
             type_id = model_node['type_id']
+            
+            # FIX: Calculate exact size using Offset B - Offset A
+            if idx < len(model_container['children']) - 1:
+                next_offset = model_container['children'][idx+1]['offset']
+                length = next_offset - offset
+            else:
+                # Last node extends to the end of the Model Container
+                container_end = model_container['offset'] + 12 + model_container['data_size']
+                length = container_end - offset
             
             entry = PointerTableEntry(idx, asset_hash, offset, length, type_id)
             self.pointer_table.append(entry)
