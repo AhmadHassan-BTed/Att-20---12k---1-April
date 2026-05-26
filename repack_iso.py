@@ -64,6 +64,15 @@ def repack_iso():
         else:
             final_aligned_filesize = filesize
 
+        # 2. UDF AVDP Splicing for UDF compliance
+        f.seek((new_lba - 1) * 2048)
+        avdp_sector = f.read(2048)
+        if len(avdp_sector) == 2048 and struct.unpack('<H', avdp_sector[:2])[0] == 2:
+            f.seek(0, 2)
+            f.write(avdp_sector)
+            final_aligned_filesize += 2048
+            print(f"[*] Transplanted UDF AVDP sector from old end (LBA {new_lba - 1}) to new end of ISO.")
+
                 
     print("[*] Performing surgical LBA patch on ISO 9660 Directory Records...")
     records_patched = 0

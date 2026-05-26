@@ -26,5 +26,5 @@ def find_char_esf(iso_path):
                 
     iso.close()
 
-print("=== frontiers iso ===")
-find_char_esf('EQOA_Frontiers.iso')
+print("=== patched frontiers iso ===")
+find_char_esf('EQOA_Frontiers_Patched.iso')
