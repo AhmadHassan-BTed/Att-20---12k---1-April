@@ -1,6 +1,6 @@
 import os
 
-iso_path = 'output/EQOA_Frontiers_Patched.iso'
+iso_path = 'iso/patched/EQOA_Frontiers_Patched.iso'
 esf_path = 'workspace/FINAL_CHAR_MERGED.ESF'
 
 print(f"[*] Commencing direct binary sector verification...")

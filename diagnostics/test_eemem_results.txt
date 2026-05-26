@@ -1,0 +1,2 @@
+[+] Found process: pcsx2-qt.exe (PID: 7300)
+[-] OpenProcess failed: 5

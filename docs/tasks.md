@@ -35,3 +35,17 @@ This board registers individual granular actions, code edits, and verification c
 - [x] Run `verify_final_patch.py` and confirm logical/physical offsets
 - [x] Run `verify_final_iso.py` and confirm byte match
 - [x] Boot game in PCSX2 and verify character visibility in-game on Sandstorm
+
+---
+
+## 4. Repository Organization & Path Restructuring
+- [x] Create `iso/unmodified/` directory
+- [x] Create `iso/patched/` directory
+- [x] Move original ISOs to `iso/unmodified/`
+- [x] Move patched ISO to `iso/patched/`
+- [x] Update `core/repack_iso.py` paths
+- [x] Update `core/patch_udf_char_esf_v2.py` paths
+- [x] Update `core/verify_final_iso.py` paths
+- [x] Update `core/verify_final_patch.py` paths
+- [x] Update `run_patcher.bat` success message
+- [x] Update `docs/progress.md` with reorganization log

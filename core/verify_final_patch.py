@@ -4,7 +4,7 @@ import struct, os
 esf_path = 'workspace/FINAL_CHAR_MERGED.ESF'
 expected_size = os.path.getsize(esf_path)
 
-with open('output/EQOA_Frontiers_Patched.iso', 'rb') as f:
+with open('iso/patched/EQOA_Frontiers_Patched.iso', 'rb') as f:
     # Read allocation descriptor
     f.seek(0xA8934)
     ad = f.read(8)
