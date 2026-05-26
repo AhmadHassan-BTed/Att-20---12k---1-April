@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import hashlib
+import struct
 from construct import Struct, Const, Int32ul, Bytes
 from esf_parser import ESFParser, EsfHeader, EsfNodeHeader
 
@@ -13,6 +14,8 @@ def get_sha256(filepath):
     return sha256.hexdigest()
 
 def serialize_node(node):
+    if 'raw_data' in node and node['raw_data'] is not None:
+        return node['raw_data']
     data = bytearray()
     header = EsfNodeHeader.build(dict(
         type_id=node['type_id'],
@@ -110,9 +113,19 @@ def main():
         with open(bin_path, 'rb') as bf:
             bin_data = bf.read()
             
-        # Parse the .bin payload into a node tree
-        payload_parser = ESFParser(bin_data)
-        payload_node, _ = payload_parser._parse_node(0)
+        # Parse only the 12-byte header of the .bin payload
+        type_id = struct.unpack_from('<I', bin_data, 0)[0]
+        data_size = struct.unpack_from('<I', bin_data, 4)[0]
+        child_count = struct.unpack_from('<I', bin_data, 8)[0]
+        
+        payload_node = {
+            'type_id': type_id,
+            'data_size': data_size,
+            'child_count': child_count,
+            'children': [],
+            'inline_data': None,
+            'raw_data': bin_data
+        }
         
         new_payload_size = len(bin_data)
         p = 0
