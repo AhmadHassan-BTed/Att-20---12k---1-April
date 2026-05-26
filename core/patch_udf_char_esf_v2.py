@@ -23,7 +23,7 @@ This is low-level binary surgery - exactly what needs to happen.
 """
 import struct, os, sys
 
-ISO_PATH  = 'EQOA_Frontiers_Patched.iso'
+ISO_PATH  = 'output/EQOA_Frontiers_Patched.iso'
 ESF_PATH  = 'workspace/FINAL_CHAR_MERGED.ESF'
 PARTITION_OFFSET = 278
 NEW_SIZE  = os.path.getsize(ESF_PATH)
