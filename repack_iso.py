@@ -46,6 +46,18 @@ def repack_iso():
             for chunk in iter(lambda: esf_f.read(4 * 1024 * 1024), b""):
                 f.write(chunk)
                 
+        # 1. Enforce 2048-Byte EOF Padding
+        filesize = f.tell()
+        remainder = filesize % 2048
+        if remainder != 0:
+            padding_needed = 2048 - remainder
+            f.write(b'\x00' * padding_needed)
+            final_aligned_filesize = filesize + padding_needed
+            print(f"[*] Appended {padding_needed} bytes of null padding to sector-align the EOF.")
+        else:
+            final_aligned_filesize = filesize
+
+                
     print("[*] Performing surgical LBA patch on ISO 9660 Directory Records...")
     records_patched = 0
     
@@ -91,15 +103,18 @@ def repack_iso():
 
         print("[*] Updating Primary Volume Descriptor (PVD)...")
         pvd_offset = 16 * 2048
-        if mm[pvd_offset:pvd_offset+5] == b'\x01CD001':
+        # FIX: Check 6 bytes for the PVD magic signature instead of 5
+        if mm[pvd_offset:pvd_offset+6] == b'\x01CD001':
             vol_size_le = struct.unpack('<I', mm[pvd_offset+80:pvd_offset+84])[0]
-            new_total_sectors = (new_total_size + 2047) // 2048
+            # 2. Update the Primary Volume Descriptor (PVD)
+            total_sectors = final_aligned_filesize // 2048
             print(f"  [+] PVD located at offset 0x{pvd_offset:X}")
             print(f"      Old Volume Space Size: {vol_size_le} sectors")
             
-            mm[pvd_offset+80:pvd_offset+84] = struct.pack('<I', new_total_sectors)
-            mm[pvd_offset+84:pvd_offset+88] = struct.pack('>I', new_total_sectors)
-            print(f"      New Volume Space Size: {new_total_sectors} sectors")
+            # Write 32-bit Little-Endian and 32-bit Big-Endian sizes
+            mm[pvd_offset+80:pvd_offset+84] = struct.pack('<I', total_sectors)
+            mm[pvd_offset+84:pvd_offset+88] = struct.pack('>I', total_sectors)
+            print(f"      New Volume Space Size: {total_sectors} sectors")
         else:
             print("[-] Warning: PVD magic signature not found at sector 16.")
             

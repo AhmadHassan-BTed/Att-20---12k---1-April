@@ -3,13 +3,28 @@ echo ========================================================
 echo EQOA Frontiers - Asset Restoration Patcher
 echo ========================================================
 echo.
+
+:: Fix double extensions caused by Windows hiding known file types
+if exist "EQOA_Original.iso.iso" rename "EQOA_Original.iso.iso" "EQOA_Original.iso"
+if exist "EQOA_Frontiers.iso.iso" rename "EQOA_Frontiers.iso.iso" "EQOA_Frontiers.iso"
+
 echo Please ensure you have placed your original ISO files here:
 echo - EQOA_Original.iso
 echo - EQOA_Frontiers.iso
 echo.
-pause
 
-echo.
+if not exist "EQOA_Original.iso" (
+    echo [ERROR] Could not find EQOA_Original.iso in this folder!
+    pause
+    exit /b
+)
+
+if not exist "EQOA_Frontiers.iso" (
+    echo [ERROR] Could not find EQOA_Frontiers.iso in this folder!
+    pause
+    exit /b
+)
+
 echo [*] Installing required Python libraries...
 pip install construct pycdlib
 
