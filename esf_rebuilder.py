@@ -82,48 +82,69 @@ def main():
         print("[-] Error: Model Container not found!")
         sys.exit(1)
 
-    print("[*] Injecting payloads...")
+    print("[*] Scanning payloads directory for injection...")
+    import glob
+    bin_files = glob.glob("workspace/payloads/*.bin")
+    
+    # Pre-map all hashes existing in the Model Container
+    existing_hashes = {}
+    for i, child in enumerate(model_container['children']):
+        ah = parser._find_hash_in_subtree(child)
+        if ah is not None:
+            existing_hashes[ah] = i
+
     total_delta = 0
     injected_count = 0
+    appended_count = 0
 
-    for i, child in enumerate(model_container['children']):
-        asset_hash = parser._find_hash_in_subtree(child)
-        if asset_hash in target_map:
-            h = f"0x{asset_hash:08X}"
-            bin_path = f"workspace/payloads/asset_{h}.bin"
+    for bin_path in bin_files:
+        # Extract hash from filename (e.g., asset_0x05AEBA67.bin)
+        filename = os.path.basename(bin_path)
+        try:
+            hash_str = filename.split('_')[1].split('.')[0]
+            asset_hash = int(hash_str, 16)
+        except Exception:
+            print(f"[-] Warning: Unrecognized payload format: {filename}")
+            continue
             
-            with open(bin_path, 'rb') as bf:
-                bin_data = bf.read()
-                
-            # Parse the .bin payload into a node tree
-            payload_parser = ESFParser(bin_data)
-            payload_node, _ = payload_parser._parse_node(0)
+        with open(bin_path, 'rb') as bf:
+            bin_data = bf.read()
             
-            old_total_size = 12 + child['data_size']
-            new_payload_size = len(bin_data)
+        # Parse the .bin payload into a node tree
+        payload_parser = ESFParser(bin_data)
+        payload_node, _ = payload_parser._parse_node(0)
+        
+        new_payload_size = len(bin_data)
+        p = 0
+        new_total_size = new_payload_size
+        
+        # Inject or Append logic
+        if asset_hash in existing_hashes:
+            # Replace existing node
+            idx = existing_hashes[asset_hash]
+            old_child = model_container['children'][idx]
+            old_total_size = 12 + old_child['data_size']
             
-            p = 0
-            if new_payload_size % 16 != 0:
-                p = 16 - (new_payload_size % 16)
-                
-            # Add padding to the payload tree
-            add_padding_to_tree(payload_node, p)
+            model_container['children'][idx] = payload_node
             
-            # Replace the old node in the model container
-            model_container['children'][i] = payload_node
-            
-            new_total_size = new_payload_size + p
             delta = new_total_size - old_total_size
             total_delta += delta
             injected_count += 1
+            print(f"  [+] Injected 0x{asset_hash:08X} | Size: {new_payload_size} | Delta: {delta}")
+        else:
+            # Append as a brand new node (Dependency not natively in Frontiers)
+            model_container['children'].append(payload_node)
+            model_container['child_count'] += 1
             
-            print(f"  [+] Injected {h} | Size: {new_payload_size} | Padding: {p} | Delta: {delta}")
+            total_delta += new_total_size
+            appended_count += 1
+            print(f"  [+] Appended New Dependency: 0x{asset_hash:08X} | Size: {new_payload_size} | Padding: {p}")
 
     # Update data_size of parent nodes
     model_container['data_size'] += total_delta
     parser.root['data_size'] += total_delta
 
-    print(f"[*] Injected {injected_count} payloads. Total shift applied: {total_delta} bytes.")
+    print(f"[*] Injected {injected_count} and Appended {appended_count} recursive payloads. Total shift applied: {total_delta} bytes.")
     print("[*] Rebuilding ESF...")
     output_data = bytearray()
     

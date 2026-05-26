@@ -133,40 +133,28 @@ class ESFParser:
         return None
 
     def _build_pointer_table(self):
-        """Locates the Model Container and flattens its children into PointerTableEntry objects."""
+        """Maps all assets across all top-level containers (Models, Textures, etc)."""
         if not self.root or len(self.root['children']) == 0:
             return
 
-        # Find the Model Container (type 0x0A010) under the root node
-        model_container = None
-        for child in self.root['children']:
-            if child['type_id'] == 0x0A010:
-                model_container = child
-                break
-
-        if not model_container:
-            print("[-] Warning: Model Container (0x0A010) not found in the ESF tree.")
-            return
-
-        # Flatten the model container's children
-        for idx, model_node in enumerate(model_container['children']):
-            # Find the unique Asset ID (hash) inside the model's subtree
-            asset_hash = self._find_hash_in_subtree(model_node)
+        # Iterate over all containers (e.g., 0x0A010, 0x0B010) under the root
+        for container in self.root['children']:
+            children = container.get('children', [])
+            container_end = container['offset'] + 12 + container['data_size']
             
-            offset = model_node['offset']
-            type_id = model_node['type_id']
-            
-            # FIX: Calculate exact size using Offset B - Offset A
-            if idx < len(model_container['children']) - 1:
-                next_offset = model_container['children'][idx+1]['offset']
-                length = next_offset - offset
-            else:
-                # Last node extends to the end of the Model Container
-                container_end = model_container['offset'] + 12 + model_container['data_size']
-                length = container_end - offset
-            
-            entry = PointerTableEntry(idx, asset_hash, offset, length, type_id)
-            self.pointer_table.append(entry)
+            for idx, child_node in enumerate(children):
+                asset_hash = self._find_hash_in_subtree(child_node)
+                if asset_hash is not None:
+                    offset = child_node['offset']
+                    type_id = child_node['type_id']
+                    
+                    if idx < len(children) - 1:
+                        length = children[idx+1]['offset'] - offset
+                    else:
+                        length = container_end - offset
+                        
+                    entry = PointerTableEntry(len(self.pointer_table), asset_hash, offset, length, type_id)
+                    self.pointer_table.append(entry)
 
     def verify_integrity(self):
         """
