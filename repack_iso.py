@@ -19,7 +19,14 @@ def repack_iso():
         sys.exit(1)
 
     print(f"[*] Copying {iso_path} -> {patched_path} ...")
-    shutil.copyfile(iso_path, patched_path)
+    try:
+        shutil.copyfile(iso_path, patched_path)
+    except PermissionError:
+        print(f"\n[-] ERROR: Permission Denied!")
+        print(f"    Windows blocked the patcher from overwriting '{patched_path}'.")
+        print(f"    This almost always means the PCSX2 emulator is currently running and holding the file hostage.")
+        print(f"    Please CLOSE the PCSX2 emulator completely and run the patcher again.")
+        sys.exit(1)
     
     iso_size = os.path.getsize(patched_path)
     esf_size = os.path.getsize(esf_path)
