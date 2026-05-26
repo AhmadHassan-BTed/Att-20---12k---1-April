@@ -187,6 +187,8 @@ def parse_esf_node(data, pos=0, depth=0, max_depth=25):
     else:
         # Branch node
         for _ in range(child_count):
+            # Align next_pos to a 4-byte boundary to match emulated MIPS memory alignments
+            next_pos = (next_pos + 3) & ~3
             if next_pos >= len(data):
                 break
             child, next_pos = parse_esf_node(data, next_pos, depth + 1, max_depth)

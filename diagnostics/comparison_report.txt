@@ -1,0 +1,157 @@
+================================================================================
+  DYNAMIC MEMORY NODE TREE COMPARISON REPORT
+  Working Reference: PS2 0x001B67B1 | Patched Invisible: PS2 0x00F9DD37
+================================================================================
+
+[+] working reference tree (0x001B67B1):
+  - Frontiers Character Root (0x72700): size=457,095, children=17
+    - Metadata/BBox (0x42710): size=48, children=0
+    - Texture Container (0x11110): size=93,087, children=3
+      - Texture Asset Leaf (0x11111): size=4, children=0 -> Hash = 0x9C23B6FF
+      - Texture Data Payload (0x01001): size=91,487, children=11
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=22,925, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=2,437, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=2,437, children=0
+        - UnknownNode_1000 (0x01000): size=1,409, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=22,925, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+      - UnknownNode_1101 (0x01101): size=1,560, children=14
+        - UnknownNode_31100 (0x31100): size=148, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=148, children=0
+        - UnknownNode_31100 (0x31100): size=148, children=0
+        - UnknownNode_31100 (0x31100): size=148, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+    - UnknownNode_5000 (0x05000): size=120, children=0
+    - UnknownNode_B070 (0x0B070): size=47,488, children=11
+      - UnknownNode_B000 (0x0B000): size=2,228, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=2,176, children=0
+      - UnknownNode_B000 (0x0B000): size=1,876, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=1,824, children=0
+      - UnknownNode_B000 (0x0B000): size=5,812, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=5,760, children=0
+      - UnknownNode_B000 (0x0B000): size=8,148, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=8,096, children=0
+      - UnknownNode_B000 (0x0B000): size=2,164, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=2,112, children=0
+      - UnknownNode_B000 (0x0B000): size=5,476, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=5,424, children=0
+      - UnknownNode_B000 (0x0B000): size=4,932, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=4,880, children=0
+      - UnknownNode_B000 (0x0B000): size=6,900, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=6,848, children=0
+      - UnknownNode_B000 (0x0B000): size=3,604, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=3,552, children=0
+      - UnknownNode_B000 (0x0B000): size=2,196, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=2,144, children=0
+      - UnknownNode_B000 (0x0B000): size=4,020, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=3,968, children=0
+    - Skeleton Joints Container (0x02800): size=81,516, children=1
+      - UnknownNode_2A40 (0x02A40): size=81,504, children=3
+        - UnknownNode_2A50 (0x02A50): size=28, children=0
+        - UnknownNode_2A60 (0x02A60): size=81,420, children=2
+          - UnknownNode_2320 (0x02320): size=51,830, children=2
+            - UnknownNode_2321 (0x02321): size=32, children=0
+            - UnknownNode_21210 (0x21210): size=51,774, children=0
+
+[+] patched invisible tree (0x00F9DD37):
+  - Frontiers Character Root (0x72700): size=505,931, children=17
+    - Metadata/BBox (0x42710): size=48, children=0
+    - Texture Container (0x11110): size=89,081, children=3
+      - Texture Asset Leaf (0x11111): size=4, children=0 -> Hash = 0xCD51EF83
+      - Texture Data Payload (0x01001): size=87,617, children=9
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=22,925, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=22,925, children=0
+        - UnknownNode_1000 (0x01000): size=2,437, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+        - UnknownNode_1000 (0x01000): size=6,537, children=0
+      - UnknownNode_1101 (0x01101): size=1,424, children=14
+        - UnknownNode_31100 (0x31100): size=148, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=148, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+        - UnknownNode_31100 (0x31100): size=80, children=0
+    - UnknownNode_5000 (0x05000): size=120, children=0
+    - UnknownNode_B070 (0x0B070): size=46,608, children=11
+      - UnknownNode_B000 (0x0B000): size=2,228, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=2,176, children=0
+      - UnknownNode_B000 (0x0B000): size=1,876, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=1,824, children=0
+      - UnknownNode_B000 (0x0B000): size=5,812, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=5,760, children=0
+      - UnknownNode_B000 (0x0B000): size=6,964, children=2
+        - UnknownNode_B010 (0x0B010): size=28, children=0
+        - UnknownNode_B020 (0x0B020): size=6,912, children=0
+      - UnknownNode_2 (0x00002): size=45,072, children=28
+        - UnknownNode_840 (0x00840): size=0, children=0
+        - UnknownNode_0 (0x00000): size=0, children=0
+
+================================================================================
+  SUB-COMPONENT DETAILED COMPARISON
+================================================================================
+Working Reference children count: 5
+Patched Invisible children count: 4
+
+Index  | Ref Component Type             (Size) | Pat Component Type             (Size) | Status
+------------------------------------------------------------------------------------------
+0      | 0x42710 (48 bytes)                   | 0x42710 (48 bytes)                   | MATCH
+1      | 0x11110 (93,087 bytes)               | 0x11110 (89,081 bytes)               | MATCH
+2      | 0x05000 (120 bytes)                  | 0x05000 (120 bytes)                  | MATCH
+3      | 0x0B070 (47,488 bytes)               | 0x0B070 (46,608 bytes)               | MATCH
+4      | 0x02800 (81,516 bytes)               | None                                 | MISMATCH
+
+================================================================================
+  SKELETON & RIGGING NODE AUDIT
+================================================================================
+Skeleton found in Working Ref:  YES
+Skeleton found in Patched:      NO
+
+================================================================================
+  GEOMETRY & MESH NODE AUDIT
+================================================================================
+Mesh Container found in Working Ref:  NO
+Mesh Container found in Patched:      NO
+
+================================================================================
+  CONCLUSION & DIAGNOSIS SUGGESTIONS
+================================================================================
