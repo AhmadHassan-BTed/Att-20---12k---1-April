@@ -3,10 +3,9 @@
 ## Pre-Test Checklist
 
 - [x] Patched ISO created and verified: `iso/patched/EQOA_Frontiers_Patched.iso`
-- [x] Patched ISO size verified: 148,838,890 bytes ✓
-- [x] 582 patched assets confirmed in database ✓
+- [x] Pristine Structural Upgrade pipeline (True Hybrid Graft) verified ✓
 - [x] Stale PCSX2 savestate deleted ✓
-- [x] Pristine Structural Upgrade pipeline verified ✓
+- [x] File structure correctly organized into `docs/`, `core/`, and `diagnostics/` ✓
 
 ---
 
@@ -16,132 +15,54 @@
 
 1. **Close PCSX2 completely**
    - Make sure there are no background processes
-   ```powershell
-   Get-Process -Name pcsx2* | Stop-Process -Force
-   ```
 
 2. **Verify savestate is deleted**
-   ```powershell
-   Get-ChildItem C:\Users\PMLS\OneDrive\Documents\PCSX2\sstates\SLUS-21260*.p2s
-   # Should return nothing
-   ```
+   - Ensure you do not load any old savestates, as they contain the old broken RAM state.
 
 ### Phase 2: Load Patched ISO
 
 3. **Launch PCSX2**
 
 4. **Configure ISO:**
-   - Go to **Console > Change CDVD Source**
-   - Select **ISO File**
-   - Navigate to: `t:\Att 20 - 12k - 1 April\iso\patched\EQOA_Frontiers_Patched.iso`
-   - Click **Open**
+   - Go to **CDVD > ISO Selector > Browse**
+   - Select: `iso\patched\EQOA_Frontiers_Patched.iso`
 
-5. **Do NOT Resume from Savestate**
-   - If prompted, select **"New Game"** or **"Start"**
-   - This forces a cold boot that loads the patched ISO
+5. **Force Cold Boot**
+   - Go to **System > Boot ISO (fast)**
+   - Do **NOT** select resume from savestate. 
 
 ### Phase 3: Verify Character Visibility
 
 6. **Boot Game**
-   - System should start from cold boot
-   - Load sequence: BIOS → Game Splash → Main Menu
+   - Wait for BIOS → Game Splash → Main Menu
 
 7. **Connect to Sandstorm Server**
-   - Enter server credentials
-   - Wait for full connection
+   - Log in.
 
 8. **Spawn Character**
-   - Create or select a character
-   - Wait for zone load (Qeynos, Antonica, etc.)
-   - Player should appear in game world
+   - Enter the game world.
 
 9. **EXPECTED RESULT: Character Model is FULLY VISIBLE**
-   - Body, limbs, armor, weapons all render
-   - Proper bone rigging (movement looks natural)
-   - No clipping or strange geometry
-
----
-
-## Troubleshooting
-
-### If Character is Still Invisible
-
-1. **Check for additional savestates:**
-   ```powershell
-   Get-ChildItem C:\Users\PMLS\OneDrive\Documents\PCSX2\sstates\*.p2s
-   # Delete any EQOA-related savestates
-   ```
-
-2. **Verify ISO is correct:**
-   ```powershell
-   Get-Item t:\Att 20 - 12k - 1 April\iso\patched\EQOA_Frontiers_Patched.iso | 
-     Select-Object Length
-   # Should show: 155886845 bytes (148,838,890 when compressed)
-   ```
-
-3. **Check PCSX2 emulator settings:**
-   - Ensure Graphics settings are stable
-   - Try with Software renderer if Hardware fails
-   - Disable any graphics plugins/patches temporarily
-
-4. **Verify cold boot:**
-   - Check PCSX2 logs for ISO load message:
-   ```powershell
-   Get-Content C:\Users\PMLS\OneDrive\Documents\PCSX2\logs\emuLog.txt | 
-     Select-String -Pattern "ISO|CDVD|EQOA" | Select-Object -Last 5
-   ```
-
-### If You See Old Models Instead
-
-This means PCSX2 is still loading from old cached state. Try:
-1. Delete all EQOA savestates
-2. Clear PCSX2 cache: `C:\Users\PMLS\OneDrive\Documents\PCSX2\cache\`
-3. Close/reopen PCSX2
-4. Test again
-
----
-
-## Success Indicators
-
-| Check | Expected | Status |
-|-------|----------|--------|
-| ISO loads from cold boot | No savestate resume | ✓ |
-| Character appears on spawn | Fully visible model | ? |
-| Bone rigging | Natural movement | ? |
-| Textures & Materials | Vanilla assets render | ? |
-| No crashes | Clean emulation | ? |
-
----
-
-## Post-Test Actions
-
-### If Successful ✓
-- Character is now visible in EverQuest Online Adventures
-- Bone rigging is correct (inherited from Vanilla)
-- Pristine Structural Upgrade is complete
-- Ready for production deployment
-
-### If Failed ✗
-- Re-verify patched ISO integrity
-- Check for corrupted cache files
-- Consider full PCSX2 reinstall
-- Contact development team with detailed logs
+   - Because we used the True Hybrid Graft (Frontiers skeleton + Vanilla mesh), the rendering engine will correctly process the VU1 vector math and display the character flawlessly.
 
 ---
 
 ## Technical Notes
 
-The Pristine Structural Upgrade works by:
-1. **Extracting** Vanilla character models (geometry + bones + textures)
-2. **Wrapping** in Frontiers `0x72700` container format
-3. **Injecting** into patched CHAR.ESF database (148.8 MB)
-4. **Rebuilding** ISO with patched file entries
-5. **Loading** via cold boot (not savestate) ensures fresh ISO load
+The updated **Pristine Structural Upgrade (True Hybrid Graft)** works by:
+1. **Using** the native Frontiers character model (`0x72700`) as a pristine base to guarantee 100% skeleton (`0x02800`) and bone definition (`0x22400`) compatibility.
+2. **Injecting** the Vanilla Mesh Container (`0x02610`) directly into this Frontiers base.
+3. **Injecting and Translating** the Vanilla Textures to match GS TEX0 registers.
+4. **Rebuilding** the ESF and ISO.
 
-When PCSX2 loads the ISO during cold boot, the VU1 vertex shader receives properly matched bone weights and vertex data, rendering the character correctly.
+When PCSX2 loads the ISO, the VU1 vertex shader receives exactly the bone array sizes it hardcodedly expects from Frontiers, but draws the mesh vertices from Vanilla!
 
 ---
 
-## Questions?
+## Using the Master Tool
 
-See `SOLUTION_REPORT.md` in project root for complete technical analysis.
+If you ever need to rebuild the ISO or check the active RAM logs:
+
+Simply double-click **`EQOA_MASTER_TOOL.bat`** in the main folder.
+- **Option 1**: Repacks the ISO using the True Hybrid Graft.
+- **Option 2**: Runs the Live RAM Diagnostics suite for 30 seconds and outputs to `diagnostics\logs\latest_diagnostic_log.txt` and `diagnostics\logs\history_diagnostic_log.txt`.

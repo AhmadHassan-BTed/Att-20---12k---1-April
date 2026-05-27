@@ -4,7 +4,7 @@ echo EQOA Frontiers - Pristine Structural Transplant Pipeline
 echo ========================================================
 echo.
 
-python vanilla_to_frontiers_transplant.py
+python core\vanilla_to_frontiers_transplant.py
 
 echo.
 echo ========================================================

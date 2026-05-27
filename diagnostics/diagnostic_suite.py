@@ -95,24 +95,39 @@ def run_all_diagnostics():
     report_lines.append(out)
     
     # Save the consolidated report
-    os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
+    log_dir = "diagnostics/logs"
+    os.makedirs(log_dir, exist_ok=True)
     report_content = "\n".join(report_lines)
-    with open(REPORT_PATH, "w", errors="ignore") as f:
+    
+    LATEST_PATH = os.path.join(log_dir, "latest_diagnostic_log.txt")
+    HISTORY_PATH = os.path.join(log_dir, "history_diagnostic_log.txt")
+    
+    with open(LATEST_PATH, "w", errors="ignore") as f:
         f.write(report_content + "\n")
         
-    # Post-run cleanup: Delete separate files to keep only the single consolidated log
-    for redundant_file in ["diagnostics/logs/test_eemem_results.txt", "diagnostics/logs/comparison_report.txt"]:
-        if os.path.exists(redundant_file):
+    with open(HISTORY_PATH, "a", errors="ignore") as f:
+        f.write("\n\n" + "=" * 80 + "\n")
+        f.write(f"  SESSION START: {timestamp}\n")
+        f.write("=" * 80 + "\n\n")
+        f.write(report_content + "\n")
+        
+    # Post-run cleanup: Delete separate files to keep only the exactly two requested log files
+    for redundant_file in ["test_eemem_results.txt", 
+                           "comparison_report.txt",
+                           "consolidated_diagnostics_log.txt",
+                           "live_memory_dump.txt"]:
+        target = os.path.join(log_dir, redundant_file)
+        if os.path.exists(target):
             try:
-                os.remove(redundant_file)
+                os.remove(target)
             except Exception:
                 pass
          
     print("\n" + "=" * 80)
     print("  CONSOLIDATED REPORT GENERATION COMPLETE!")
     print(f"  All diagnostic outputs successfully compiled and written to:")
-    print(f"  -> {REPORT_PATH}")
-    print("  You can now copy the console output above or read the generated file.")
+    print(f"  1. {LATEST_PATH} (Latest run only)")
+    print(f"  2. {HISTORY_PATH} (Appended history)")
     print("=" * 80)
 
 def main():
