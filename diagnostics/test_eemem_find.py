@@ -210,10 +210,10 @@ def main():
             
     finally:
         # Write log to file
-        os.makedirs('diagnostics', exist_ok=True)
-        with open('diagnostics/test_eemem_results.txt', 'w') as f:
+        os.makedirs('diagnostics/logs', exist_ok=True)
+        with open('diagnostics/logs/test_eemem_results.txt', 'w') as f:
             f.write('\n'.join(log_lines) + '\n')
-        print("[*] Diagnostic results written to diagnostics/test_eemem_results.txt")
+        print("[*] Diagnostic results written to diagnostics/logs/test_eemem_results.txt")
 
 if __name__ == '__main__':
     main()

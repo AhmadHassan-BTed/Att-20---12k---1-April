@@ -691,12 +691,14 @@ def main():
     parser.add_argument('--hash', type=str, default=None,
                        help='Specific hash to search for (hex, e.g., 0x05AEBA67). '
                             'If not specified, searches for all 11 target hashes.')
-    parser.add_argument('--output', type=str, default='diagnostics/live_memory_dump.txt',
+    parser.add_argument('--output', type=str, default='diagnostics/logs/live_memory_dump.txt',
                        help='Output file path for hex dumps.')
     parser.add_argument('--scan-models', action='store_true',
                        help='Also scan for all FJBO databases and model node types in RAM.')
     parser.add_argument('--continuous', action='store_true',
                        help='Run in continuous mode, re-scanning every 5 seconds.')
+    parser.add_argument('--duration', type=int, default=None,
+                       help='In continuous mode, exit after this many seconds.')
     args = parser.parse_args()
 
     print("=" * 74)
@@ -722,6 +724,7 @@ def main():
         if eemem_base is None:
             sys.exit(1)
 
+        start_time = time.time()
         scan_count = 0
         while True:
             scan_count += 1
@@ -772,9 +775,16 @@ def main():
                           f"data_size={node['data_size']:,}, children={node['child_count']}")
 
             # ── Step 7: Generate hex dumps (APPEND to log) ────────────────
-            os.makedirs(os.path.dirname(args.output) or '.', exist_ok=True)
-            
-            with open(args.output, 'a') as out:
+            if args.output.lower() == 'stdout':
+                class DummyContext:
+                    def __enter__(self): return sys.stdout
+                    def __exit__(self, exc_type, exc_val, exc_tb): pass
+                ctx = DummyContext()
+            else:
+                os.makedirs(os.path.dirname(args.output) or '.', exist_ok=True)
+                ctx = open(args.output, 'a')
+                
+            with ctx as out:
                 out.write("\n" + "=" * 78 + "\n")
                 out.write(f"  SCAN #{scan_count} — {timestamp}\n")
                 out.write(f"  PCSX2 PID: {pid} ({exe_name})\n")
@@ -863,13 +873,22 @@ def main():
 
                 out.write(f"\n  --- END SCAN #{scan_count} ---\n\n")
 
-            abs_out = os.path.abspath(args.output)
-            print(f"\n{'=' * 74}")
-            print(f"  SCAN #{scan_count} COMPLETE — {len(hits)} hash match(es) found")
-            print(f"  Appended to log: {abs_out}")
-            print(f"{'=' * 74}")
+            if args.output.lower() != 'stdout':
+                abs_out = os.path.abspath(args.output)
+                print(f"\n{'=' * 74}")
+                print(f"  SCAN #{scan_count} COMPLETE — {len(hits)} hash match(es) found")
+                print(f"  Appended to log: {abs_out}")
+                print(f"{'=' * 74}")
+            else:
+                print(f"\n{'=' * 74}")
+                print(f"  SCAN #{scan_count} COMPLETE — {len(hits)} hash match(es) found")
+                print(f"{'=' * 74}")
 
             if not args.continuous:
+                break
+
+            if args.duration and (time.time() - start_time) >= args.duration:
+                print(f"\n[*] Duration limit of {args.duration}s reached. Exiting continuous mode.")
                 break
 
             print(f"\n[*] Continuous mode: next scan in 5 seconds... (Ctrl+C to stop)")

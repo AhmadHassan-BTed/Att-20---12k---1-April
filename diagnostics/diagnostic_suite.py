@@ -15,7 +15,7 @@ import subprocess
 import time
 from datetime import datetime
 
-REPORT_PATH = "diagnostics/consolidated_diagnostics_log.txt"
+REPORT_PATH = "diagnostics/logs/consolidated_diagnostics_log.txt"
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -87,11 +87,11 @@ def run_all_diagnostics():
         print(out)
     report_lines.append(out)
     
-    # 4. Live RAM Single Scan
+    # 4. Live RAM Continuous Scanner
     log_and_print(report_lines, "\n" + "=" * 80)
     log_and_print(report_lines, "  [4/4] LIVE RAM HASH & ASSET SCANNER (live_ram_tracer.py)")
     log_and_print(report_lines, "=" * 80 + "\n")
-    out = run_script("diagnostics/live_ram_tracer.py", ["--scan-models"])
+    out = run_script("diagnostics/live_ram_tracer.py", ["--scan-models", "--continuous", "--duration", "30", "--output", "stdout"])
     report_lines.append(out)
     
     # Save the consolidated report
@@ -100,6 +100,14 @@ def run_all_diagnostics():
     with open(REPORT_PATH, "w", errors="ignore") as f:
         f.write(report_content + "\n")
         
+    # Post-run cleanup: Delete separate files to keep only the single consolidated log
+    for redundant_file in ["diagnostics/logs/test_eemem_results.txt", "diagnostics/logs/comparison_report.txt"]:
+        if os.path.exists(redundant_file):
+            try:
+                os.remove(redundant_file)
+            except Exception:
+                pass
+         
     print("\n" + "=" * 80)
     print("  CONSOLIDATED REPORT GENERATION COMPLETE!")
     print(f"  All diagnostic outputs successfully compiled and written to:")
@@ -108,65 +116,20 @@ def run_all_diagnostics():
     print("=" * 80)
 
 def main():
-    while True:
-        clear_screen()
-        print("=" * 80)
-        print("    EverQuest Online Adventures  —  Live Diagnostic Suite Shell")
-        print("    Targeting: PCSX2 Emotion Engine Main RAM (32MB contiguous)")
-        print("=" * 80)
-        print("  [1] EEmem Memory Search and Base Address Finder")
-        print("  [2] Dynamic Model Tree Comparator (Working Ref vs Patched Root)")
-        print("  [3] Active RAM Transition Dumper (B070 Geometry Boundary Dump)")
-        print("  [4] Live RAM Continuous Hash & Model Scanner (Dynamic monitoring)")
-        print("  [5] RUN ALL CONSECUTIVE DIAGNOSTICS & WRITE MASTER CONSOLIDATED LOG")
-        print("  [6] Exit Diagnostic Suite")
-        print("=" * 80)
-        
-        choice = input("Enter choice (1-6): ").strip()
-        
-        if choice == '1':
-            clear_screen()
-            print("[*] Running: EEmem Finder Test...")
-            run_script("diagnostics/test_eemem_find.py")
-            input("\nPress Enter to return to menu...")
-            
-        elif choice == '2':
-            clear_screen()
-            print("[*] Running: Dynamic Model Tree Comparator...")
-            run_script("diagnostics/compare_loaded_roots.py")
-            input("\nPress Enter to return to menu...")
-            
-        elif choice == '3':
-            clear_screen()
-            print("[*] Running: RAM Transition Dumper...")
-            if os.path.exists("workspace/scratch/dump_active_b070.py"):
-                run_script("workspace/scratch/dump_active_b070.py")
-            else:
-                print("[-] Error: workspace/scratch/dump_active_b070.py not found.")
-            input("\nPress Enter to return to menu...")
-            
-        elif choice == '4':
-            clear_screen()
-            print("[*] Running: Continuous Live RAM Tracer (Ctrl+C to stop)...")
-            try:
-                run_script("diagnostics/live_ram_tracer.py", ["--scan-models", "--continuous"])
-            except KeyboardInterrupt:
-                print("\n[+] Monitoring stopped.")
-            input("\nPress Enter to return to menu...")
-            
-        elif choice == '5':
-            clear_screen()
-            print("[*] Running complete diagnostics suite and compiling log...")
-            run_all_diagnostics()
-            input("\nPress Enter to return to menu...")
-            
-        elif choice == '6':
-            print("\n[+] Exiting diagnostic suite. Happy hacking!")
-            break
-            
-        else:
-            print("\n[-] Invalid choice. Enter a number between 1 and 6.")
-            time.sleep(1.5)
+    clear_screen()
+    print("=" * 80)
+    print("    EverQuest Online Adventures  —  Live Diagnostic Suite Shell")
+    print("    Targeting: PCSX2 Emotion Engine Main RAM (32MB contiguous)")
+    print("=" * 80)
+    print("\n[*] Starting complete diagnostics suite and compiling log automatically...")
+    print("[*] Note: The live RAM tracer will scan dynamically for exactly 30 seconds.")
+    print("=" * 80 + "\n")
+    
+    run_all_diagnostics()
+    
+    print("\n" + "=" * 80)
+    print("    DIAGNOSTICS COMPLETED SUCCESSFULLY!")
+    print("=" * 80)
 
 if __name__ == '__main__':
     main()

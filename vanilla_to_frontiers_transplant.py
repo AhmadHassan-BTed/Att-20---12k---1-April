@@ -202,9 +202,10 @@ def translate_texture_container(vanilla_container: dict, frontiers_container: di
     update_node_sizes(result)
     return result
 
-def pristine_structural_upgrade(vanilla_bytes: bytes, asset_label: str) -> bytes:
+def pristine_structural_upgrade(vanilla_bytes: bytes, frontiers_bytes: bytes, asset_label: str) -> bytes:
     """Surgically upgrades a pristine Vanilla model (0x62700, 15 children) into a Frontiers-compliant wrapper (0x72700, 17 children)."""
     van_node, _ = parse_node(vanilla_bytes, 0)
+    fro_node, _ = parse_node(frontiers_bytes, 0)
     
     if van_node['type_id'] not in (0x62700, 0x72700):
         raise ValueError(f"Asset {asset_label} is not a valid Vanilla character model!")
@@ -244,11 +245,26 @@ def pristine_structural_upgrade(vanilla_bytes: bytes, asset_label: str) -> bytes
         if child['type_id'] == 0x12400:
             child['type_id'] = 0x22400
             print(f"    [+] Upgraded bone definitions: 0x12400 -> 0x22400")
+
+    # 4. Graft Frontiers texture container with translated Vanilla textures and patched TEX0 registers
+    van_tex = next((c for c in van_node['children'] if c['type_id'] in (0x11100, 0x11110)), None)
+    fro_tex = next((c for c in fro_node['children'] if c['type_id'] == 0x11110), None)
+    graft_root_tex_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] in (0x11100, 0x11110)), None)
+    
+    if van_tex and fro_tex and graft_root_tex_idx is not None:
+        graft_root['children'][graft_root_tex_idx] = translate_texture_container(
+            vanilla_container   = van_tex,
+            frontiers_container = fro_tex,
+            asset_label         = asset_label
+        )
+        print(f"    [+] Surgically translated Vanilla textures & patched TEX0 registers into Frontiers container slot {graft_root_tex_idx}")
+    else:
+        print(f"    [!] Warning: Texture container not found for transplantation in {asset_label}!")
             
-    # 4. Recursively update all node sizes
+    # 5. Recursively update all node sizes
     update_node_sizes(graft_root)
     
-    # 5. Serialize
+    # 6. Serialize
     final_payload = serialize_node(graft_root)
     return final_payload
 
@@ -315,7 +331,7 @@ def main():
         frontiers_bytes = fro_esf_bytes[fro_entry.offset : fro_entry.offset + fro_entry.length]
         try:
             # Perform high-fidelity pristine structural upgrade
-            final_payload = pristine_structural_upgrade(vanilla_bytes, f"0x{h:08X}")
+            final_payload = pristine_structural_upgrade(vanilla_bytes, frontiers_bytes, f"0x{h:08X}")
             
             # Save payload bin
             bin_path = os.path.join(payloads_dir, f"asset_0x{h:08X}.bin")

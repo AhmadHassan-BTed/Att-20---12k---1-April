@@ -525,10 +525,10 @@ def main():
     print(report_content)
     
     # Save report
-    os.makedirs("diagnostics", exist_ok=True)
-    with open("diagnostics/comparison_report.txt", "w") as f:
+    os.makedirs("diagnostics/logs", exist_ok=True)
+    with open("diagnostics/logs/comparison_report.txt", "w") as f:
         f.write(report_content + "\n")
-    print("\n[+] Detailed comparison report saved to diagnostics/comparison_report.txt")
+    print("\n[+] Detailed comparison report saved to diagnostics/logs/comparison_report.txt")
 
 if __name__ == '__main__':
     main()
