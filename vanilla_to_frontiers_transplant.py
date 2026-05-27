@@ -203,50 +203,28 @@ def translate_texture_container(vanilla_container: dict, frontiers_container: di
     return result
 
 def pristine_structural_upgrade(vanilla_bytes: bytes, frontiers_bytes: bytes, asset_label: str) -> bytes:
-    """Surgically upgrades a pristine Vanilla model (0x62700, 15 children) into a Frontiers-compliant wrapper (0x72700, 17 children)."""
+    """Surgically upgrades a pristine Vanilla model into a Frontiers-compliant wrapper by using the Frontiers base tree and injecting Vanilla mesh (0x02610) and translated textures."""
     van_node, _ = parse_node(vanilla_bytes, 0)
     fro_node, _ = parse_node(frontiers_bytes, 0)
     
     if van_node['type_id'] not in (0x62700, 0x72700):
         raise ValueError(f"Asset {asset_label} is not a valid Vanilla character model!")
         
-    graft_root = copy.deepcopy(van_node)
+    graft_root = copy.deepcopy(fro_node)
     
-    # 1. Upgrade root type ID from 0x62700 to 0x72700
-    if graft_root['type_id'] == 0x62700:
-        graft_root['type_id'] = 0x72700
-        print(f"    [+] Upgraded root type: 0x62700 -> 0x72700")
-        
-    # 2. Add Frontiers-specific trailer child nodes (0x02950 and 0x02960) to expand 15 -> 17 children
-    if len(graft_root['children']) == 15:
-        # Create Child 15: type 0x02950, size 0
-        child15 = {
-            'type_id': 0x02950,
-            'data_size': 0,
-            'child_count': 0,
-            'children': [],
-            'inline_data': b''
-        }
-        # Create Child 16: type 0x02960, size 4
-        child16 = {
-            'type_id': 0x02960,
-            'data_size': 4,
-            'child_count': 0,
-            'children': [],
-            'inline_data': b'\x00\x00\x00\x00'
-        }
-        graft_root['children'].append(child15)
-        graft_root['children'].append(child16)
-        graft_root['child_count'] = 17
-        print(f"    [+] Appended trailer children 0x02950 and 0x02960 (children count: 15 -> 17)")
-        
-    # 3. Find and upgrade bone definitions container type ID from 0x12400 to 0x22400
-    for child in graft_root['children']:
-        if child['type_id'] == 0x12400:
-            child['type_id'] = 0x22400
-            print(f"    [+] Upgraded bone definitions: 0x12400 -> 0x22400")
+    print(f"    [+] Using Frontiers template (0x72700) as base for 100% compatibility")
+    
+    # 1. Graft Vanilla Mesh Container (0x02610)
+    van_mesh = next((c for c in van_node['children'] if c['type_id'] == 0x02610), None)
+    fro_mesh_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] == 0x02610), None)
+    
+    if van_mesh and fro_mesh_idx is not None:
+        graft_root['children'][fro_mesh_idx] = copy.deepcopy(van_mesh)
+        print(f"    [+] Surgically transplanted Vanilla Mesh (0x02610) into Frontiers template")
+    else:
+        print(f"    [!] Warning: Mesh container (0x02610) not found for transplantation in {asset_label}!")
 
-    # 4. Graft Frontiers texture container with translated Vanilla textures and patched TEX0 registers
+    # 2. Graft Frontiers texture container with translated Vanilla textures and patched TEX0 registers
     van_tex = next((c for c in van_node['children'] if c['type_id'] in (0x11100, 0x11110)), None)
     fro_tex = next((c for c in fro_node['children'] if c['type_id'] == 0x11110), None)
     graft_root_tex_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] in (0x11100, 0x11110)), None)
@@ -261,10 +239,10 @@ def pristine_structural_upgrade(vanilla_bytes: bytes, frontiers_bytes: bytes, as
     else:
         print(f"    [!] Warning: Texture container not found for transplantation in {asset_label}!")
             
-    # 5. Recursively update all node sizes
+    # 3. Recursively update all node sizes
     update_node_sizes(graft_root)
     
-    # 6. Serialize
+    # 4. Serialize
     final_payload = serialize_node(graft_root)
     return final_payload
 
