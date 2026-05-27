@@ -14,7 +14,7 @@ echo ========================================================
 echo.
 echo Please select an action:
 echo.
-echo [1] Patch Game ISO (Run this first, with emulator closed)
+echo [1] Patch Game ISO (Static Mesh T-Pose Mode) (Run with emulator closed)
 echo [2] Run Full Diagnostics, Logging ^& Testing (Run this while in-game)
 echo [3] Exit
 echo.

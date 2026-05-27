@@ -2,7 +2,7 @@ import os
 import sys
 import struct
 import json
-from esf_parser import ESFParser
+from core.esf_parser import ESFParser
 
 def parse_node(data, pos):
     if pos + 12 > len(data):

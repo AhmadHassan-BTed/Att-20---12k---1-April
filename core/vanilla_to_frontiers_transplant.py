@@ -214,15 +214,8 @@ def pristine_structural_upgrade(vanilla_bytes: bytes, frontiers_bytes: bytes, as
     
     print(f"    [+] Using Frontiers template (0x72700) as base for 100% compatibility")
     
-    # 1. Graft Vanilla Mesh Container (0x02610)
-    van_mesh = next((c for c in van_node['children'] if c['type_id'] == 0x02610), None)
-    fro_mesh_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] == 0x02610), None)
-    
-    if van_mesh and fro_mesh_idx is not None:
-        graft_root['children'][fro_mesh_idx] = copy.deepcopy(van_mesh)
-        print(f"    [+] Surgically transplanted Vanilla Mesh (0x02610) into Frontiers template")
-    else:
-        print(f"    [!] Warning: Mesh container (0x02610) not found for transplantation in {asset_label}!")
+    # 1. Mesh Injection deferred to advanced_mesh_injector.py (DMA Sub-Struct Logic)
+    print(f"    [+] Leaving Frontiers Mesh (0x02610) intact for Sub-Struct DMA Injection.")
 
     # 2. Graft Frontiers texture container with translated Vanilla textures and patched TEX0 registers
     van_tex = next((c for c in van_node['children'] if c['type_id'] in (0x11100, 0x11110)), None)
@@ -230,12 +223,14 @@ def pristine_structural_upgrade(vanilla_bytes: bytes, frontiers_bytes: bytes, as
     graft_root_tex_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] in (0x11100, 0x11110)), None)
     
     if van_tex and fro_tex and graft_root_tex_idx is not None:
-        graft_root['children'][graft_root_tex_idx] = translate_texture_container(
-            vanilla_container   = van_tex,
-            frontiers_container = fro_tex,
-            asset_label         = asset_label
-        )
-        print(f"    [+] Surgically translated Vanilla textures & patched TEX0 registers into Frontiers container slot {graft_root_tex_idx}")
+        # DISABLED FOR HEADER-PRESERVATION GRAFT
+        # graft_root['children'][graft_root_tex_idx] = translate_texture_container(
+        #     vanilla_container   = van_tex,
+        #     frontiers_container = fro_tex,
+        #     asset_label         = asset_label
+        # )
+        # print(f"    [+] Surgically translated Vanilla textures & patched TEX0 registers into Frontiers container slot {graft_root_tex_idx}")
+        print(f"    [+] Kept Native Frontiers 0x11110 Material Container to preserve rendering headers.")
     else:
         print(f"    [!] Warning: Texture container not found for transplantation in {asset_label}!")
             
@@ -331,23 +326,27 @@ def main():
             traceback.print_exc()
             sys.exit(1)
             
+    # 4.5 Trigger Advanced Sub-Struct DMA Mesh Injection
+    print("\n[*] Step 2.5: Executing Advanced DMA Mesh Sub-Struct Injection...")
+    subprocess.run([sys.executable, "-m", "core.inject_all_meshes"], check=True)
+
     # 5. Trigger ESF Database Recompiler
     print("\n[*] Step 3: Compiling database (esf_rebuilder)...")
-    subprocess.run([sys.executable, "core/esf_rebuilder.py"], check=True)
+    subprocess.run([sys.executable, "-m", "core.esf_rebuilder"], check=True)
     
     # 6. Trigger ISO Sector Repacker
     print("\n[*] Step 4: Repacking playable game ISO (repack_iso)...")
-    subprocess.run([sys.executable, "core/repack_iso.py"], check=True)
+    subprocess.run([sys.executable, "-m", "core.repack_iso"], check=True)
     
     # 7. Apply Surgical UDF logical block patches
     print("\n[*] Step 5: Patching UDF allocation descriptors logical mapping...")
-    subprocess.run([sys.executable, "core/patch_udf_char_esf_v2.py"], check=True)
+    subprocess.run([sys.executable, "-m", "core.patch_udf_char_esf_v2"], check=True)
     
     # 8. Execute Verification Pipeline
     print("\n[*] Step 6: Running high-integrity verification suite...")
-    subprocess.run([sys.executable, "core/verify_injected_models.py"], check=True)
-    subprocess.run([sys.executable, "core/verify_final_patch.py"], check=True)
-    subprocess.run([sys.executable, "core/verify_final_iso.py"], check=True)
+    subprocess.run([sys.executable, "-m", "core.verify_injected_models"], check=True)
+    subprocess.run([sys.executable, "-m", "core.verify_final_patch"], check=True)
+    subprocess.run([sys.executable, "-m", "core.verify_final_iso"], check=True)
     
     print("\n" + "=" * 80)
     print("  HIGH-FIDELITY STRUCTURAL TRANSPLANT PIPELINE EXECUTED SUCCESSFULLY!")

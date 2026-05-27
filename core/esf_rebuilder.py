@@ -4,7 +4,7 @@ import json
 import hashlib
 import struct
 from construct import Struct, Const, Int32ul, Bytes
-from esf_parser import ESFParser, EsfHeader, EsfNodeHeader
+from core.esf_parser import ESFParser, EsfHeader, EsfNodeHeader
 
 def get_sha256(filepath):
     sha256 = hashlib.sha256()

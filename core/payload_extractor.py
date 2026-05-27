@@ -10,7 +10,7 @@ and binds correctly to the classic skeleton.
 import os
 import sys
 import struct
-from esf_parser import ESFParser
+from core.esf_parser import ESFParser
 
 
 def extract_all_payloads(esf_path, output_dir):
