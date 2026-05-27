@@ -14,3 +14,13 @@ CHAR_MERGED_BROKEN.ESF
 workspace/FINAL_CHAR_MERGED.ESF
 
 workspace/IDENTITY_TEST.ESF
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+logs/
+*.log
+diagnostics/logs/
