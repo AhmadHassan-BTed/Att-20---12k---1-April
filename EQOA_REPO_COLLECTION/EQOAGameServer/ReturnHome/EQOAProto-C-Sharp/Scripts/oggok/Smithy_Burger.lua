@@ -1,0 +1,1 @@
+merchantDialogue = "I have bows and arrows for the skilled archer."

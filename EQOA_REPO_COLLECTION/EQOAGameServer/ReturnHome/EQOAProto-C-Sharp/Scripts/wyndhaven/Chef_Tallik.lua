@@ -1,0 +1,1 @@
+merchantDialogue = "Clams, clams, and more clams. What else would you expect from an ocean town like this?"

@@ -1,0 +1,1 @@
+merchantDialogue = "We bless this water right here at the temple. Would you like some?"

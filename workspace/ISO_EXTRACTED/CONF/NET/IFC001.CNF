@@ -1,0 +1,12 @@
+# <Sony Computer Entertainment Inc.>
+
+type ppp
+-dhcp
+auth_name "ms564599"
+auth_key "taf5tapu"
+peer_name "*"
+want.dns1_nego
+want.dns2_nego
+allow.auth chap/pap
+phone_number0 "9,1-800-646-3603"
+route add -net 0.0.0.0 netmask 0.0.0.0

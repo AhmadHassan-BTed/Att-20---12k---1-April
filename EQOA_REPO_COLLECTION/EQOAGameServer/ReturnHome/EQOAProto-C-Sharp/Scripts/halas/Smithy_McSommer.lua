@@ -1,0 +1,1 @@
+merchantDialogue = "My weapons might be simple, but they are effective."

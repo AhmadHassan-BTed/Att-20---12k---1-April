@@ -1,0 +1,36 @@
+# <Sony Computer Entertainment Inc.>
+#
+# $Id: dial_spd.cnf,v 1.4 2001/12/14 09:49:01 ksh Exp $
+#
+# jwang 20020327: 
+# - localized for US country code, "+GCI=00" -> "+GCI=B5"
+# - enabled dialtone detection, "X3" -> "X4"
+
+# dialing_type_string "<tone>" "<pulse>" "<any>"
+dialing_type_string "ATDT" "ATDP" "ATD"
+
+redial_string "BUSY"
+
+# chat_init
+# Please set appropriate country code with "+GCI" command. 
+#   ex) "00": Japan, "B5": US
+chat_init "TIMEOUT 120\
+ ABORT NO\\sCARRIER\
+ ABORT ERROR\
+ ABORT BUSY\
+ ABORT DELAYED\
+ ABORT LINE\\sIN\\sUSE\
+ ABORT NO\\sDIALTONE\
+ ABORT NO\\sANSWER\
+ ABORT BLACKLISTED\
+ \"\" \\dA\\pT\
+ OK \\pAT+GCI=B5\
+ OK \\p\\pAT&FL2W2X4\\-STE=1\
+ OK \\c"
+
+# chat_dial
+chat_dial "\"\" \\D\\T\
+ CONNECT \\d\\c"
+
+chat_answer "RING ATA\
+ CONNECT \\d\\c"

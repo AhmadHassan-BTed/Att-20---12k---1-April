@@ -1,0 +1,1 @@
+merchantDialogue = "Need some metalworking for your adventures?"

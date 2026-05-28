@@ -1,0 +1,86 @@
+﻿I need healing.	ヒリングが欲しい
+I need rest.	休みが欲しい
+I need help!!!	手伝って
+I need food.	食べ物が欲しい
+I need water.	水が欲しい
+I need to find a bind location	バインドのところが探している
+I need directions to…	？にどうやって行いますか。
+I'm lost.	無くなってしまいました
+I'm nearly dead	すぐ死ぬ
+(state location)	(state location)
+I'm on my way!	来ます
+Yes	はい
+No	いいえ
+I don't know.	知らない
+Travel North	北へ行って
+Travel East	東へ行って
+Travel South	南へ行って
+Travel West	西へ行って
+*Cheer*	やほ～
+The battle is ours!	勝った！
+The spoils of victory numb the sting of battle!	大勝だ
+*Smile*	微笑
+It was an honor fighting with you but I must depart.	失礼します
+Everything is getting dark…*gasp*	事々が黒いになっています
+This defeat is not the end.	This defeat is not the end.
+*Cry*	＊泣く＊
+*Wave*	＊振る＊
+*Dance*	＊舞い躍る＊
+*Sneeze*	＊はくしょん＊
+*Stumble*	＊躓く＊
+"Where the wind blows, so goes my fate."	"Where the wind blows, so goes my fate."
+They won't be laughing when I run them through!	They won't be laughing when I run them through!
+Let's see how they like the taste of fire and lightning!	Let's see how they like the taste of fire and lightning!
+I'm not afraid of monsters…usually	I'm not afraid of monsters…usually
+Attack my target!	対象を攻撃してください
+Retreat!	退いてください
+Don't attack my target.  I have it under control.	私の対象を攻撃しないでください。大丈夫です。
+I'm out of mana!	マナじゃありません
+How do I get to…?	？にどうやって行いますか。
+Where are you?	あなたはどこですか
+Where do you want to go?	どこに行きたいですか？
+Do you need help?	手伝って欲しい？
+I would like to sell you (item).	アイテムを売って欲しい
+I would like to buy…	アイテムを買って欲しい
+Can I see what you have to sell?	売る物を見せてください
+Request trade	商売してください
+Ignore target	Ignore target
+I'm following you (Follow target)	あなたを相次いでいます。
+Hail	賀詞
+Welcome stranger.	用こそ、７Gオペレータ
+Good morning.	おはようございます
+Good evening.	今晩は
+Whassup!?	おおい
+I'm tired	疲れた
+I'm ready for more	行くぞ
+How do you feel?	大丈夫？
+Follow me!	相次いで
+I'll follow (target).	あなたを相次ぐ
+(State target's name)	（対象に言う）
+(Follow target)	（対象を相次ぐ）
+Join our group! (invite)	私の徒に入ってください。
+I have to go friends (leave group)	失礼します
+Do you want to join our group?	私の徒に入りたいですか。
+I am looking for a group.	徒を探しています。
+"Pet, attack!"	ペット、攻撃しろ
+"Pet, back off!"	ペット、後へ引け
+"Pet, follow me."	ペット、相次け
+"Pet, stay here."	ペット、止めれ
+"Pet, you are no more."	ペット、死ね
+"Pet, dance!"	ペット、舞い躍れ
+"Pet, wave."	ペット、振れ
+It's (target)'s turn to loot.	対象の出番です
+Let's loot in alphabetical order.	ＡＢＣ順にしましょう
+You can have the loot from this one.	あなたの出番です
+"Darn, no loot."	何もありません
+Say mode on.  You will talk to everyone in your vicinity.	＞近い人があなたをきこえます。
+Group mode on.  You will talk to the members of your group.	＞徒しかあなたをきこえません。
+Shout mode on.  You will shout your next sentence.	＞遠い人があなたをきこえます。
+Whisper mode on.  You will whisper to your target.	＞対象しかあなたをきこえません。
+Make custom phrases	Make custom phrases
+Browse and edit your last 5 messages	Browse and edit your last 5 messages
+Custom Category 1	Custom Category 1
+Custom Category 2	Custom Category 2
+Custom Category 3	Custom Category 3
+Custom Category 4	Custom Category 4
+Bless you my child.	臨兵闘者皆陣裂在前

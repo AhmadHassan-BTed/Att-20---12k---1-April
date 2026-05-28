@@ -1,0 +1,1 @@
+merchantDialogue = "May I interest you in some gossamer armor?"

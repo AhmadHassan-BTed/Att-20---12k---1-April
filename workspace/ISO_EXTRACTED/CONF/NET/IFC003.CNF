@@ -1,0 +1,6 @@
+# <Sony Computer Entertainment Inc.>
+
+type eth
+dhcp
+-address
+-netmask

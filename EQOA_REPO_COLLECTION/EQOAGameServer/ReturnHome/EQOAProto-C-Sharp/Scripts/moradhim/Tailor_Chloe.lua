@@ -1,0 +1,1 @@
+merchantDialogue = "Wouldya be interested in some cured armor?"

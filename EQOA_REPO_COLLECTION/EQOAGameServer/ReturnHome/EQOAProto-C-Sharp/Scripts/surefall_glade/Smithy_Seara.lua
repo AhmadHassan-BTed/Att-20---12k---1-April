@@ -1,0 +1,1 @@
+merchantDialogue = "I carry some decent dirks and spears here if you like."

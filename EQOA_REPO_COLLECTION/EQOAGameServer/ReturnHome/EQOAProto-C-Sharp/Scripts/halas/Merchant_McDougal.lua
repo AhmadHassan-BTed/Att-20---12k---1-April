@@ -1,0 +1,1 @@
+merchantDialogue = "Stay awhile and listen. You just might learn a thing or two from this old Shaman."

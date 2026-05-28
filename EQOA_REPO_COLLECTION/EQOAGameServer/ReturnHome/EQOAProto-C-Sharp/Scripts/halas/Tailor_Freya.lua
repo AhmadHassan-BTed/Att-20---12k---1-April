@@ -1,0 +1,1 @@
+merchantDialogue = "You look like you need some armor."

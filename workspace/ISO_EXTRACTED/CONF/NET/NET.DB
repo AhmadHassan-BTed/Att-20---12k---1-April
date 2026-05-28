@@ -1,0 +1,12 @@
+0,1,NET003.CNF,Combination1
+2,1,DEV003.CNF,no-vendor/no-product(only dev use)
+1,1,IFC003.CNF,no-vendor/no-product's setting(only dev use)
+0,1,NET001.CNF,Combination2
+2,1,DEV001.CNF,no-vendor/no-product(only dev use)
+1,1,IFC001.CNF,no-vendor/no-product's setting(only dev use)
+0,1,NET003CD.CNF;1,Combination3
+2,1,DEV003.CNF;1,no-vendor/no-product(only dev use)
+1,1,IFC003.CNF;1,no-vendor/no-product's setting(only dev use)
+0,1,NET001CD.CNF;1,Combination4
+2,1,DEV001.CNF;1,no-vendor/no-product(only dev use)
+1,1,IFC001.CNF;1,no-vendor/no-product's setting(only dev use)

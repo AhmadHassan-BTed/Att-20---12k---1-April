@@ -1,0 +1,1 @@
+merchantDialogue = "Gotta have da right bait to catch the fish yer after."

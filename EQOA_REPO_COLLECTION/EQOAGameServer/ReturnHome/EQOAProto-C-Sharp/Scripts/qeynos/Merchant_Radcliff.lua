@@ -1,0 +1,1 @@
+merchantDialogue = "To become a true magician, you will need to study these scrolls."

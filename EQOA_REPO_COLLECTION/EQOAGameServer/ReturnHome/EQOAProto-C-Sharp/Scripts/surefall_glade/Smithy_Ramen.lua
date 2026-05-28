@@ -1,0 +1,1 @@
+merchantDialogue = "Care to see my selection of fine steel weapons?"

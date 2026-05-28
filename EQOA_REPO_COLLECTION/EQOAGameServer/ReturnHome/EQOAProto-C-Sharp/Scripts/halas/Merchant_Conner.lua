@@ -1,0 +1,1 @@
+merchantDialogue = "Come to learn a new skill from ole Conner, have ya?"

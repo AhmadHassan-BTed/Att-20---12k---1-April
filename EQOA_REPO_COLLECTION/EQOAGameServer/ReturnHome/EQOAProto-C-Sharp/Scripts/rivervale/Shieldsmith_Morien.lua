@@ -1,0 +1,1 @@
+merchantDialogue = "I've gathered the best and only shields in all of Rivervale. Costs shouldn't matter when your armor isn't protection enough."

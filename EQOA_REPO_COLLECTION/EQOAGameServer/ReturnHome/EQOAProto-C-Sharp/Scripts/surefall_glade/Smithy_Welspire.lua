@@ -1,0 +1,1 @@
+merchantDialogue = "These hammers and staffs aren't for the faint of heart."

@@ -1,0 +1,1 @@
+merchantDialogue = "The cold is less forgiving out here but I survive by purchases from travelers like you, playerName."

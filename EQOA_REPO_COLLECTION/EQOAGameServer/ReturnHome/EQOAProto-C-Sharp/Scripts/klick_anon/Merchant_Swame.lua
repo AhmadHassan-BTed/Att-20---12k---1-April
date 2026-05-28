@@ -1,0 +1,1 @@
+merchantDialogue = "Got some good rods and gears. Take your time."

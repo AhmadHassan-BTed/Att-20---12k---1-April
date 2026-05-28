@@ -1,0 +1,1 @@
+merchantDialogue = "Shall I show you my banded armor?"

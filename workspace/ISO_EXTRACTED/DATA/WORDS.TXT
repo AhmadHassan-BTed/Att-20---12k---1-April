@@ -1,0 +1,1814 @@
+﻿English
+Japanese
+Spanish
+French
+German
+NEEDS
+Healing
+Rest
+Help
+MORE NEEDS
+Food
+Water
+Bind
+Need directions
+Status
+Lost
+Almost dead
+Location
+On my way
+ANSWER
+Yes
+No
+Do not know
+DIRECTIONS
+North
+East
+South
+West
+EMOTE
+HAPPY
+Cheer
+We win
+Victory
+Smile
+SAD
+Depart
+Death
+Defeat
+Cry
+FUN
+Wave
+Dance
+Sneeze
+Stumble
+STYLE
+Wind
+Laugh
+Fire
+Monsters
+YOU
+COMBAT
+Attack target
+Retreat
+Back Off
+No mana
+QUESTIONS
+Ask directions
+Where you
+Where to
+Need help
+TRADE
+Sell
+Buy
+Browse
+Request trade
+SOCIAL
+Ignore
+Follow
+GREETINGS
+Hail
+Welcome
+Morning
+Evening
+BANTER
+Whassup
+Tired
+More
+Check up
+GROUP
+ORGANIZE
+Follow me
+Follow you
+Say target
+Follow target
+PARTY
+Invite
+Leave
+Ask
+Looking
+PETS
+Pet attack
+Pet back off
+Pet follow
+PETS MORE
+Pet stay
+Pet destroy
+Pet dance
+Pet wave
+LOOT
+Target's turn
+Alphabetical
+You loot
+No loot
+CUSTOM MODE
+MODE
+Say
+Group
+Shout
+Whisper
+MAKE CUSTOM
+HISTORY
+CATEGORIES
+Cat 1
+Cat 2
+Cat 3
+Cat 4
+ME
+TAKE ALL
+LEAVE ALL
+Use
+Equip
+Inspect
+ENGLISH
+JAPANESE
+LANGUAGE
+ITEM
+OPTIONS
+CHAT
+DISABLED
+5 PERCENT
+10 PERCENT
+15 PERCENT
+20 PERCENT
+25 PERCENT
+PACKET LOSS
+LATENCY
+NETWORK
+125MS
+250MS
+500MS
+1000MS
+2000MS
+TEST
+SELF
+TARGET
+PRINT POS
+GOTO
+EXTRAPOLATION
+INTERPOLATION
+HEAL
+KILL
+WAVE
+LEVEL UP
+Unequip
+BROADCAST
+Join
+Decline
+Boot
+UNUSED
+UNUSED
+Exit
+INFO
+Male
+Female
+Warrior
+Ranger
+Paladin
+Shadowknight
+Monk
+Bard
+Rogue
+Druid
+Shaman
+Cleric
+Magician
+Necromancer
+Enchanter
+Wizard
+Alchemist
+*******
+*******
+*******
+Human
+Half Elf
+Elf
+Dark Elf
+Gnome
+Dwarf
+Troll
+Ogre
+Barbarian
+Halfling
+Erudite
+*******
+*******
+*******
+*******
+SPELLS
+Learn
+Arrange
+INFO
+Strength is the character's physical strength.  Strength affects the damage your character inflicts with melee weapons (swords and such).
+This represents the character's physical stamina.  Stamina is used to calculate a character's hit points.
+Agility is the character's quickness and footwork.  Agility affects your character's defense in combat.
+Dexterity is your character's hand-eye coordination.  It affects your character's ability to land blows in combat and proficiency with ranged weapons.
+Wisdom is the measure of your character's willpower and faith.  For every 7 points of wisdom 1 point is added to all of your resistances.
+This represents your character's intellect and problem solving ability.
+This is your character's physical beauty and personal charm.  Charisma enhances certain special abilities.
+Connect to EverQuest using your current internet settings and account information.
+Change your Station Name.  Your Station Name is used to identify you when you play EverQuest.
+Change your Password.  Your secret Password will protect your Station Name and Account.  Do not share your password with anyone!  Sony employees will never ask for your password.
+Select
+Cancel
+OK
+Navigate
+Next
+Back
+Submit
+Create Character
+Delete Character
+PLAY!
+Station Name
+Password
+Server
+PERSONA
+Str
+Sta
+Agi
+Dex
+Wis
+Int
+Cha
+HP
+HPMax
+Pwr
+PwrMax
+Speed
+HoT Poison
+HoT Disease
+HoT
+PoT
+AC
+RUN SPEED
+TEST CHAT
+More. . .
+SERVER LOAD
+SERVER INFO
+Strength
+Stamina
+Agility
+Dexterity
+Wisdom
+Intelligence
+Charisma
+Bonus Points
+Attributes
+Choose a Race and Gender
+Choose a Class
+Customize Character
+Character Name
+Character Review
+Choose Character to Delete
+Character Selection
+Learn Ability
+Select Attribute
+Change Attribute
+You have no saved characters
+to place ability
+Character create failed
+Bad Login/Password
+Connecting
+Disconnected
+Examine
+Passive
+Defensive
+Neutral
+Aggressive
+Dismiss
+DAY-NIGHT
+Done
+Destroy
+WEATHER
+CLEAR
+RAIN
+SNOW
+Price
+Money
+Class
+Race
+P:
+G:
+S:
+C:
+Refire
+Slot
+Skill
+Charges
+Weight
+Lvl
+Bank
+ALL
+NONE
+WAR
+RAN
+PAL
+SK
+MNK
+BRD
+RGE
+DRD
+SHA
+CL
+MAG
+NEC
+ENC
+WIZ
+HUM
+ELF
+DELF
+GNO
+DWF
+TRL
+BAR
+HLF
+ERU
+Effect
+HEAD
+FACE
+EAR
+NECK
+TORSO
+FOREARM
+2FOREARM
+HAND
+WAIST
+LEGS
+FEET
+PRIMARY
+SHIELD
+SECONDARY
+2HAND
+1HS
+2HS
+1HB
+2HB
+1HP
+RANGED
+2HP
+Bank Money
+Bank Items
+Deposit
+Withdraw
+Amt
+Max
+Min
+Gold
+Qeynos
+Freeport
+Fayspires
+Neriak
+Klick'Anon
+Marekel
+Grobb
+Halas
+Rivervale
+Highbourne
+Humans are . . . (description)
+The Elves of Tunaria are intelligent, wise and charismatic beings that hold the delicate balance of the natural world as sacred above all things.
+The Dark Elves are unrivaled in their cunning, wit, and malevolent drive to fulfill their unquenchable desire for personal power.
+The Gnomes of Klick'Anon are a carefree race.  They are unrivaled masters of ingenious design and creativity.
+Dwarves are a stout and hardy race whose temperament is jovial, though stubborn and unforgiving when crossed.
+Trolls are vile creatures ruled by feral and vicious instinct, making them the wholly unpredictable and savagely cruel predators of Norrath's swamps.
+Barbarians are the hardy stock of Northmen from which all humans originated.  They are the fierce, steely warriors of legend.
+Agile and light of foot, Halflings are a friendly, jovial race that has an oftentimes-dangerous thirst for mischief and adventure.
+Erudites, otherwise known as the High Men, are unrivaled in their affinity and mastery of the arcane sciences.
+Ogres are a large and powerful race.  Aggressive and warlike, they never hesitate to attack those who stand against them.
+***
+***
+***
+Warriors are highly trained in armed combat.  They are most often found leading the charge in a headlong assault of their enemies.
+These soldiers of the wilderness are unique in their abilities with the bow and unrivaled in their keen perception.  They also wield natural magics similar to that of the Druids.
+Paladins are holy knights that fervently bear the most pure of righteous virtues and crusade to vanquish the corrupting darkness from Norrath.
+These dark, callous, and malevolent knights passionately wield the venomous blade of corruption in service to the most cruel and wicked of the gods.
+Monks are dedicated to the discipline and unification of mind, body and spirit; effectively turning their bodies into lethal weapons.
+Bards are traveling musicians and scholars who seek the legends, secrets, and mysteries of the world.
+Rogues live in the shadows, using cunning and stealth to accomplish their goals.
+Druids derive their magic from the forces of nature and have devoted their very lives to protecting it.
+Similar to a tribal witch doctor, shamans are usually found with the primitive races. They are connected to, and derive their power from, the unseen spirits that reside within all of Norrath.
+These servants of the divine bear within them the power of their deity and often serve as healers and protectors by channeling the powers bestowed by their faith.
+From the four primal elements to the creatures of Norrath, these masters of conjuration are peerless in their abilities to summon both servants and allies.
+Necromancers are the masters of life force, controlling and fueling the essences of the undead with the corruption of the living.
+Scholars of magic, enchanters focus on imbuing both objects and creatures with arcane properties. They are also adept at imposing the will of their minds on others.
+Wizards are arcane masters unrivaled in their affinity for evocation and other realms of offensive magics.
+Alchemists are an eccentric and inventive lot.  They emerge from their laboratories with powerful and explosive potions.
+***
+***
+***
+BOW
+THROWN
+1H CROSSBOW
+2H CROSSBOW
+HELD
+ROBE
+GLOVES
+RING
+Starting City
+Server not ready
+Target
+Consider
+TEST UI
+VARIANCE
+Cancelled
+
+Power-Up
+Character
+Inventory
+Ability
+Pet
+Quest
+Community
+Map
+Options
+Quit
+Chat
+Tell
+Train!
+LIGHT SRC
+You have died.
+Please enter login.
+Please enter server address.
+Server not found. (DNS error)
+LOGOUT
+Prepare
+Say Mode
+Whisper Mode
+Group Mode
+Magic
+Equipment
+Misc
+Aggressive
+Dubious
+Cautious
+Neutral
+Friendly
+Warm
+Allied
+FR
+PR
+DR
+LR
+CR
+AR
+Unused
+Humans of the west are the most versatile in their innate knowledge of magic, faith, and the sword.
+Humans of the east tend to be drawn into the paths of the shadow, often binding themselves to the forbidden dark arts.
+Humans of Surefall . . .
+Range
+Damage
+Eastern
+Western
+Northern
+Southern
+Cast
+Recast
+Scope
+Power
+EquipReq
+Reagent
+PET
+CORPSE
+ANY
+wishes to trade with you.  Do you accept?
+Trade
+Offer
+Receive
+Offering
+Review Trade
+Confirm Trade
+Tunar
+Base
+Current
+Save Changes
+Ice
+Lightning
+Arcane
+Poison
+Disease
+Waiting for confirmation.
+Training Points
+Equip
+Stack
+Inspect for more info
+DMG
+AMMO
+DUR
+POW
+ATT
+ARROW
+BOLT
+BULLET
+You have died.
+Max Stack	
+Level
+RNG
+Item Price
+Your Money
+TRIGGER
+RENDER
+Name
+Race
+Class
+Guild
+Buddy List
+View List
+Mail
+Remove
+None
+Remove selected buddy?
+Buddy invite from . . .
+Accept?
+Online
+Message
+Repair
+Create Guild
+Guild List
+Promote
+Demote
+Ban
+Disband
+Chat Modes
+Compose
+Privacy
+Customize
+Reply
+Guild invite from . . .
+Remove selected guild member?
+Rank
+Master
+Elder
+Officer
+Member
+Leave the guild?
+Disband the guild?
+Promote selected guild member?
+Demote selected guild member?
+You are not qualified for that operation
+Safe Mode
+Generate Name
+Filter
+Profanity Filter
+On
+Off
+NO TRADE
+NO RENT
+LORE
+Def. Menu4
+%s has accepted your invitation.
+%s has declined your invitation.
+%s is busy and cannot accept invitations.
+%s cannot accept invitations.
+Assist
+DISPLAY POS
+Guild create failed: 
+Guild disband failed: 
+One or more group members are already in guilds.
+That guild name belongs to another guild.
+You must have at least %u Tunar to create a guild.
+You must be the leader of a full group to create a guild.
+You are already in a guild.
+You are not in a guild.
+Edit Charter
+View Charter
+Quest Log
+Delete this quest from your journal?
+Version
+%s is already in a guild and cannot accept invitations.
+You are no longer in a guild.
+The group leader has created a guild.
+Your guild rank has changed.
+Guild joined.
+The guild charter has changed.
+The guild has been disbanded.
+You have been removed from the guild.
+Invite failed: The guild is full.
+Invite failed: Your buddy list is full.
+%s has a full buddy list and cannot accept invitations.
+Invitation to %s has expired.
+You cant invite that.
+Invitation failed: Too many open invites.
+Add buddy failed: Your buddy list is full.
+Add buddy failed: Your buddy's buddy list is full.
+%s is already in your buddy list.
+Not Subscribed.
+Network Error.
+Chat Mode: Say.
+Chat Mode: Whisper.
+Chat Mode: Group.
+Chat Mode: Shout.
+Chat Mode: Guild.
+Take
+Leave
+Surefall Glade
+Adjust Attributes
+Face
+Hair Style
+Hair Length
+Hair Color
+Moradhim
+Blacksmith
+wants to summon you, do you accept?
+wants to resurrect you, do you accept?
+Ignore List
+Stop Ignore
+Remove %S from ignore list?
+Add Target
+Remove Target
+Unknown database error.
+You are already logged in, closing old login...
+You have logged in from another location.
+Server not ready, please try again later. (nodbs)
+Server not ready, please try again later. (loginto)
+You accept the invitation from %s.
+You decline the invitation from %s.
+You have no invitations.
+You have received more training points!
+%s wants to trade with you, but you are busy.
+Recipient not found.
+%s is already in a group.
+You are not in a group.
+The group leader has ejected you.
+The group has been disbanded.
+You have not been invited into this group.
+The group is full.
+Your group has been lost.
+Invitation cancelled.
+%s sends you a group invitation.  Accept?
+You give a group invitation to %s.
+Only leaders can boot group members.
+Only leaders can disband the group.
+Only leaders can invite others to join the group.
+Empty
+%s is ignoring you.
+Show Chat
+Hide Chat
+Show Shouts
+Hide Shouts
+Messages from your guild are visible.
+Messages from your guild are hidden.
+%s sends you a buddy list invitation, but you are busy.
+%s sends you a guild invitation, but you are busy.
+%s is busy and cannot accept trades.
+Toggle Invis
+Buff PC
+Enter Level
+Summon Item
+Enter Item Id
+Enter Sprite And Scale
+Change Sprite
+Revert Sprite
+Enter Location (Zone X Y Z)
+Enter Spawner ID
+Goto Location
+Goto Spawner
+Force Spawn
+Saving . . .
+The server that you were connected to is currently unavailable.  Try back again later
+Connection problem or server currently unavailable
+Beta
+Support
+Customer Support
+Request Help
+Goto Bind Loc
+That corpse is already being looted by another player
+That entity is not lootable
+That corpse belongs to another player or group
+That character is in an area of the world that is currently unavailable.  Please try again later.
+Your character is in an area of the world that is temporarily unavailable.
+Invite failed: no target.
+You can't invite yourself.
+Navigation
+Avatar
+Design
+Programming
+Goto Zone
+Kick
+Silence
+Goto Player
+Where Is Player
+Kick: Enter Player Name
+Silence: Enter Player Name
+Goto: Enter Player Name
+Where Is: Enter Player Name
+Not Equipped
+Head
+Gloves
+R.Ear
+L.Ear
+Neck
+Torso
+R.Arm
+L.Arm
+Arms
+R.Hand
+L.Hand
+Waist
+Legs
+Feet
+Primary
+Secondary
+2Hand
+Shield
+Bow
+Held Pri.
+Held Sec.
+Robe
+You have been ejected by a server administrator.
+%s has added %s to the guild.
+We are updating the game, please try again later.
+Disconnected (server restarted).
+Auto-Run
+You have gained a new ability.
+Exit Game World and return to Server Selection screen?
+Out of range.
+Out of arrows.
+Out of bolts.
+Summon Player
+Who Is Player
+Who Is: Enter Player Name
+Summon: Enter Player Name
+Who
+Not enough power to shoot.
+Unstick myself
+Trade invalid: you don't have enough inventory space for that many items.
+Trade invalid: you can't stack enough of one of those items.
+Trade invalid: you already have an offered lore item.
+Toggle Stats
+Roll
+Faction Messages
+Loot Messages
+Assist Target
+Enter Token Id
+Summ. History Tok
+Kill Spawner
+Unkill Spawner
+"Member" is the lowest rank and cannot be demoted.
+Show BPS
+3rd Person Camera
+Authenticating...
+Authentication Complete.
+Back
+Battle Music
+Camera Pitch Axis
+Cancel
+Checking for updates...
+Compact
+Connect
+Connecting to update server...
+Connecting...
+Damage Numbers
+Disconnect
+DNAS Authentication
+DNAS Not Initialized.
+Do not remove memory card (PS2) in MEMORY CARD slot 1.
+Done.
+Downloading Complete.
+Downloading...
+Error
+Error while updating.
+Errors were encountered while updating. Please verify your network settings are correct and try again.
+%S must be restarted in order to complete this update.
+Failed
+Fx Volume
+Game
+Getting Unique ID...
+Idle.
+Initializing Network
+Initializing...
+Interface
+Inverted
+is not supported or not connected.
+Mono
+Music Volume
+No "Your Network Configuration" file found.
+Normal
+Notice
+Ok
+One or more updates failed authentication. Please verify your network settings are correct and try again.
+Options
+Update Messages
+Play
+PLAY
+Reading game data
+Restart
+Soft Keyboard
+Song 1
+Song 2
+Song 3
+Song 4
+Song 5
+Sound
+Sound Output
+Standard
+Status:
+Stereo
+Tether
+The "Your Network Configuration" file was created on another console and cannot be used.
+The connection could not be established. Please exit and retry with another network configuration.
+The network connection has been lost.
+The network device has been disconnected.
+This will close your network connection. Are you sure you want to continue?
+Update
+Updating
+View Messages
+Writing game data
+Your Network Configurations
+Invalid Item Id.
+Invalid Token Id.
+Invalid Spawner Id.
+Code
+Logged out.
+ISP Connection Lost.
+Connected
+You have no room in your inventory for that item.
+You have memorized %S.
+You have forgotten %S.
+Unrecognized command
+REASON_UNKNOWN
+Failed: invalid name
+Failed: name already taken
+Dismiss pet
+Fast run
+Day-night cycle
+Personal light
+Auto
+Guild error
+Client version
+You have requested a trade with %s.
+There is no target for assisting.
+Your mail has been sent.
+Message deleted.
+Ticket
+Topic
+Get New Headers
+Retrieving new headers
+Retrieving message
+Sending previous request
+Deleting request
+Sending reply
+Getting topics
+System error
+TIMEOUT
+FAIL
+OUT OF MEMORY
+NO TICKET
+NOCREATE TICKET
+TICKET LOCKED
+DBERROR
+TOO MANY OBJECTS
+INVALID STATION ID
+FAILED RATE LIMIT
+NO TOPICS
+Service Request Inbox
+Subtopic
+Your request has been sent.
+System is temporarily unavailable
+Message has not been sent.  Continue exit?
+Reply to CS Request
+Service Request
+Select Topic
+No main topic specified.
+Select Subtopic
+No subtopic specified.
+No message body specified.
+You have too many open tickets.
+Name must be at least four characters long.
+Name must be all letters.
+Invalid name
+Creating Character
+Entering Game World
+Permanently delete character "%s"?
+To
+From
+Subject
+Received
+Send message
+Sending message
+Deleting previous message
+Sending previous message
+Send Failed
+Unknown recipient.
+Recipient's mailbox is full.
+Recipient has too many unread messages from you.
+Unknown error.
+Reply Mail
+Compose Mail
+Retry
+Retry Connect
+Login Screen
+Server Select
+Login
+Password
+Server
+Server Address
+Username
+Shift
+Enter
+Sp
+Del
+End
+Member Name
+Breath
+You have already memorized this ability.
+Read
+Mail Inbox
+Destroy item?
+Destroy equipped item "%S"?
+Destroy prepared item "%S"?
+Destroy this NO TRADE item?
+Hit Points
+Branch Options
+Edit Label
+Change to Action
+Action Options
+Edit Action
+Change to Branch
+Text Message
+Command
+Command List
+Sell item?
+Sell equipped item "%S"?
+Sell prepared item "%S"?
+Sell this NO TRADE item?
+Read CS Message
+Delete failed
+Read Mail
+Re
+Players
+Getting list of servers
+Please wait
+Server Selection
+Cancel trade?
+Invite to group
+Retrieving list
+A communication error has been detected.
+A download error has been detected.
+A machine information error has been detected.
+A unique ID error has been detected.
+All DNAS online services have ended.
+An error occurred while preparing memory card (PS2) in MEMORY CARD slot 1 for use with %S.
+Authentication Error
+Checking memory card (PS2) in MEMORY CARD slot 1. Do not remove memory card (PS2), reset, or switch off the console.
+Communication Error
+Different HDD.
+DNAS online session timed out, retrying.
+%S cannot continue without a memory card (PS2) in MEMORY CARD slot 1.
+%S requires 3,000 KB of free space to save data.
+%S requires a memory card (PS2) in MEMORY CARD slot 1 with 3,000 KB of free space to continue.
+Format failed.
+Formatting memory card (PS2) in MEMORY CARD slot 1. Do not remove memory card (PS2), reset, or switch off console.
+Insufficient space on memory card (PS2) in MEMORY CARD slot 1. %S requires 3,000 KB of free space to save data.
+Load failed.
+Memory card (PS2) has been removed. Please reinsert memory card (PS2) used during initial setup in MEMORY CARD slot 1 to continue.
+Memory card (PS2) has been replaced. Please reinsert the memory card (PS2) used during initial setup in MEMORY CARD slot 1 to continue.
+Memory card (PS2) in MEMORY CARD slot 1 is unformatted. Format memory card (PS2)?
+Please do not remove the memory card (PS2) in MEMORY CARD slot 1 beyond this point.
+Please double check your network connection and/or network configuration.
+Prepare now?
+Preparing memory card (PS2) in MEMORY CARD slot 1 for use with %S. Do not remove memory card (PS2), reset, or switch off console.
+Restart Setup
+Setup must be repeated for the memory card (PS2) in MEMORY CARD slot 1.
+The DNAS server could not process your request. Reconnect later.
+The DNAS server is not responding normally. Reconnect later.
+The memory card (PS2) in MEMORY CARD slot 1 has been successfully prepared for use with %S.
+The memory card (PS2) in MEMORY CARD slot 1 must be prepared for use with %S.
+This software title has ended its online services.
+This software title has not begun its online services.
+Unknown sub-code.
+BADPARAMS
+UNKNOWN USER
+NOCREATE COMMENT
+UNKNOWN ERROR
+Column
+Row
+Select the NETWORK menu option to create a new "Your Network Configuration" file.
+Date
+Delete
+Your request has been deleted.
+Deleting message
+Extrapolate
+Interpolate
+Bow
+Point
+Boot Member
+Leave Group
+Ignore Target
+Stop Ignoring
+Privacy List
+Ignore Shouts
+Restore Shouts
+Assist Leader
+Pet Passive
+Pet Defensive
+Pet Aggressive
+Pet Neutral
+Pet Dismiss
+Pet Backoff
+Pet Attack
+Ignore Guild
+Restore Guild
+Assist Target
+Give Item
+Please try again later
+Toggle NPC
+That player is still loading.
+You may only invite players.
+Memorize
+Connection Problem
+Attack
+A DNAS error has been detected.
+Profanity
+You do not have a pet.
+%s is still loading.
+%s is already in your group.
+The server has been shutdown by a server administrator.
+Help Status
+is not connected.
+Enter Guild Name
+Enter Guild Charter
+Change Name
+Enter New Name
+Name must be less than or equal to 12 characters.
+Snoop Target
+End Snoop
+Debug NPC
+Remove 1 Debt
+Remove All Debt
+Disband Guild
+Disband Guild: enter the name of a guild member
+CONTROLS
+QUIT
+The guild has been disbanded by a server administrator.
+SE Dread Sea
+Tunaria
+Rathe Mountains
+NE Boundary
+NW Boundary
+Open Sea
+SW Boundary
+Ocean Continuation Piece
+Qeynos Prison
+E Dread Sea
+Whale Hill
+Wyndhaven
+Mariel Village
+Bogman Village
+Zentar's Keep
+Permafrost
+Snowblind Plains
+Unkempt North
+Unkempt Glade
+Twisted Tower
+Jethro's Cast
+Crethley Manor
+Hagley
+Druid's Watch
+Stoneclaw
+Aviak Village
+Spider Mine
+Bear Cave
+Fog Marsh
+Murnf
+Salisearaneen
+North Wilderlands
+Anu Village
+Frosteye Valley
+Guardian Forest
+Gramash Ruins
+Spirit Talker's Wood
+Wymondham
+Al Karad Ruins
+Blakedown
+Mayfly Glade
+Urglunt's Wall
+Mila's Reef
+Oggok Gate
+Gerntar Mines
+Kelinar
+Widow's Peak
+South Crossroads
+Forkwatch
+Alseop's Wall
+Jared's Blight
+Blackburrow
+Mt. Hatespike
+Diren Village
+Freezeblood Village
+Snowfist
+Goldfeather Eyrie
+Baga Village
+Merry-by-Water
+Bandit Hills
+Strag's Rest
+Salt Mine
+Centaur Valley
+Brog Fens
+Fort Alliance
+Elephant Graveyard
+Kerplunk Outpost
+Cazic-Thule
+Dinbak
+Lake Noregard
+Tak 'Xiz South
+Tak 'Xiz
+Serpent Hills
+Wktaan's 4th Talon
+Dshinn's Redoubt
+Trail's End
+Highpass Hold
+Runnyeye
+Misty Thicket
+Shon-To Monastery
+Snafitzer's House
+Greyvax's Caves
+Fayspire Gate
+Fayspires, Tethelin
+Thedruk
+Rivervale
+Moss Mouth Cavern
+Bastable Village
+Ferran's Hope
+Desert Hate
+Deathfist Horde
+Chiktar Hive
+Tak 'Xiv
+Takish'Hiz
+Burial Mounds
+Stone Watchers
+Brokenskull Rock
+Ant Colonies
+Sea of Lions
+Oasis
+Eternal Desert
+Box Canyons
+Deathfist Citadel
+Deathfist Forge
+Tomb of Kings
+Saerk Towers
+North Kithicor
+Castle Felstar
+Kara Village
+NE Mountain Boundary
+Ocean For Pathing 2
+W Dread Sea
+SW Dread Sea
+Collonridge Cemetary
+The Green Rift
+Mu Lin's Reach
+Temple of Light
+Northwestern Ro
+Muniel's Tea Garden
+Al Farak Ruins
+Sycamore Joy's Rest
+Great Waste
+Slithtar Hive
+Sslathis
+Basher's Enclave
+Guk
+Hazinak
+Elemental Towers
+Northern Ro
+Hodstock and Temby
+Bobble-by-Water
+Neriak, Nektulos
+Rogue Clockworks
+S Dread Sea
+Isle of Dread
+Geomancer's Citadel
+Geomancer's Pass
+Dead Hills
+Envar
+Cyclops Fortress
+Lake Rathe
+Ogre Ruins
+West Feerrott
+Urglunt's Gate
+Sphinx Pyramid
+Oggok
+Moggok's Gate
+Give item:
+ALC
+OGR
+You have new mail.
+Connection Problem Detected
+Follow
+You must target a group member to follow.
+You are outmatched. Attacking again is not advised.
+Time
+Alarm
+Please enter play time in HH:MM
+Alarm set for %d hour(s), %d minute(s).
+Greetings. This is the game alarm that you requested.  You have been playing for %02d:%02d hours since you requested this alarm.
+Alarm turned off.
+Fish
+FISHING
+Fishing
+BAIT
+Account Creation
+Account successfully canceled
+Add New Game Card
+Address:
+Are you sure you want to cancel your account?  You will no longer be able to play EverQuest Online Adventures.
+Are you sure you want to disconnect?  This will disconnect your network connection.  Press |x to disconnect or |t to stay connected.
+Bad Page Contents
+Billing Info
+Billing Method
+Billing Plan:
+Birth Day
+Birth Month
+Birth Year
+Cancel Account
+Card #:
+Card Type:
+Change Billing Plan
+Change Credit Card
+Change Password
+Change to Credit Card
+Change to Game Card
+Change your credit card or game card billing plan.
+Changing Password
+Checking Gamecard
+Checking Key
+Checking Rental Code
+City:
+Confirm Disconnect
+Connecting to server...
+Consume this Gamecard
+Continue
+Could not download news, please check network connection.
+Could not retrieve billing info.  If you are a rental customer, you have no billing info and will not be charged.
+Country
+Create Account
+Create User Name
+Credit Card Info
+Credit Card
+Current password is not correct.
+Current Password:
+Current Plan:
+Currently there is no password recovery on the PS2.  If you have a PC, visit http://www.station.com
+Customer Service
+Do Not Cancel Account
+Do not consume this Gamecard
+Downloading available subscriptions, please wait.
+E-mail Address
+Encountered an error while updating your account info.  Please try again later.
+Enter Account Key
+Enter Game Card
+Enter Rental Code
+Enter your user name and password to login. If you do not have a user name, please select the Create User Name option. If you forgot your password, select the Forgot Password option.
+EQOA Beta
+EQOA News
+Error canceling account
+Error downloading subscription list.
+Error on GetSubscriptionInfo
+Error, invalid page contents
+Expire Month:
+Expire Year:
+First Name
+Forgot Password
+Game Card
+Gamecard not found
+Gender
+Get Help
+Getting Account Info
+Getting Billing Info
+Getting News...
+I Am In The EQOA Beta
+ID Create
+If you are a member of the EQOA Beta, please select the I Am In The EQOA Beta.  If you are not a member of the EQOA Beta, please leave now.
+If you wish to change your password, enter your old password in the Current Password field. Next, enter a new password in both the New Password and Repeat New Password fields.
+If you wish to consume this Game Card, select the Consume this Gamecard button.
+If you wish to pay by credit card, please select the Credit Card button.  If you wish to pay by game card, select the Game Card button.  The first month is free for new accounts, however billing information is required.
+If you wish to report a problem to customer service, choose 'Get Help'.  If you wish to view the status of existing tickets, choose 'Help Status'.
+Insufficient features to consume game card.
+Invalid Credit Card Info
+Invalid Credit Card
+Invalid E-mail address
+Invalid Gamecard
+Invalid Info
+Invalid Key
+Invalid Key, please verify that you entered the key exactly.
+Invalid Page Contents
+Invalid Password
+Invalid postal code
+Invalid Username
+Key already consumed
+Key not found
+Last Name
+Log In
+Logged In
+Logging in
+Login Succeeded
+Manage Account
+Memory card (PS2) error
+Middle Initial
+Missing Parameter(s).
+Network disconnected
+New Password:
+New passwords do not match.  Please enter the same password twice.
+No account key has yet been entered.  Did you enter the wrong account key?
+One or more of the items you entered were invalid.  The invalid items are highlighted in red.  Please correct and resubmit.
+Only letters and numbers may be used in your Password.
+Only letters and numbers may be used in your User Name.
+Password Recovery
+Passwords do not match.  Please enter the same password twice.
+Play EverQuest Online Adventures
+Please enter billing information to create a new subscription.
+Please enter in the text field the number on the Game Card that you purchased.  If your number is printed with spaces, please do not enter the spaces in the text field.
+Please enter in the text field your rental code.
+Please enter the account key from the front of your EverQuest Online Adventures manual to activate your account.  You can also enter a Rental Key or Promotional key to play the game.
+Please enter this information exactly as you did during registration.  If you did not enter an e-mail address during registration, please call 1-858-537-0898
+Please enter your credit card information.
+Please enter your credit card number and the billing address associated with that card.  You do not need to enter spaces in the credit card number field.
+Please enter your information to create an account.  All fields are required except E-mail Address, however entering your e-mail address will greatly help with any necessary customer service in the future.
+Please enter your information to create an account.  Enter the same password in the Password and Re-enter Password fields.  All fields are required except Middle Initial.
+Please enter your updated information.  All fields are required except E-mail Address, however entering your e-mail address will greatly help with any necessary customer service in the future.
+Please re-enter your credit card number.  You should only enter numbers and you should not enter spaces
+Please select your billing plan from the combo box.  The first month of the subscription is free for new accounts, however billing information is required.
+Postal Code
+Purchasing
+Re-enter Password
+Rental Customer
+Rental Notice
+RentalCode:
+Rentals are not yet supported.
+Repeat New Password:
+Retrieving your current account information.  Please wait.
+Retrieving your current billing info.  Please wait.
+Save Account
+Select Plan
+Select the Play EverQuest Online Adventures button to begin playing. If you wish to change your password, billing info, or cancel, select Manage Account.
+Since your memory card (PS2) has changed, you must return to the connection screens.
+State:
+Subscription Purchased
+Successfully Changed Password
+Successfully updated your account info
+Suspended Account
+The address you entered is too long.  Please abbreviate it.
+The city name you entered was too long.  Please abbreviate it.
+The country you entered is invalid, or does not match up with the state and zip code.
+The credit card was declined due to a problem with the bank.
+The credit card was declined.
+The expiration date you entered is invalid.
+The information you entered does not match our records.  Please call customer service.
+The postal code must be 5 characters long, and all numbers (eg. 92128)
+The purchase did not succeed.  Please verify that all billing information was entered correctly.  If the problem persists, try a different card.
+The subscription has already been closed.
+The zip code you entered is invalid.
+This gamecard has already been consumed.
+This key is locked
+This key is not an %S Key
+This page allows you to modify your password, change your billing info, or cancel your account. If you have forgotten your password, you will not be able to change it.  Instead, return to the front page and select the Forgot Password button
+To consume another game card on this account, select 'Add New Game Card'.  If you wish to put this account on a credit card, select 'Change to Credit Card'.
+Unknown error in OnRequestLogin
+Unknown error logging in.
+Update Account Info
+Update Account
+Update Billing Info
+Update Billing
+Updating Account
+Use Game Card
+User Name already exists.  Please select another.  You may want to try variations like %s5, %s123, etc.
+User Name
+Valid Key
+Valid Key, checking subcription info
+You are a rental customer, you will not be billed.
+You are creating a new user name and password.  Please write down your user name and password in a safe location.  Sony employees will never ask you to reveal your password.
+You are in a rental period, you cannot update billing info.
+You do not have a subscription for EQOA, enter billing information to sign up
+You do not have a subscription to EQOA
+You do not have an active %S account.  Please enter billing info to purchase a subscription
+You have %i days left on your account.  If you wish to continue playing EQOA after this time, please update your billing.
+You have already canceled your account.  You cannot cancel again.
+You have not set up your payment method.  Please choose billing method
+You have successfully created a new user name and password.  Please write down your user name and password in a safe location.  Sony employees will never ask you to reveal your password.
+Your account has been banned.
+Your account has been suspended, you cannot play EQOA until the suspension has ended.
+Your account is marked as free.  You cannot cancel.
+Your account is marked as free.  You cannot update billing info.
+Your credit card was invalid.
+Your e-mail address contains invalid characters.  The only allowed characters are letters, numbers, '_', '@', and '.'
+Your e-mail address does not contain an '.'
+Your e-mail address does not contain an '@'
+Your e-mail address ends with a '.'
+Your login failed.  If you do not have an account, please select the Create User Name Button
+Your network connection has been lost.  Press |x to return to the setup screen.
+Your new password has been e-mailed to you.
+Your rental period has expired.  Please either a new rental key or an account key.
+Your subscription has been closed.  Please enter billing information to re-activate account
+Your subscription is already free.
+Your trial has expired.  Please enter billing information to create an %S subscription.
+Your trial period has ended.  You will have to enter billing info to continue playing
+Invalid alarm time.
+Target Info
+Target Action
+Self
+USA
+Canada
+Jan
+Feb
+Mar
+Apr
+May
+Jun
+Jul
+Aug
+Sep
+Oct
+Nov
+Dec
+This character has been modified by a customer service representative.
+Your cast missed the water
+N
+S
+E
+W
+NW
+NE
+SW
+SE
+C
+Let's go fishing!
+You cast your line
+Perfect cast!
+You caught something!
+You fail to catch anything
+The fish got away with your bait
+You damaged your pole
+Cast
+Stats
+Odus
+Sylhilthis' Dwell
+West Toxxulia
+Kerra Isle
+Abysmal Sea
+The Hunt
+East Plateau
+East Toxxulia
+South Toxxulia
+Paineel
+Stone of Morthalis
+West Plateau
+Arcadin
+Stonebrunt Mountains
+The Warrens
+Gulf of Uzun
+Erud's Crossing
+North Barren Coast
+The Vastly Deep
+South Barren Coast
+Cape Dreg
+Solusek's Eye
+Lavastorm Mountains
+Plane of Sky
+No fishing pole equipped
+No bait equipped
+Your pole requires repair
+Freeze
+Freeze: Enter Player Name
+Send Report
+Send Harassment Report: Enter Player Name
+You can't report yourself for harassment
+Are you sure you wish to report this player for harassment? (This transmits your conversation log to Sony Online Entertainment Customer Service)
+Tradeskill
+Tradeskills
+Combine
+Jewelry
+Armor
+Weapons
+Tailoring
+Carpentry
+Special
+Iron
+Bronze
+Steel
+Copper
+Silver
+Electrum
+Gold
+Platinum
+Adamantite
+Mithril
+Crude Iron
+Brass
+Stone Hide
+Combine Steel
+Brellium
+Seralite
+Birch
+Ash
+Basswood
+Hickory
+Beech
+Elm
+Maple
+Sycamore
+Oak
+Ironwood
+Fur
+Cotton
+Wool
+Tattered Hide
+Hemp
+Hide
+Ramie
+Suede
+Canvas
+Leather
+Linen
+Analine
+Silk
+Nubuck
+Elven Twill
+Vale Leather
+Mithril Silk
+Create Item
+Salt Water
+Fresh Water
+Rain Water
+Distilled Water
+Purified Water
+Aerated Water
+Blessed Water
+Tears of Karana
+Water of Prexus
+Water of Marr
+Mana Infused Water
+Liquified Mana
+Common
+Uncommon
+Rare
+Ultra Rare
+Rarity
+Alchemy
+You have scribed a new recipe.
+Experiment
+Experimentation
+Recipe Book
+JEWEL CRAFT
+ARMOR CRAFT
+WEAPON CRAFT
+ALCHEMY
+TAILORING
+CARPENTRY
+You reach level %d in Jewel Crafting!
+You reach level %d in Armor Crafting!
+You reach level %d in Weapon Crafting!
+You reach level %d in Alchemy!
+You reach level %d in Tailoring!
+You reach level %d in Carpentry!
+You receive %d XP in Jewel Crafting.
+You receive %d XP in Armor Crafting.
+You receive %d XP in Weapon Crafting.
+You receive %d XP in Alchemy.
+You receive %d XP in Tailoring.
+You receive %d XP in Carpentry.
+You receive %d tradeskill XP.
+You have not yet recovered.
+You have created something new!
+You fail to create anything.
+You broke your tool.
+Ingredients
+Reagents
+equipped
+Product Item Lvl
+Product Stats
+Song 6
+Song 7
+Song 8
+Song 9
+Song 10
+Please enter your credit card information.  If you are from Canada, choose 'OT - Other (Non USA)' for the state.
+Account Key
+Armor Crafter
+Weapon Crafter
+Jewel Crafter
+Tailor
+Carpenter
+You have created "%S."
+You broke a recipe reagent.
+Remove recipe "%S?"
+Remove selected recipe?
+I Do Not Accept
+I Accept
+You have declined to agree with the EVERQUEST(r) ONLINE ADVENTURES(tm) USER AGREEMENT AND SOFTWARE LICENSE.
+You must agree to the terms of the EVERQUEST(r) ONLINE ADVENTURES(tm) USER AGREEMENT AND SOFTWARE LICENSE in order to continue.
+USER AGREEMENT AND SOFTWARE LICENSE
+Flora
+Your tradeskill level is not high enough to create that item.
+The items you chose do not make anything.
+You have discovered the recipe for "%S!"  %S  Would you like to add this to your recipe book?
+This item is already in the combine list.
+The combine list is full.
+Add
+Vibration
+Unavailable
+All servers are currently unavailable.
+Recommended
+Ready
+Save Failed!
+Check memory card (PS2) in MEMORY CARD slot 1 and please try again.
+Options cannot be saved because a memory card (PS2) is not inserted in MEMORY CARD slot 1.
+Options cannot be saved because a memory card (PS2) in MEMORY CARD slot 1 has been replaced.
+Do you want to continue without saving?
+Language Selection
+Saving game options. Do not remove memory card (PS2), reset, or switch off the console.
+Save Failed! Check memory card (PS2) in MEMORY CARD slot 1 and please try again.
+Auction
+You gained a rank in Armor Crafting!
+You gained a rank in Weapon Crafting!
+You gained a rank in Jewel Crafting!
+You gained a rank in Carpentry!
+You gained a rank in Tailoring!
+You gained a rank in Alchemy!
+Unable to connect to the network.
+Please check the connections and try again.
+No memory card (PS2) inserted.
+You have earned %d mastery points.
+You have earned 1 mastery point.
+This ability has been disabled.
+Random
+Tell Failed
+No recipient specified.
+Save Options
+Are you sure?
+Network Setup
+The network authentication server is busy. Please try again later.
+This software title is not in service.
+The network authentication server is not in service.
+Connection to the network authentication server has timed out. Please try again later.
+A network authentication system error has occurred.
+A download error has occurred.
+A PlayStation(r)2 hardware information error has occurred.
+A PlayStation(r)2 disc information error has occurred.
+A network error has occurred. Please double check your network connection and/or network configuration.
+A software category error has occurred.
+An authentication error has occurred.
+DNAS Error (%d)
+C
+UC
+R
+UR
+Class Mastery
+General
+Racial
+Archetype
+Master Class
+Inspect
+Mastery Points
+Requirements
+You must enter an EverQuest Online Adventures: Frontiers account key to play Frontiers.
+Although you are registered to play EverQuest Online Adventures: Frontiers, you are not using a Frontiers disc. Some of the Frontiers features will be restricted as a result. If you would like full access to the Frontiers features, please insert a copy of EverQuest Online Adventures: Frontiers and reset your console.
+Although you are registered to play EverQuest Online Adventures: Frontiers, you are not using a Frontiers disc. You cannot access characters that are currently located in or bound to the Frontiers areas. If you would like full access to the Frontiers features, please insert a copy of EverQuest Online Adventures: Frontiers and reset your console.
+Buy Mastery
+Are you sure you want to buy this mastery?
+Remove Mastery
+Are you sure you want to remove this mastery?
+Getting Recipe
+Getting Recipes
+Could not authenticate username and password. Please ensure details are correct and try again.
+%S requires a formatted memory card (PS2) in MEMORY CARD slot 1 with 3,000 KB of free space to continue.
+No response from DNAS server.
+Auctions
+Search
+My Auctions
+My Bids
+Inspect Item
+Auction Info
+Search For Auctions
+Search Parameters
+Keywords
+Min. Level
+Max. Level
+Equip Type
+Att. Type
+Min. Price
+Max. Price
+(Minutes)
+Open
+Closed
+Seller's
+(12-72 hrs)
+Prev
+Searching
+History
+Place Bid
+Bid History
+Bid
+Set Proxy Bid
+Submit Proxy Bid
+OR
+Acquire now for %d Tunar
+Select Class
+Select Race
+Select Equip Type
+Select Attack Type
+Sold For
+Current Bid
+no bids
+(you)
+Min. Bid
+Your Bid
+In Escrow
+Minimum Level
+Maximum Level
+Minimum Price
+Maximum Price
+Seller's Name
+Time Since Close
+Time Left
+less than
+Choose a Bank Item to Sell
+Auction Setup
+Item
+Min.
+Hrs.
+Auction Time
+Item is not auctionable
+Proxy Bid
+1-10
+11-20
+21-30
+31-40
+41-50
+51-60
+61-70
+71-80
+81-90
+91-100
+Retrieving available currencies...
+Retrieving available subscription plans...
+Retrieving available payment methods...
+Retrieving payment fields...
+Retrieving privacy statement...
+Submitting purchase to Global Collect...
+Retrieving available banking countries...
+Global Collect
+Please select the country of your bank.
+Please select one of the supported currencies.
+Please select method of payment.
+Year
+Month
+Day
+Hour
+Minute
+Second
+Please complete all payment fields.
+Currency
+Billing Plan
+Payment Method
+Global Collect Agreement
+Purchase
+Credit Card (USD)
+Global Collect
+If you wish to pay by game card, select the Game Card option. For all other payment types, please select the Global Collect option.
+Saving station options. Do not remove memory card (PS2), reset, or switch off the console.
+Please wait...
+Buying mastery...
+Removing mastery...
+Rating
+Factions
+Getting Faction Info
+Summary
+Page %d of %d
+Unrecoverable error in Network Configuration File. Please use Network Setup to manage your Network Configuration Files.
+You cannot bid on your own auctions.
+You cannot bid on a closed auction.
+Seller
+Enter Game World
+Accept
+To consume another game card on this account, select 'Add New Game Card'. For all other billing options, select 'Change to Global Collect'.
+Change to game card billing.
+Change to Global Collect
+You have less than one day left on your account.  If you wish to continue playing EQOA after this time, please update your billing.
+Secret Zones
+Last Home
+Zaoran Plateau
+No auctions found.
+Listing fee
+Starting bid
+Create auction?
+Submit bid?
+Auto Attack
+Authenticating account details
+Connecting to network
+Retrieving connection information
+To play %S then a save must be made on the memory card (PS2) (requires 3000KB).
+No Your Network Configuration File found on memory card (PS2). This must be created before online content can be accessed. Select the 'Network Setup' option or refer to Network Access Disc.
+End of search results.
+Start of search results.
+Unmemorize All
+In order to play %S a save file must be created on the memory card (PS2) (requires 3000KB).
+EverQuest Online Adventures
+EverQuest Online Adventures: Frontiers
+EQOA:Frontiers News
+The analog controller (DUALSHOCK(r)2) has been disconnected.
+The mail system is busy.  Please try again later.
+Warning: You can possess only one "Master Class" at a time.
+No subject specified.
+Request timed out. Please try again.
+Please wait, this may take a few moments...
+Getting mastery list
+Getting mastery info
+DNAS logotype is a trademark of Sony Computer Entertainment Inc.
+The analog controller (DUALSHOCK(r)2) is not detected. Please insert an analog controller (DUALSHOCK(r)2) to controller port 1, and press the |x button to continue.

@@ -1,0 +1,1 @@
+merchantDialogue = "I might have a pattern or mold here that could be of interest to ya."

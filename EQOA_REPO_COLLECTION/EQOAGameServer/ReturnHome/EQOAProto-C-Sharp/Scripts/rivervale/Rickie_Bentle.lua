@@ -1,0 +1,1 @@
+merchantDialogue = "If yer gonna make quality armor, you'll be need'n my hammers. Top tier tools at inflated prices. Make yer purchase and move on."

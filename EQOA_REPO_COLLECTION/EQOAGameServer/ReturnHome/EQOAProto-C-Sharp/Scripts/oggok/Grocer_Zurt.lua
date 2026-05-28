@@ -1,0 +1,1 @@
+merchantDialogue = "This food will keep you alive in far away places. Care to shop?"

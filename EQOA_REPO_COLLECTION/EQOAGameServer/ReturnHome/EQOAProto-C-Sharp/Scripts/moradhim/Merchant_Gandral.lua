@@ -1,0 +1,1 @@
+merchantDialogue = "Looking for paladin spells? Take a look at what I have."

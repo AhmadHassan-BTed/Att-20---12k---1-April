@@ -1,83 +1,44 @@
-# EQOA Diagnostic Tools Documentation
+# EQOA Diagnostic Tools & Hardware Trace Documentation
 
-## Quick Start
+This document chronicles the diagnostic methodologies and low-level discoveries made during the EQOA Vanilla-to-Frontiers Character Restoration Project.
 
-**All actions should now be run from the unified master tool in the main directory:**
-Double click `EQOA_MASTER_TOOL.bat` and select Option [2].
+## The `0x0` TLB Miss: A Case Study in EE Buffer Overflows
 
-This will run the Live RAM diagnostics automatically for 30 seconds and generate exactly two log files.
-
----
-
-## Log Outputs
-
-When Option [2] is run, the suite writes all diagnostic output to two specific files in `diagnostics/logs/`:
-
-1. **`latest_diagnostic_log.txt`**
-   - This file is completely overwritten every time you run the tool.
-   - It contains *only* the output from your most recent run.
-   
-2. **`history_diagnostic_log.txt`**
-   - This file appends over time. 
-   - Each new run is separated by a massive `============= SESSION START: [Date/Time] =============` break, so you can easily scroll through past runs.
-
-*(Note: The suite automatically cleans up any other intermediate loose logs like `consolidated_diagnostics_log.txt` or `live_memory_dump.txt` to keep the folder clean).*
-
----
-
-## What the Live RAM Diagnostics Suite Does
-
-The automated script (`diagnostics/diagnostic_suite.py`) performs 4 major steps sequentially:
-
-1. **DETECTING EE RAM BASE (`test_eemem_find.py`)**
-   - Dynamically hooks into the running `pcsx2-qt.exe` process.
-   - Finds the 32MB contiguous Emotion Engine Main RAM block using exported `EEmem` pointers or deep memory scanning.
-
-2. **MODEL TREE STRUCTURAL COMPARATOR (`compare_loaded_roots.py`)**
-   - Dumps active memory and traverses loaded ESF containers.
-   - Outputs the node tree (children, sizes, offsets) of any character models currently loaded in the game.
-
-3. **ACTIVE RAM TRANSITION DUMPER**
-   - Checks state transitions in active models.
-
-4. **LIVE RAM HASH & ASSET SCANNER (`live_ram_tracer.py`)**
-   - Scans continuously for 30 seconds looking for the 11 specific Vanilla character hashes (`0x2EF8E480`, `0x05AEBA67`, etc.)
-   - If found, it outputs a pristine hex-dump of the surrounding context in memory to see exactly how the engine is handling the pointers.
-
----
-
-## File Structure
-
-The project has been organized logically:
-
+During development, injecting Vanilla character models into the Frontiers engine resulted in a catastrophic emulator crash:
 ```
-t:\Att 20 - 12k - 1 April\
-├── EQOA_MASTER_TOOL.bat            # THE ONLY FILE YOU NEED TO CLICK
-├── core/
-│   ├── vanilla_to_frontiers_transplant.py # True Hybrid Graft script
-│   ├── esf_parser.py
-│   └── repack_iso.py
-├── diagnostics/
-│   ├── diagnostic_suite.py         # Main script run by Option [2]
-│   ├── live_ram_tracer.py
-│   ├── test_eemem_find.py
-│   └── logs/
-│       ├── latest_diagnostic_log.txt
-│       └── history_diagnostic_log.txt
-├── legacy/
-│   └── bats/                       # Old individual run_*.bat files
-├── docs/                           # Documentation and guides
-├── iso/
-│   └── patched/EQOA_Frontiers_Patched.iso # The final playable game
-└── workspace/
-    └── target_assets.json
+[   12.8102] TLB Miss, pc=0x80005558 addr=0x0 [load]
+[   12.8106] TLB Miss, pc=0x80005558 addr=0x0 [load]
+[   12.8109] TLB Miss, pc=0x0 addr=0x0 [load]
 ```
 
----
+### Initial Hypothesis: The Dirty Float Theory
+Initially, it was believed the Vanilla geometry contained "dirty math" (NaN floats, or out-of-bounds bone indices > 42). A `geometry_sanitizer.py` script was written to clamp these values. However, we discovered that in PS2 `V4-32` (`0x6C`) vertex structures, the `W` float component actually contains the Anti-Double-Clipping (ADC) bit in the sign bit. Clamping or zeroing out the `W` component destroyed the ADC flags, entirely corrupting the geometry stream. 
 
-## Troubleshooting "Invisible Character"
+### The Real Cause: EE Skeleton Buffer Overflow
+The true cause of the crash was a memory overflow on the Emotion Engine (EE).
+The Vanilla Ogre uses a 32-bone skeleton (`0x0B070`). The Frontiers Ogre uses a 43-bone skeleton. The Frontiers Animation Controller running on the EE is hard-coded to generate 43 matrices. 
 
-If you ever see the character invisible again:
-1. Verify you used **Option 1** in the Master Tool to patch the game correctly.
-2. Verify you booted the game from a **COLD BOOT** (System -> Boot ISO), and did NOT load a savestate. Savestates cache the old broken memory!
-3. Run **Option 2** while in-game, and provide `diagnostics/logs/latest_diagnostic_log.txt` to the AI agent for analysis.
+By injecting the 32-bone Vanilla skeleton, we shrank the allocated array buffer in RAM. The animation controller dutifully calculated 43 bone matrices and wrote them to memory, overflowing the 32-bone array bounds and overwriting adjacent memory—which happened to be the `CharacterModel` object's virtual function table. When the engine called `Render()`, it fetched a corrupted `NULL` pointer and caused a `TLB Miss` at `pc=0x0`.
+
+**The Fix:** Retain the Frontiers `0x0B070` skeleton and `0x02800` bone matrices to preserve the EE buffer sizing, and *only* inject the Vanilla `0x02610` Geometry Node.
+
+## The CDVDman Black Screen
+
+When attempting to build the ISO from scratch using modern Python libraries like `pycdlib` or standard `mkisofs` routines, the game would immediately hang at boot (Black Screen):
+```
+[  281.4022] ELF Loading: cdrom0:\SLUS_207.44;1, Game CRC = D7321161, EntryPoint = 0x00100008
+[  281.4418] CDRead: Reading Sector 0000016 (001 Blocks of Size 2048)
+[  281.4584] CDRead: Reading Sector 0000257 (001 Blocks of Size 2048)
+```
+The PS2's `cdvdman` IOP driver enforces extreme rigidity on ISO9660 / UDF 1.02 directory records and Logical Block Address (LBA) sorting (specifically regarding `SYSTEM.CNF` placement). Generating an ISO using standard interchange levels completely breaks the disc layout.
+
+**The Fix:** Use `core/repack_iso.py` to copy the original, unmodified PS2 ISO, and byte-patch the new payload directly into the binary sector layout (In-Place Repacking). Then, update the UDF Allocation Descriptors (`core/patch_udf_char_esf_v2.py`) to point to the new lengths.
+
+## Diagnostic Scripts Arsenal
+
+While the bug is resolved, the diagnostic scripts written during the autopsy remain available in the `core/` and `workspace/scratch/` directories for future research:
+
+1. **`core/validate_dma.py`**: A parser that mathematically verifies the 16-byte alignment and QWC tags of a PS2 DMA chain to ensure the VU1 microprogram will not crash on load.
+2. **`core/audit_materials.py`**: Compares the `0x11110` material/texture dimensions and counts between Vanilla and Frontiers ESFs to diagnose state-dependent rendering rejections.
+3. **`core/w_component_audit.py`**: A hexadecimal analysis tool to decode the specific bitflags hidden inside the PS2 float vectors (such as ADC bits).
+4. **`core/vif_autopsy.py`**: A hex-dumper for comparing specific VIF descriptors between known-good (Golden Master) payloads and injected payloads.

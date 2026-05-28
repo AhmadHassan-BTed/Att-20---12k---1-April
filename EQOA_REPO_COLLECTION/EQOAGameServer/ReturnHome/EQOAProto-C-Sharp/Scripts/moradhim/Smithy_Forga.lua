@@ -1,0 +1,1 @@
+merchantDialogue = "Lookin' fer a wee bit o' steel, I reckon. What can I get ya?"

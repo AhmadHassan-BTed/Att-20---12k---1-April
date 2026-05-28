@@ -1,0 +1,1 @@
+merchantDialogue = "I can teach you tailoring, if you so choose."

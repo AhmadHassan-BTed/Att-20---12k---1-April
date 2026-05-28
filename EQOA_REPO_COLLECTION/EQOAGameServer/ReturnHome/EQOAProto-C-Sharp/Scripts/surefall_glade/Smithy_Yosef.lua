@@ -1,0 +1,1 @@
+merchantDialogue = "I have some hatchets and knives here, if you want to stay quick on your feet."

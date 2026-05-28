@@ -1,0 +1,1 @@
+merchantDialogue = "Do you perhaps need a jewelers kit?"

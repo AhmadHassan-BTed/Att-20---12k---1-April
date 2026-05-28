@@ -1,0 +1,1 @@
+merchantDialogue = "If yer going to become a notable weaponsmith, you'll need my molds to get there. Bit higher prices due to the family tax."

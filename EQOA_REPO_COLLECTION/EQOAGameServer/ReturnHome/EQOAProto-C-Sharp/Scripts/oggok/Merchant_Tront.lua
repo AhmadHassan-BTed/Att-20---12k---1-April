@@ -1,0 +1,1 @@
+merchantDialogue = "I have many dark scrolls. Will you see them?"

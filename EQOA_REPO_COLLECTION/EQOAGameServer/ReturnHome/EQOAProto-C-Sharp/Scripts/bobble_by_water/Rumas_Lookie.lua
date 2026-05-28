@@ -1,0 +1,1 @@
+merchantDialogue = "Perhaps a nice set of gloves could round out your gear?"

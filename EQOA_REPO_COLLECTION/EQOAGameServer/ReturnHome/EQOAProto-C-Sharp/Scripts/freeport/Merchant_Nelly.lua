@@ -1,0 +1,1 @@
+merchantDialogue = "Bandits have stolen all my goods. Sadly, I will have to rebuild my store."

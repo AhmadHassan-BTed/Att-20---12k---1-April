@@ -1,0 +1,1 @@
+merchantDialogue = "Shields, for when your armor just can't cut it by itself."

@@ -1,0 +1,1 @@
+merchantDialogue = "It is time you learned more powerful skills. Are you ready?"

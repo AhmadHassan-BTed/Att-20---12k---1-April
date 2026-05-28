@@ -1,0 +1,1 @@
+merchantDialogue = "I have many patterns and tailoring kits if you are interested..."

@@ -1,0 +1,1 @@
+merchantDialogue = "If you nimble enough, you can use my spears and daggers. Very fun to use against slimy Froglok."

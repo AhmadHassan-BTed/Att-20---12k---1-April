@@ -1,0 +1,1 @@
+merchantDialogue = "My piercing weapons aren't the prettiest but they'll get the job done. They're cheap too. Quantity over quality I always say."

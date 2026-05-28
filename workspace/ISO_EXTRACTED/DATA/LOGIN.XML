@@ -1,0 +1,204 @@
+<PS2GUIPage gridWidth="1" gridHeight="6">
+	<Object>
+		<Position x="0" y="0"/>
+		<Size width="640" height="80"/>
+		<Image tile="horiz" imageType="BlueTile"/>
+	</Object>
+
+	<Object>
+		<Position x="0" y="368"/>
+		<Size width="640" height="80"/>
+		<Image tile="horiz" imageType="BlueTile"/>
+	</Object>
+
+	<Object>
+		<Position x="0" y="60"/>
+		<Size width="640" height="350"/>
+		<Image tile="both" imageType="DarkTile"/>
+	</Object>
+
+	<Object>
+		<Position x="55" y="60"/>
+		<Size width="525" height="350"/>
+		<Image tile="both" imageType="GrayTile"/>
+	</Object>
+
+	<Object>
+		<Position x="55" y="60"/>
+		<Size width="10" height="350"/>
+		<Image tile="vert" imageType="LoginBarVert"/>
+	</Object>
+
+	<Object>
+		<Position x="575" y="60"/>
+		<Size width="10" height="350"/>
+		<Image tile="vert" imageType="LoginBarVert"/>
+	</Object>
+
+	<Object>
+		<Position x="0" y="49"/>
+		<Size width="640" height="12"/>
+		<Image tile="horiz" imageType="LoginBarBott"/>
+	</Object>
+
+	<Object>
+		<Position x="35" y="49"/>
+		<Image imageType="TopBlueGem"/>
+	</Object>
+
+	<Object>
+		<Position x="115" y="49"/>
+		<Image imageType="TopRedGem"/>
+	</Object>
+
+	<Object>
+		<Position x="555" y="49"/>
+		<Image imageType="TopBlueGem"/>
+	</Object>
+
+	<Object>
+		<Position x="475" y="49"/>
+		<Image imageType="TopRedGem"/>
+	</Object>
+
+
+
+	<Object>
+		<Position x="0" y="400"/>
+		<Size width="640" height="12"/>
+		<Image tile="horiz" imageType="LoginBarTop"/>
+	</Object>
+
+	<Object>
+		<Position x="35" y="399"/>
+		<Image imageType="BottomBlueGem"/>
+	</Object>
+
+	<Object>
+		<Position x="115" y="400"/>
+		<Image imageType="BottomRedGem"/>
+	</Object>
+
+	<Object>
+		<Position x="555" y="399"/>
+		<Image imageType="BottomBlueGem"/>
+	</Object>
+
+	<Object>
+		<Position x="475" y="400"/>
+		<Image imageType="BottomRedGem"/>
+	</Object>
+
+
+	<Object>
+		<Position x="90" y="75"/>
+		<Size width="465" height="320"/>
+		<Tileset type="PARCHMENT"/>
+	</Object>
+
+	<Object>
+		<Position x="135" y="88"/>
+		<Size width="370" height="24"/>
+		<Image tile="horiz" capTexture="LoginParchScroll" imageType="LoginParchScroll"/>
+	</Object>
+
+	<Text val="Station Login" alignment="center">
+		<Position x="200" y="28"/>
+		<Size width="240" height="20"/>
+		<Image tile="horiz" capTexture="LoginPlaqueLeft" imageType="LoginPlaqueTile"/>
+		<TextColor r="0" g="0" b="70"/>
+	</Text>
+
+	<Text val="Station Name:">
+		<Position x="145" y="125"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+	</Text>
+
+	<Text val="Password:">
+		<Position x="145" y="160"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+	</Text>
+
+	<Text name="StationName" val="ps2test">
+		<ButtonPos x="0" y="0"/>
+		<Position x="295" y="125"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+		<TextColor r="0" g="0" b="0"/>
+		<Size width="150" height="24"/>
+		<Image tile="horiz" capTexture="ParchIndentCap" imageType="ParchIndentTile"/>
+		<ImageOffset x="-10"/>
+	</Text>
+	<Text name="StationPassword" val="test">
+		<ButtonPos x="0" y="1"/>
+		<Position x="295" y="160"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+		<TextColor r="0" g="0" b="0"/>
+		<Size width="150" height="24"/>
+		<Image tile="horiz" capTexture="ParchIndentCap" imageType="ParchIndentTile"/>
+		<ImageOffset x="-10"/>
+	</Text>
+
+
+	<Button val="Submit" action="SubmitStationLogin">
+		<ButtonPos x="0" y="2"/>
+		<Position x="295" y="200"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+		<Size width="210" height="24"/>
+		<Image tile="horiz" capTexture="TargetCap" imageType="TargetTile"/>
+		<ImageOffset x="-10"/>
+	</Button>
+
+	<Object>
+		<Position x="135" y="230"/>
+		<Size width="370" height="24"/>
+		<Image tile="horiz" capTexture="LoginParchScroll" imageType="LoginParchScroll"/>
+	</Object>
+
+	<Button val="Create Station Name" nextPage="data/ui/id_create.xml">
+		<ButtonPos x="0" y="3"/>
+		<Position x="295" y="260"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+		<Size width="210" height="24"/>
+		<Image tile="horiz" capTexture="TargetCap" imageType="TargetTile"/>
+		<ImageOffset x="-10"/>
+	</Button>
+
+	<Button val="Forgot Password?" action="ForgotPassword">
+		<ButtonPos x="0" y="4"/>
+		<Position x="295" y="295"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+		<Size width="210" height="24"/>
+		<Image tile="horiz" capTexture="TargetCap" imageType="TargetTile"/>
+		<ImageOffset x="-10"/>
+	</Button>
+
+	<Button val="Disconnect" action="Disconnect">
+		<ButtonPos x="0" y="5"/>
+		<Position x="295" y="330"/>
+		<RollColor r="99" g="23" b="71"/>
+		<TextColor r="18" g="27" b="92"/>
+		<Size width="210" height="24"/>
+		<Image tile="horiz" capTexture="TargetCap" imageType="TargetTile"/>
+		<ImageOffset x="-10"/>
+	</Button>
+
+	<Object>
+		<Position x="135" y="360"/>
+		<Size width="370" height="24"/>
+		<Image tile="horiz" capTexture="LoginParchScroll" imageType="LoginParchScroll"/>
+	</Object>
+
+	<Selector>
+		<Image imageType="BluePointerL"/>
+		<SelectorPos x="510"/>
+		<ImageOffset y="5"/>
+	</Selector>
+
+</PS2GUIPage>

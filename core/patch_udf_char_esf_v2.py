@@ -21,11 +21,78 @@ STRATEGY: Instead of trying to parse the custom AD format, we:
 
 This is low-level binary surgery - exactly what needs to happen.
 """
-import struct, os, sys
+import struct, os, sys, math
+
+# Import parser and renderer logic for bounding box recalculation
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from core.esf_parser import ESFParser
+    from core.visual_vif_renderer import extract_v4_32_vertices, find_geom_node, get_node_binary
+except ImportError:
+    pass
+
+def fix_esf_bounding_boxes(esf_path):
+    print(f"[*] Fixing Bounding Boxes in {esf_path}...")
+    with open(esf_path, 'rb') as f:
+        data = bytearray(f.read())
+
+    parser = ESFParser(data).parse()
+    fixed_count = 0
+
+    for entry in parser.pointer_table:
+        if entry.type_id in (0x72700, 0x62700):
+            def search_tree(node, offset):
+                if node['offset'] == offset: return node
+                for c in node.get('children', []):
+                    r = search_tree(c, offset)
+                    if r: return r
+                return None
+            
+            node = search_tree(parser.root, entry.offset)
+            geom = find_geom_node(node)
+            if geom:
+                geom_bin = get_node_binary(data, geom)
+                verts = extract_v4_32_vertices(geom_bin)
+                if not verts: continue
+                
+                min_x = min(v[0] for v in verts)
+                min_y = min(v[1] for v in verts)
+                min_z = min(v[2] for v in verts)
+                max_x = max(v[0] for v in verts)
+                max_y = max(v[1] for v in verts)
+                max_z = max(v[2] for v in verts)
+                
+                c_x = (min_x + max_x) / 2.0
+                c_y = (min_y + max_y) / 2.0
+                c_z = (min_z + max_z) / 2.0
+                
+                max_sq = 0.0
+                for v in verts:
+                    dx, dy, dz = v[0]-c_x, v[1]-c_y, v[2]-c_z
+                    dist_sq = dx*dx + dy*dy + dz*dz
+                    if dist_sq > max_sq: max_sq = dist_sq
+                r = math.sqrt(max_sq)
+                
+                inline_data_len = node.get('data_size', 0)
+                if inline_data_len >= 0x48:
+                    inline_start = node['offset'] + 12
+                    struct.pack_into('<ffffff', data, inline_start + 0x20, min_x, min_y, min_z, max_x, max_y, max_z)
+                    struct.pack_into('<ffff', data, inline_start + 0x38, c_x, c_y, c_z, r)
+                    fixed_count += 1
+                else:
+                    print(f"  [!] Skipped 0x{entry.asset_id:08X} (inline_data too short)")
+
+    if fixed_count > 0:
+        with open(esf_path, 'wb') as f:
+            f.write(data)
+        print(f"  [+] Fixed bounding boxes for {fixed_count} meshes in {esf_path}")
+
 
 ISO_PATH  = 'iso/patched/EQOA_Frontiers_Patched.iso'
 ESF_PATH  = 'workspace/FINAL_CHAR_MERGED.ESF'
 PARTITION_OFFSET = 278
+fix_esf_bounding_boxes(ESF_PATH)
+
 NEW_SIZE  = os.path.getsize(ESF_PATH)
 NEW_PHYS_LBA = 1492368
 NEW_LBA   = NEW_PHYS_LBA - PARTITION_OFFSET

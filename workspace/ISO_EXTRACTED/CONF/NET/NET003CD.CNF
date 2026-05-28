@@ -1,0 +1,3 @@
+# <Sony Computer Entertainment Inc.>
+
+interface "DHCP" "cdrom0:\\CONF\\NET\\IFC003.CNF;1" "cdrom0:\\CONF\\NET\\DEV003.CNF;1"

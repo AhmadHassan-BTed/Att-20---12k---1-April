@@ -1,0 +1,1 @@
+merchantDialogue = "Greetings, take a look at my fine items."

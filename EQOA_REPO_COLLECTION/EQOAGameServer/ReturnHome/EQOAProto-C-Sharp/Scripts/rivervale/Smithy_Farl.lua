@@ -1,0 +1,1 @@
+merchantDialogue = "Imported hammers and staffs here. Straight from the crafting halls of Fayspires and Moradhim."

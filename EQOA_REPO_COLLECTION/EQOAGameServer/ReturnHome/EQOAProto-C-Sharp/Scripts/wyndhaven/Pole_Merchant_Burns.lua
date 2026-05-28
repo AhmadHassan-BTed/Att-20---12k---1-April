@@ -1,0 +1,1 @@
+merchantDialogue = "Would you like to see some fishing poles?"

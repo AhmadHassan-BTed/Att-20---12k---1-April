@@ -1,0 +1,1 @@
+merchantDialogue = "This woolen armor is an ogre tradition. Care to see?"

@@ -1,0 +1,1 @@
+merchantDialogue = "With my shields, you may endure the enemy. Look closer?"

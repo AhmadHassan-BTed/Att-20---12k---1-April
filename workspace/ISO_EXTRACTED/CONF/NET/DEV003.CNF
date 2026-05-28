@@ -1,0 +1,7 @@
+# <Sony Computer Entertainment Inc.>
+
+type eth
+-vendor
+-product
+-location
+phy_config auto

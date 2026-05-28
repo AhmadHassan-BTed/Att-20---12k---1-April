@@ -1,0 +1,1 @@
+merchantDialogue = "I'm still perfecting my art. Care to test out my wares in your coming battles?"

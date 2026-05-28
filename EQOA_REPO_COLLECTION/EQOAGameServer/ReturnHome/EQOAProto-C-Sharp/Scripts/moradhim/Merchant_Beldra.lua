@@ -1,0 +1,1 @@
+merchantDialogue = "Care ta see some fine metals we've unearthed?"

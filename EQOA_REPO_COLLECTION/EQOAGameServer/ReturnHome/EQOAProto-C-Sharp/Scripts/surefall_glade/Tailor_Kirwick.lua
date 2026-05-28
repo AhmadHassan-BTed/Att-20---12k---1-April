@@ -1,0 +1,1 @@
+merchantDialogue = "My family has been crafting this woolen armor for many generations."

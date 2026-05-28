@@ -1,0 +1,237 @@
+######################################################
+#                                                    #
+#               USB module auto loader               #
+#                    Config file                     #
+#                                                    #
+######################################################
+
+DeviceName "標準 USB マウス(CD)"  # SJIS
+	Use      1
+	Class    03
+	SubClass 01
+	Protocol 02
+	Category Mouse
+	DriverPath   "cdrom0:\MODULES\USBMOUSE.IRX;1"
+
+DeviceName "標準 USB キーボード(CD)"  # SJIS
+	Use      1
+	Class    03
+	SubClass 01
+	Protocol 01
+	Category Keyboard
+	DriverPath   "cdrom0:\MODULES\USBKEYBD.IRX;1"
+
+DeviceName "標準 USB マウス(HOST)"  # SJIS
+	Use      0
+	Class    03
+	SubClass 01
+	Protocol 02
+	Category Mouse
+	DriverPath   "host1:/usr/local/sce/iop/sample/usb/usbmouse/usbmouse.irx"
+
+DeviceName "標準 USB キーボード(HOST)"  # SJIS
+	Use      0
+	Class    03
+	SubClass 01
+	Protocol 01
+	Category Keyboard
+	DriverPath   "host1:/usr/local/sce/iop/sample/usb/usbkeybd/usbkeybd.irx"
+
+
+#
+# USB modems using cxtmdm.irx driver
+#
+
+DeviceName "Conexant V.90 Modem with USB Interface"
+        Use      1
+        Vendor   0x0572
+        Product  0x1232
+        Category Modem
+        DriverPath   "cdrom0:\MODULES\CXTMDM.IRX;1"
+        DriverArg    "dial=cdrom0:\CNF\DIAL_CXT.CNF;1"
+
+DeviceName "Conexant V.90 Modem with USB Interface"
+        Use      1
+        Vendor   0x0572
+        Product  0x1272
+        Category Modem
+        DriverPath   "cdrom0:\MODULES\CXTMDM.IRX;1"
+        DriverArg    "dial=cdrom0:\CNF\DIAL_CXT.CNF;1"
+
+
+#
+# USB Ethernet adapters using an986.irx driver, sorted by vendorId.
+#
+# an986.irx may be used for development purposes only.
+# it must not be used within a game title.
+#
+
+DeviceName "Melco/LUA-TX(1)"
+        Use      1
+        Vendor   0x0411
+        Product  0x0001
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Melco/LUA-TX(5)"
+        Use      1
+        Vendor   0x0411
+        Product  0x0005
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "I-O Data/ET/TX"
+        Use      1
+        Vendor   0x04bb
+        Product  0x0904
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Elecom/LD-USB/TX"
+        Use      1
+        Vendor   0x056e
+        Product  0x4002
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Elecom/LD-USBL/TX"
+        Use      1
+        Vendor   0x056e
+        Product  0x4005
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "KLSI/Pegasus"
+        Use      1
+        Vendor   0x05e9
+        Product  0x0009
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Linksys/USB100TX(2203)"
+        Use      1
+        Vendor   0x066b
+        Product  0x2203
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Linksys/USB100TX(2204)"
+        Use      1
+        Vendor   0x066b
+        Product  0x2204
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Linksys/USB(2206)"
+        Use      1
+        Vendor   0x066b
+        Product  0x2206
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Linksys/USB100TX rev.B"
+        Use      1
+        Vendor   0x066b
+        Product  0x400b
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "SMC/2202"
+        Use      1
+        Vendor   0x0707
+        Product  0x0200
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "ADMtek/Pegasus"
+        Use      1
+        Vendor   0x07a6
+        Product  0x0986
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "ADMtek/Pegasus2"
+        Use      1
+        Vendor   0x07a6
+        Product  0x8511
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Corega/USB-TX"
+        Use      1
+        Vendor   0x07aa
+        Product  0x0004
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "D-Link/DU-E10"
+        Use      1
+        Vendor   0x07b8
+        Product  0xabc1
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "D-Link/DU-E100"
+        Use      1
+        Vendor   0x07b8
+        Product  0x4002
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "D-Link/DU-E100 rev.B1"
+        Use      1
+        Vendor   0x07b8
+        Product  0x4102
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Accton/USB10/100"
+        Use      1
+        Vendor   0x083a
+        Product  0x1046
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Billionton/USB100N"
+        Use      1
+        Vendor   0x08dd
+        Product  0x0986
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "Billionton/USBE-100"
+        Use      1
+        Vendor   0x08dd
+        Product  0x8511
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "D-Link/DSB-650TX(4001)"
+        Use      1
+        Vendor   0x2001
+        Product  0x4001
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "D-Link/DSB-650TX(4002)"
+        Use      1
+        Vendor   0x2001
+        Product  0x4002
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "D-Link/DSB-650TX-PNA"
+        Use      1
+        Vendor   0x2001
+        Product  0x4003
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\AN986.IRX;1"
+
+DeviceName "D-Link/DSB-650TX rev.B1"
+        Use      1
+        Vendor   0x2001
+        Product  0x400b
+        Category Ether
+        DriverPath   "cdrom0:\MODULES\PEGASUS.IRX;1"
+
+end

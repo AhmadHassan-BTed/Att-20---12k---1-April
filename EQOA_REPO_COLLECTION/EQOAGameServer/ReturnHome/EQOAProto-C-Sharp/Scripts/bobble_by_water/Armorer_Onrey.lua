@@ -1,0 +1,1 @@
+merchantDialogue = "Perhaps you would like to see some fantastic chainmail playerName?"

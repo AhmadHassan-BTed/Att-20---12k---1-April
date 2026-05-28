@@ -1,0 +1,1 @@
+merchantDialogue = "Any interest in an Alchemist scroll?"

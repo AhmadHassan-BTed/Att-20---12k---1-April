@@ -1,0 +1,1 @@
+merchantDialogue = "Are you interested in something I have to sell?"

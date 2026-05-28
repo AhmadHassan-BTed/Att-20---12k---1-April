@@ -1,0 +1,1 @@
+merchantDialogue = "Not gonna get very far without some armor. Better look through my wares."

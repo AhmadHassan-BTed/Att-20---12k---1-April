@@ -1,0 +1,1 @@
+merchantDialogue = "Looking to strike your foes down or beat them to death?"

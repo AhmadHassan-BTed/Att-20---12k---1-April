@@ -1,0 +1,1 @@
+merchantDialogue = "Fish no bite if you no have gud bait. Me show you gud bait."

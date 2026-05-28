@@ -1,0 +1,1 @@
+merchantDialogue = "Would you care to see my cured armor?"

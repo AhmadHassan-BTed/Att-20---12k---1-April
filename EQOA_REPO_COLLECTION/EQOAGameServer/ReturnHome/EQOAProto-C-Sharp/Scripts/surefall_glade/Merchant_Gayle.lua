@@ -1,0 +1,1 @@
+merchantDialogue = "These are powerful druid scrolls."

@@ -1,0 +1,1 @@
+merchantDialogue = "Tolik have all da patterns and tailoring kits a troll needs. Look closer..."

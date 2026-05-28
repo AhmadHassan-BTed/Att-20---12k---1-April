@@ -1,0 +1,1 @@
+merchantDialogue = "Hello, would you like to see my clubs and hammers?"

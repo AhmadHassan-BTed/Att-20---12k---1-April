@@ -1,0 +1,1 @@
+merchantDialogue = "We've some fine dwarven ores here. What are you lookin' for?"

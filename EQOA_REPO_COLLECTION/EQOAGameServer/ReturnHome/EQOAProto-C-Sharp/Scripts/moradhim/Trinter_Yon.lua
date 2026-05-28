@@ -1,0 +1,1 @@
+merchantDialogue = "Do ye need one of my helpful kits here?"

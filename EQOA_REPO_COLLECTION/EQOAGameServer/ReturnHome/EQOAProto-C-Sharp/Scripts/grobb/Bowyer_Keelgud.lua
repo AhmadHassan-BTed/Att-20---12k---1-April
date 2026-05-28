@@ -1,0 +1,1 @@
+merchantDialogue = "Troll attack from far away, need bow and arrow. Keelgud have dem for you."

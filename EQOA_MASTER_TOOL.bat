@@ -24,11 +24,10 @@ if "%choice%"=="1" (
     echo.
     echo [*] Running Pristine Structural Transplant Pipeline...
     python -m core.vanilla_to_frontiers_transplant
+    if %errorlevel% neq 0 exit /b %errorlevel%
     echo.
-    echo ========================================================
-    echo ALL DONE! Your new game file is: iso/patched/EQOA_Frontiers_Patched.iso
-    echo ========================================================
-    pause
+    python core\verify_final_iso.py
+    if %errorlevel% neq 0 exit /b %errorlevel%
 ) else if "%choice%"=="2" (
     echo.
     python diagnostics\diagnostic_suite.py

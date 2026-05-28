@@ -1,0 +1,1 @@
+merchantDialogue = "Crafting hammers for sale! New shipments each week directly from Fayspires."

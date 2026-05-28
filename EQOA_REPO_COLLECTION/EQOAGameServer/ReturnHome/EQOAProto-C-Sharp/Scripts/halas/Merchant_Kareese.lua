@@ -1,0 +1,1 @@
+merchantDialogue = "Newly cast molds, and patterns that I drew this morning. Have a look and let me know if you have any questions."

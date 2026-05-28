@@ -1,0 +1,1 @@
+merchantDialogue = "Plenty of jewelry crafting supplies. Have a look and ask any questions ya got. Tunar only. Eyes and ears are everywhere."

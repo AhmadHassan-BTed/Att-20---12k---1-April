@@ -1,0 +1,1 @@
+merchantDialogue = "I've mined these fine metals from the nearby mountains. Would you like to see?"

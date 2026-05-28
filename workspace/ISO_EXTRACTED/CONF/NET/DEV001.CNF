@@ -1,0 +1,8 @@
+# <Sony Computer Entertainment Inc.>
+
+type ppp
+-vendor "Modem-Vendor"
+-product "Modem-Product"
+dialing_type tone
+idle_timeout 600
+

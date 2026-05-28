@@ -1,0 +1,1 @@
+merchantDialogue = "Looking for some cured armor to protect ya from the cold and beasties?"

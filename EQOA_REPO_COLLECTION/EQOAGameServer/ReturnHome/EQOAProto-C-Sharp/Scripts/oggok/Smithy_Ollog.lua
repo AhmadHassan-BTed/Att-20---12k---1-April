@@ -1,0 +1,1 @@
+merchantDialogue = "I have some well crafted dirks and spears. Would you like to see them?"

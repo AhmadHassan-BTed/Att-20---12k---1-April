@@ -1,0 +1,19 @@
+######################################################
+#                                                    #
+#       Conexant USB modem module auto loader        #
+#                    Config file                     #
+#                                                    #
+######################################################
+
+# Conexant SmartSCM-USB Device Support (Default for game applications)
+DeviceName "Conexant V.90 Modem with USB Interface"
+	Use      1
+	Vendor   0x0572
+	Product  0x1272
+	Category Modem
+# Please change following directry to the location where the driver is stored.
+	DriverPath   "host1:/usr/local/sce/iop/modules/cxtmdm.irx"
+	DriverArg    "dial=host1:/usr/local/sce/conf/dial_cxtm.cnf"
+
+
+end

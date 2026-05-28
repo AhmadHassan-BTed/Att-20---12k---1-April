@@ -1,0 +1,1 @@
+merchantDialogue = "Welcome playerName, anything I may help you with?"

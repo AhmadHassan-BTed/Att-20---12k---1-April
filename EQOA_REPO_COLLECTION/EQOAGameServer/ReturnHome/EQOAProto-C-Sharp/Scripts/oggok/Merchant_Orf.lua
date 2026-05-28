@@ -1,0 +1,1 @@
+merchantDialogue = "You want supplies? I have many!"

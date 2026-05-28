@@ -1,0 +1,1 @@
+merchantDialogue = "Fast with your fingers, quick on your feet. Take a look at these scrolls, it may be the last we meet."

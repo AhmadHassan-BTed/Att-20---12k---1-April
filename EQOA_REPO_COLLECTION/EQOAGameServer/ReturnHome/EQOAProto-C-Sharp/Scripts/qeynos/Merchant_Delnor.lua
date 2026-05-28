@@ -1,0 +1,1 @@
+merchantDialogue = "I've some fine materials from my home in Rivervale. Care to see?"

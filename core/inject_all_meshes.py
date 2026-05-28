@@ -82,9 +82,9 @@ def main():
             )
             
             # Execute static mesh pinning (override bone weights to identity)
-            from core.static_mesh_injector import process_static_injection
-            print(f"[*] Stripping bone weights to force static mesh rendering...")
-            process_static_injection(payload_file)
+            # from core.static_mesh_injector import process_static_injection
+            # print(f"[*] Stripping bone weights to force static mesh rendering...")
+            # process_static_injection(payload_file)
             
             print(f"[+] Payload saved and ready for DMA injection.\n")
             

@@ -1,0 +1,1 @@
+merchantDialogue = "Get yer molds from Lilianna and yer metals from me. I regret the high pricing, tough to make a living with all the extra costs."

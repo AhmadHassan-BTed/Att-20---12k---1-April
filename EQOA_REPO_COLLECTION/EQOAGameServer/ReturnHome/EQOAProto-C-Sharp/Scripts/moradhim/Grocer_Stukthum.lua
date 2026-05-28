@@ -1,0 +1,1 @@
+merchantDialogue = "May I interest you in a fresh mug o' ale, playerName?"

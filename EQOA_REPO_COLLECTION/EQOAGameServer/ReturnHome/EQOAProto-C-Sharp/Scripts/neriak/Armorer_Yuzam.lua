@@ -1,0 +1,1 @@
+merchantDialogue = "Trying to stay alive out there longer, I see."

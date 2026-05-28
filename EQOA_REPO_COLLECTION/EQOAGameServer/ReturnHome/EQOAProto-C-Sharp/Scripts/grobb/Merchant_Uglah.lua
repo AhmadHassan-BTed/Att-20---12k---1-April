@@ -1,0 +1,1 @@
+merchantDialogue = "Armorsmithing hammers I sell to you. Look now!"

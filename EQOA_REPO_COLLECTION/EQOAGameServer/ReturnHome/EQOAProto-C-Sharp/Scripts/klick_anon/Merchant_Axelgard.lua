@@ -1,0 +1,1 @@
+merchantDialogue = "May I interest you in a selection of first rate scrolls?"

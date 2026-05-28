@@ -1,0 +1,1 @@
+merchantDialogue = "Welcome! Slay your foes from afar with my well crafted weapons."

@@ -1,0 +1,1 @@
+merchantDialogue = "Looking to purchase some high quality stitch work?"

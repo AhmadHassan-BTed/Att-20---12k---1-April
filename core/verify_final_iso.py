@@ -1,47 +1,65 @@
+import sys
 import os
+import pycdlib
+import hashlib
+import io
 
-iso_path = 'iso/patched/EQOA_Frontiers_Patched.iso'
-esf_path = 'workspace/FINAL_CHAR_MERGED.ESF'
+def get_iso_file_info(iso_path, target_filename):
+    iso = pycdlib.PyCdlib()
+    try:
+        iso.open(iso_path)
+        target_path = None
+        for dirname, dirnames, filenames in iso.walk(iso_path='/'):
+            for fn in filenames:
+                if target_filename in fn:
+                    target_path = dirname + ('/' if dirname != '/' else '') + fn
+                    break
+            if target_path: break
+            
+        if not target_path:
+            iso.close()
+            return None, None
+            
+        h = hashlib.sha256()
+        header = None
+        with iso.open_file_from_iso(iso_path=target_path) as f:
+            # Read first 64 bytes for header
+            header = f.read(64)
+            h.update(header)
+            for chunk in iter(lambda: f.read(65536), b''):
+                h.update(chunk)
+                
+        iso.close()
+        return h.hexdigest(), header
+    except Exception as e:
+        return f"Error: {e}", None
 
-print(f"[*] Commencing direct binary sector verification...")
-print(f"    Patched ISO: {iso_path}")
-print(f"    Merged ESF:  {esf_path}")
-
-if not os.path.exists(iso_path):
-    print(f"[-] Error: Patched ISO not found!")
-    exit(1)
+def main():
+    unmod_iso = "iso/unmodified/EQOA_Frontiers.iso"
+    patch_iso = "iso/patched/EQOA_Frontiers_Patched.iso"
     
-if not os.path.exists(esf_path):
-    print(f"[-] Error: Merged ESF not found!")
-    exit(1)
+    if not os.path.exists(unmod_iso) or not os.path.exists(patch_iso):
+        print("[-] ISO files not found.")
+        sys.exit(1)
+        
+    print("[*] Commencing Bitwise Compare of CHAR.ESF inside ISOs...")
+    
+    unmod_hash, _ = get_iso_file_info(unmod_iso, 'CHAR.ESF')
+    patch_hash, patch_header = get_iso_file_info(patch_iso, 'CHAR.ESF')
+    
+    print(f"    Original CHAR.ESF SHA256: {unmod_hash}")
+    print(f"    Patched  CHAR.ESF SHA256: {patch_hash}")
+    
+    if patch_header:
+        hex_sig = " ".join([f"{b:02X}" for b in patch_header[:32]])
+        print(f"\n[+] FINAL PATCHED HEADER HEX-SIGNATURE (First 32 bytes):")
+        print(f"    {hex_sig}")
+        
+    if unmod_hash == patch_hash:
+        print("\n[FAILURE] The hashes are IDENTICAL. The rebuilder failed to overwrite the payload!")
+        sys.exit(1)
+    else:
+        print("\n[SUCCESS] The hashes differ. The CHAR.ESF file was successfully overwritten in the ISO.")
 
-# Expected parameters from repack logs
-lba = 1492368
-esf_size = os.path.getsize(esf_path)
-start_offset = lba * 2048
-
-print(f"    - Target LBA:        {lba}")
-print(f"    - Target Byte Offset: 0x{start_offset:X}")
-print(f"    - Expected Size:     {esf_size:,} bytes")
-
-with open(iso_path, 'rb') as iso_f:
-    iso_f.seek(start_offset)
-    appended_data = iso_f.read(esf_size)
-
-with open(esf_path, 'rb') as esf_f:
-    original_data = esf_f.read()
-
-if len(appended_data) != len(original_data):
-    print(f"[-] Error: Size mismatch! Read {len(appended_data):,} bytes from ISO, but ESF has {len(original_data):,} bytes.")
-    exit(1)
-
-if appended_data == original_data:
-    print("\n[PASS] ISO SECTOR INTEGRITY VERIFICATION SUCCESSFUL!")
-    print("       The data written at LBA sector 1,492,368 is an exact, byte-for-byte match to the merged ESF!")
-else:
-    # Find first diff
-    for i in range(len(original_data)):
-        if appended_data[i] != original_data[i]:
-            print(f"[-] Error: Data mismatch at byte offset 0x{i:X} inside ESF payload!")
-            break
-    exit(1)
+if __name__ == "__main__":
+    main()

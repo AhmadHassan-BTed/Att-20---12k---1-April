@@ -1,0 +1,1 @@
+merchantDialogue = "I've only the finest weaponsmithing hammers here, if you need one."

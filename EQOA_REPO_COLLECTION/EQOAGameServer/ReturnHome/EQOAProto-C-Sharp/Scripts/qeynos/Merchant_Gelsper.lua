@@ -1,0 +1,1 @@
+merchantDialogue = "I can teach you the basics of song and dance, if you are ready."

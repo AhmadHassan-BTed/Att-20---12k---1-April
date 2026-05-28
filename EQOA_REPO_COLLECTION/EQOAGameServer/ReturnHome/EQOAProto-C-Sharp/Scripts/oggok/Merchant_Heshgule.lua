@@ -1,0 +1,1 @@
+merchantDialogue = "Want to see my weapon molds?"

@@ -1,0 +1,1 @@
+merchantDialogue = "Welcome! Might I interest you in a spear or dagger?"

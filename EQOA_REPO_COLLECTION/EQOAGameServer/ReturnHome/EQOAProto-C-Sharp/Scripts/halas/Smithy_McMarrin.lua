@@ -1,0 +1,1 @@
+merchantDialogue = "Care to browse my fine steel weapons? Just finished that sword last night. I guarantee it will cut down any freezeblood filth in its reach."

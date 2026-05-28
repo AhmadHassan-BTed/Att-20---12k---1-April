@@ -1,0 +1,1 @@
+merchantDialogue = "To be a powerful wizard, you will need these spells. I hope you use them for good."

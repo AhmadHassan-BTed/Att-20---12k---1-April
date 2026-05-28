@@ -1,0 +1,1 @@
+merchantDialogue = "I can impart the finer point of jewelcrafting, if you are willing to listen."

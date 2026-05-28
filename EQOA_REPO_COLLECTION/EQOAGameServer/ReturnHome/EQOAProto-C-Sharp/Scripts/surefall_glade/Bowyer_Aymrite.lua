@@ -1,0 +1,1 @@
+merchantDialogue = "Greetings, looking for a good bow or perhaps some ammo?"

@@ -1,0 +1,1 @@
+merchantDialogue = "Little youngling ogre need a bow and arrow? Jera has what you want."

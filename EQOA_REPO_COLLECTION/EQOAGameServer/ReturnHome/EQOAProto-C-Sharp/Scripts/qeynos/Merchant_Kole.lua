@@ -1,0 +1,1 @@
+merchantDialogue = "Greetings, child."

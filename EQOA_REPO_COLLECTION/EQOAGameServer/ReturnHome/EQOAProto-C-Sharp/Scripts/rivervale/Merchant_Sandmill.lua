@@ -1,0 +1,1 @@
+merchantDialogue = "I wish I could move my spell shop but the druids insist it be within the guild walls. Always smells like wet dogs in here."

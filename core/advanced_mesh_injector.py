@@ -195,111 +195,204 @@ def process_injection(frontiers_bin, vanilla_bin, out_path="workspace/injected_m
     fro_bb_off = find_bounding_box(fro_root['children'][0]['inline_data'] if fro_root['children'][0]['child_count'] == 0 else fro_data)
     
     if van_bb_off is not None and fro_bb_off is not None:
-        # Assuming we just patch the raw binary inline_data of the first child node
         c_van = van_root['children'][0]['inline_data']
         c_fro = bytearray(fro_root['children'][0]['inline_data'])
-        van_bb = struct.unpack_from('<ffffff', c_van, van_bb_off)
-        print(f"    [+] Found Vanilla Bounds: X({van_bb[0]:.2f}, {van_bb[3]:.2f})")
-        struct.pack_into('<ffffff', c_fro, fro_bb_off, *van_bb)
+        
+        # calculate dynamic bounds from Vanilla Geometry Node (0x02610)
+        van_mesh_idx = next((i for i, c in enumerate(van_root['children']) if c['type_id'] == 0x02610), None)
+        min_x, min_y, min_z = 999999.0, 999999.0, 999999.0
+        max_x, max_y, max_z = -999999.0, -999999.0, -999999.0
+        
+        if van_mesh_idx is not None:
+            van_mesh = van_root['children'][van_mesh_idx]
+            
+            # Recursive function to parse all leaf node DMA chains
+            def scan_dma_for_verts(node):
+                nonlocal min_x, min_y, min_z, max_x, max_y, max_z
+                if node['child_count'] == 0 and node['inline_data']:
+                    dma_data = node['inline_data']
+                    pos = (0 + 15) & ~15
+                    while pos + 16 <= len(dma_data):
+                        dma_tag = struct.unpack_from('<Q', dma_data, pos)[0]
+                        qwc = dma_tag & 0xFFFF
+                        id_val = (dma_tag >> 28) & 0x7
+                        packet_data_start = pos + 16
+                        packet_data_len = qwc * 16
+                        
+                        if qwc > 0 and packet_data_start + packet_data_len <= len(dma_data):
+                            arrays = extract_vif_unpack_arrays(dma_data, packet_data_start, packet_data_len)
+                            if 0x6C in arrays:
+                                for arr in arrays[0x6C]:
+                                    v_off = arr['data_offset']
+                                    for i in range(arr['num']):
+                                        if v_off + 12 <= len(dma_data):
+                                            f = struct.unpack_from('<fff', dma_data, v_off)
+                                            if not (math.isnan(f[0]) or math.isnan(f[1]) or math.isnan(f[2])):
+                                                if abs(f[0]) < 50000.0 and abs(f[1]) < 50000.0 and abs(f[2]) < 50000.0:
+                                                    if f[0] != 0.0 or f[1] != 0.0 or f[2] != 0.0:
+                                                        if f[0] < min_x: min_x = f[0]
+                                                        if f[1] < min_y: min_y = f[1]
+                                                        if f[2] < min_z: min_z = f[2]
+                                                        if f[0] > max_x: max_x = f[0]
+                                                        if f[1] > max_y: max_y = f[1]
+                                                        if f[2] > max_z: max_z = f[2]
+                                        v_off += 16
+                        if id_val == 7: # END
+                            break
+                        pos += 16 + packet_data_len
+                for child in node['children']:
+                    scan_dma_for_verts(child)
+            
+            scan_dma_for_verts(van_mesh)
+                
+        if min_x == 999999.0:
+            # Fallback if no vertices found
+            van_bb = struct.unpack_from('<ffffff', c_van, van_bb_off)
+            struct.pack_into('<ffffff', c_fro, fro_bb_off, *van_bb)
+        else:
+            c_x = (min_x + max_x) / 2.0
+            c_y = (min_y + max_y) / 2.0
+            c_z = (min_z + max_z) / 2.0
+            
+            # calculate radius
+            max_sq = 0.0
+            
+            def scan_dma_for_radius(node):
+                nonlocal max_sq
+                if node['child_count'] == 0 and node['inline_data']:
+                    dma_data = node['inline_data']
+                    pos = (0 + 15) & ~15
+                    while pos + 16 <= len(dma_data):
+                        dma_tag = struct.unpack_from('<Q', dma_data, pos)[0]
+                        qwc = dma_tag & 0xFFFF
+                        id_val = (dma_tag >> 28) & 0x7
+                        packet_data_start = pos + 16
+                        packet_data_len = qwc * 16
+                        
+                        if qwc > 0 and packet_data_start + packet_data_len <= len(dma_data):
+                            arrays = extract_vif_unpack_arrays(dma_data, packet_data_start, packet_data_len)
+                            if 0x6C in arrays:
+                                for arr in arrays[0x6C]:
+                                    v_off = arr['data_offset']
+                                    for i in range(arr['num']):
+                                        if v_off + 12 <= len(dma_data):
+                                            f = struct.unpack_from('<fff', dma_data, v_off)
+                                            if not (math.isnan(f[0]) or math.isnan(f[1]) or math.isnan(f[2])):
+                                                if abs(f[0]) < 50000.0 and abs(f[1]) < 50000.0 and abs(f[2]) < 50000.0:
+                                                    if f[0] != 0.0 or f[1] != 0.0 or f[2] != 0.0:
+                                                        dx, dy, dz = f[0] - c_x, f[1] - c_y, f[2] - c_z
+                                                        dist_sq = dx*dx + dy*dy + dz*dz
+                                                        if dist_sq > max_sq: max_sq = dist_sq
+                                        v_off += 16
+                        if id_val == 7: # END
+                            break
+                        pos += 16 + packet_data_len
+                for child in node['children']:
+                    scan_dma_for_radius(child)
+            
+            scan_dma_for_radius(van_mesh)
+            r = math.sqrt(max_sq)
+            
+            struct.pack_into('<ffffff', c_fro, fro_bb_off, min_x, min_y, min_z, max_x, max_y, max_z)
+            # pack sphere
+            struct.pack_into('<ffff', c_fro, fro_bb_off + 24, c_x, c_y, c_z, r)
+            print(f"    [+] Injected dynamic Bounding Box: min({min_x:.2f}, {min_y:.2f}, {min_z:.2f}) max({max_x:.2f}, {max_y:.2f}, {max_z:.2f}) r({r:.2f})")
+            
         fro_root['children'][0]['inline_data'] = bytes(c_fro)
-        print(f"    [+] Injected into Frontiers Bounding Box.")
     else:
         print("    [!] Could not cleanly locate bounding box arrays.")
 
-def extract_vif_unpack_arrays(data: bytes) -> dict:
+def get_unpack_size(cmd, num):
+    base_cmd = cmd & 0x0F
+    fmt = (base_cmd >> 2) & 3
+    sz = base_cmd & 3
+    components = [1, 2, 3, 4][fmt]
+    bits = [32, 16, 8, 5][sz]
+    total_bits = components * bits * num
+    total_bytes = (total_bits + 7) // 8
+    aligned_bytes = (total_bytes + 3) & ~3
+    return aligned_bytes
+
+def extract_vif_unpack_arrays(data: bytes, start: int, length: int) -> dict:
+    pos = start
+    end = min(start + length, len(data))
     arrays = {}
-    pos = 0
-    while pos + 4 <= len(data):
-        code = struct.unpack_from('<I', data, pos)[0]
-        vif = parse_vif_code(code)
+    
+    while pos + 4 <= end:
+        vif_code = struct.unpack_from('<I', data, pos)[0]
+        imm = vif_code & 0xFFFF
+        num = (vif_code >> 16) & 0xFF
+        cmd = (vif_code >> 24) & 0xFF
         
-        # 0x6C = V4-32 (Vertices/Normals usually)
-        # 0x6A = V2-32 (UVs usually)
-        if 0x60 <= vif['cmd'] <= 0x7F and vif['num'] > 0:
-            cmd = vif['cmd']
-            if cmd not in arrays:
-                arrays[cmd] = []
-                
-            el_size = 16 if cmd in (0x6C, 0x6D, 0x6E, 0x6F) else 8 if cmd in (0x68, 0x69, 0x6A, 0x6B) else 4
-            align_offset = (pos + 15) & ~15
-            
-            arrays[cmd].append({
-                'vif_offset': pos,
-                'num': vif['num'],
-                'data_offset': align_offset,
-                'size': vif['num'] * el_size
-            })
         pos += 4
+        
+        if 0x60 <= cmd <= 0x7F:
+            if num == 0: num = 256
+            data_size = get_unpack_size(cmd, num)
+            base_vif_cmd = cmd & ~0x10
+            arrays[base_vif_cmd] = arrays.get(base_vif_cmd, [])
+            arrays[base_vif_cmd].append({
+                'vif_offset': pos - 4,
+                'data_offset': pos,
+                'size': data_size,
+                'num': num,
+                'raw_cmd': cmd
+            })
+            pos += data_size
+            pos = (pos + 3) & ~3
+        elif cmd == 0x50 or cmd == 0x51:
+            pos += imm * 16
     return arrays
 
 def patch_vif_arrays_in_dma_chain(fro_dma: bytes, van_dma_data: bytes) -> bytes:
-    van_arrays = extract_vif_unpack_arrays(van_dma_data)
-    if not van_arrays:
-        return fro_dma
-        
-    patched_data = bytearray()
-    pos = 0
+    patched_data = bytearray(fro_dma)
+    pos = (0 + 15) & ~15
     
     while pos + 16 <= len(fro_dma):
         dma_tag = struct.unpack_from('<Q', fro_dma, pos)[0]
-        dma = parse_dma_tag(dma_tag)
+        qwc = dma_tag & 0xFFFF
+        id_val = (dma_tag >> 28) & 0x7
+        id_names = {0:'refe', 1:'cnt', 2:'next', 3:'ref', 4:'refs', 5:'call', 6:'ret', 7:'end'}
+        id_name = id_names.get(id_val, 'unknown')
         
-        # If it's not a recognizable tag or looks like raw data, just append and break
-        if dma['id_name'] == 'unknown' or (dma['qwc'] > 0x1000 and dma['id_name'] not in ('ref', 'refs')):
-            patched_data.extend(fro_dma[pos:])
+        packet_data_start = pos + 16
+        packet_data_len = qwc * 16
+        
+        if packet_data_start + packet_data_len > len(fro_dma):
+            packet_data_len = len(fro_dma) - packet_data_start
+            
+        if qwc > 0 and packet_data_len >= 0:
+            f_arrays = extract_vif_unpack_arrays(fro_dma, packet_data_start, packet_data_len)
+            v_arrays = extract_vif_unpack_arrays(van_dma_data, packet_data_start, packet_data_len)
+            
+            if f_arrays and v_arrays:
+                for cmd in [0x6C, 0x6D, 0x6A]:  # 0x6C = Vertices (V4-32), 0x6D = Vertices (V4-16), 0x6A = UVs (V3-8)
+                    if cmd in f_arrays and cmd in v_arrays:
+                        f_list = f_arrays[cmd]
+                        v_list = v_arrays[cmd]
+                        
+                        if len(f_list) != len(v_list):
+                            print(f"        [!] Array count mismatch for CMD 0x{cmd:02X}. Cannot 1-to-1 swap.")
+                            continue
+                            
+                        for i in range(len(f_list)):
+                            f_arr = f_list[i]
+                            v_arr = v_list[i]
+                            
+                            if f_arr['size'] == v_arr['size'] and f_arr['num'] == v_arr['num']:
+                                # 1-to-1 Exact Byte Swap
+                                patched_data[f_arr['data_offset'] : f_arr['data_offset'] + f_arr['size']] = \
+                                    van_dma_data[v_arr['data_offset'] : v_arr['data_offset'] + v_arr['size']]
+                            else:
+                                print(f"        [!] Array size mismatch at CMD 0x{cmd:02X} idx {i}. Skipping.")
+                                
+                print(f"        [+] Successfully performed 1-to-1 byte swap for packet at 0x{pos:06X}")
+                
+        if id_name == 'end':
             break
             
-        qwc = dma['qwc']
-        packet_size = 16 + (qwc * 16)
+        pos += 16 + packet_data_len
         
-        if pos + packet_size > len(fro_dma):
-            patched_data.extend(fro_dma[pos:])
-            break
-            
-        packet_data = bytearray(fro_dma[pos : pos + packet_size])
-        packet_arrays = extract_vif_unpack_arrays(packet_data)
-        
-        patched_any = False
-        for cmd in [0x6C, 0x6A]:  # 0x6C = Vertices, 0x6A = UVs
-            if cmd in packet_arrays and cmd in van_arrays:
-                f_arr = packet_arrays[cmd][0]
-                v_arr = van_arrays[cmd][0]
-                
-                cmd_name = "Vertices (0x6C)" if cmd == 0x6C else "UV Maps (0x6A)"
-                print(f"        [+] Splicing {cmd_name} | Frontiers: {f_arr['num']} elements, Vanilla: {v_arr['num']} elements")
-                
-                van_payload = van_dma_data[v_arr['data_offset'] : v_arr['data_offset'] + v_arr['size']]
-                
-                old_vif = struct.unpack_from('<I', packet_data, f_arr['vif_offset'])[0]
-                new_vif = (old_vif & 0xFF00FFFF) | (v_arr['num'] << 16)
-                struct.pack_into('<I', packet_data, f_arr['vif_offset'], new_vif)
-                
-                pre = packet_data[:f_arr['data_offset']]
-                post = packet_data[f_arr['data_offset'] + f_arr['size']:]
-                packet_data = pre + van_payload + post
-                patched_any = True
-                
-                packet_arrays = extract_vif_unpack_arrays(packet_data)
-        
-        if patched_any:
-            pad_len = (16 - (len(packet_data) % 16)) % 16
-            packet_data += b'\x00' * pad_len
-            
-            new_qwc = (len(packet_data) - 16) // 16
-            old_dma_tag = struct.unpack_from('<Q', packet_data, 0)[0]
-            new_dma_tag = (old_dma_tag & 0xFFFFFFFFFFFF0000) | new_qwc
-            struct.pack_into('<Q', packet_data, 0, new_dma_tag)
-            
-            print(f"        [+] Updated DMA Tag QWC from {qwc} to {new_qwc} and aligned to 16 bytes")
-            
-        patched_data.extend(packet_data)
-        pos += packet_size
-        
-        if dma['id_name'] == 'end' or dma['id_name'] == 'ret':
-            if pos < len(fro_dma):
-                patched_data.extend(fro_dma[pos:])
-            break
-            
     return bytes(patched_data)
 
 def patch_tree_inline_data(node: dict, van_dma_data: bytes):
@@ -309,64 +402,7 @@ def patch_tree_inline_data(node: dict, van_dma_data: bytes):
         for child in node['children']:
             patch_tree_inline_data(child, van_dma_data)
 
-def process_injection(frontiers_bin, vanilla_bin, out_path="workspace/injected_mesh_output.bin"):
-    print("=" * 80)
-    print("  PS2 ADVANCED MESH INJECTOR & DMA ALIGNER")
-    print("=" * 80)
 
-    with open(frontiers_bin, 'rb') as f:
-        fro_data = f.read()
-        
-    with open(vanilla_bin, 'rb') as f:
-        van_data = f.read()
-
-    # Parse as ESF Node Trees to preserve headers
-    fro_root, _ = parse_node(fro_data, 0)
-    van_root, _ = parse_node(van_data, 0)
-
-    print("\n[*] Phase 3: Bounding Box Protection (DISABLED FOR HEADER PRESERVATION)")
-    # van_bb_off = find_bounding_box(van_root['children'][0]['inline_data'] if van_root['children'][0]['child_count'] == 0 else van_data)
-    # fro_bb_off = find_bounding_box(fro_root['children'][0]['inline_data'] if fro_root['children'][0]['child_count'] == 0 else fro_data)
-    # 
-    # if van_bb_off is not None and fro_bb_off is not None:
-    #     c_van = van_root['children'][0]['inline_data']
-    #     c_fro = bytearray(fro_root['children'][0]['inline_data'])
-    #     van_bb = struct.unpack_from('<ffffff', c_van, van_bb_off)
-    #     print(f"    [+] Found Vanilla Bounds: X({van_bb[0]:.2f}, {van_bb[3]:.2f})")
-    #     struct.pack_into('<ffffff', c_fro, fro_bb_off, *van_bb)
-    #     fro_root['children'][0]['inline_data'] = bytes(c_fro)
-    #     print(f"    [+] Injected into Frontiers Bounding Box.")
-    # else:
-    #     print("    [!] Could not cleanly locate bounding box arrays.")
-    print("    [+] Keeping native Frontiers Bounding Box intact.")
-
-    print("\n[*] Phase 2: Intelligent Sub-Struct Mesh Injection")
-    fro_mesh_idx = next((i for i, c in enumerate(fro_root['children']) if c['type_id'] == 0x02610), None)
-    
-    if fro_mesh_idx is not None:
-        print("    [+] Extracting Frontiers 0x02610 DMA Chain...")
-        fro_mesh = fro_root['children'][fro_mesh_idx]
-        
-        # Patch all leaf nodes inside the 0x02610 container using the Vanilla raw binary as source
-        patch_tree_inline_data(fro_mesh, van_data)
-        
-        print("    [+] Sub-Struct DMA Mesh Packets Injected & Aligned!")
-    else:
-        print("    [-] Failed to find 0x02610 mesh containers.")
-
-    update_node_sizes(fro_root)
-    final_payload = serialize_node(fro_root)
-    
-    print("\n[*] Phase 1: Validating Output DMA Chain...")
-    # Just mathematically validate the file size and headers
-    print("    [PASS] ESF Tree Structure and DMA Alignment Validated Mathematically!")
-    
-    with open(out_path, 'wb') as out_f:
-        out_f.write(final_payload)
-        
-    print(f"\n[+] Script Complete. Mathematically injected payload saved to:")
-    print(f"    -> {out_path}")
-    print("\n[+] SUCCESS: Ready for PS2 deployment.")
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:

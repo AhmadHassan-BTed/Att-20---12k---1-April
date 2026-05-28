@@ -1,0 +1,1 @@
+merchantDialogue = "Are you ready to master this magic?"
