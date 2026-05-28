@@ -21,32 +21,16 @@ Previous attempts at replacing the model geometry caused the character to become
    *(Alternatively, if you already have the ISOs, place the Frontiers ISO at: `iso/unmodified/EQOA_Frontiers.iso`)*
 
 2. **Run the Injection Pipeline**
-   Open a terminal in the root directory (where this walkthrough is located). Run the automated native injection script:
-   ```bash
-   python core/native_frontiers_inject.py
-   ```
-   *What this does:*
+   Double-click `EQOA_MASTER_TOOL.bat`.
+   When prompted, choose option **[1] Patch Game ISO**.
+   
+   *What this automated tool does:*
    - Parses the `workspace/expansion/CHAR.ESF`
    - Extracts the 11 native Frontiers models (perfect geometry and skeletons)
    - Injects them back as unmodified payloads to preserve exact byte sizes and offsets
    - Compiles `workspace/FINAL_CHAR_MERGED.ESF`
+   - Repacks the ISO to `iso/patched/EQOA_Frontiers_Patched.iso`
+   - Automatically verifies the UDF pointers
 
-3. **Repack the ISO**
-   Now, embed the rebuilt ESF into the ISO structure and update the LBA pointers:
-   ```bash
-   python core/repack_iso.py
-   ```
-   *What this does:*
-   - Copies the unmodified ISO to `iso/patched/EQOA_Frontiers_Patched.iso.tmp`
-   - Appends the new `FINAL_CHAR_MERGED.ESF` to the end of the file.
-   - Sururgically edits the PS2 ISO's UDF directory records (File Entry) to point to the new location at the end of the disc.
-   - Produces the final ISO: `iso/patched/EQOA_Frontiers_Patched.iso`
-
-4. **Verify the Build**
-   To ensure the UDF records were successfully updated:
-   ```bash
-   python core/verify_final_iso.py
-   ```
-
-5. **Play the Game!**
+3. **Play the Game!**
    You can now load `iso/patched/EQOA_Frontiers_Patched.iso` into the PCSX2 emulator. The characters will render perfectly when you enter the world.

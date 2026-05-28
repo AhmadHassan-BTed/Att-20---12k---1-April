@@ -23,7 +23,10 @@ set /p choice="Enter your choice (1, 2, or 3): "
 if "%choice%"=="1" (
     echo.
     echo [*] Running Pristine Structural Transplant Pipeline...
-    python -m core.vanilla_to_frontiers_transplant
+    python core\native_frontiers_inject.py
+    if %errorlevel% neq 0 exit /b %errorlevel%
+    echo.
+    python core\repack_iso.py
     if %errorlevel% neq 0 exit /b %errorlevel%
     echo.
     python core\verify_final_iso.py
