@@ -302,6 +302,10 @@ def process_injection(frontiers_bin, vanilla_bin, out_path="workspace/injected_m
     else:
         print("    [!] Could not cleanly locate bounding box arrays.")
 
+    update_node_sizes(fro_root)
+    with open(out_path, 'wb') as f:
+        f.write(serialize_node(fro_root))
+
 def get_unpack_size(cmd, num):
     base_cmd = cmd & 0x0F
     fmt = (base_cmd >> 2) & 3

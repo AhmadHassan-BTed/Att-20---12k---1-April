@@ -91,7 +91,7 @@ def fix_esf_bounding_boxes(esf_path):
 ISO_PATH  = 'iso/patched/EQOA_Frontiers_Patched.iso'
 ESF_PATH  = 'workspace/FINAL_CHAR_MERGED.ESF'
 PARTITION_OFFSET = 278
-fix_esf_bounding_boxes(ESF_PATH)
+
 
 NEW_SIZE  = os.path.getsize(ESF_PATH)
 NEW_PHYS_LBA = 1492368

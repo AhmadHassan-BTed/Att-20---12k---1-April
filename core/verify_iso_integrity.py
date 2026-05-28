@@ -13,7 +13,7 @@ def sha256_file(filepath):
         return f"Error: {e}"
 
 def main():
-    unmod_iso = "iso/unmodified/EQOA_Frontiers.iso"
+    unmod_iso = "iso/unpatched/EQOA_Frontiers.iso"
     patch_iso = "iso/patched/EQOA_Frontiers_Patched.iso"
 
     print("Executing Step 1: The Hash Audit...")

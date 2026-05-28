@@ -255,6 +255,10 @@ def main():
     print("  EQOA MASTER HIGH-FIDELITY PRISTINE STRUCTURAL TRANSPLANT PIPELINE")
     print("=" * 80)
     
+    # 0. Extract databases from provided ISOs if necessary
+    print("\n[*] Step 0: Extracting source ESF databases from ISOs...")
+    subprocess.run([sys.executable, "-m", "core.extract_databases"], check=True)
+    
     # 1. Load targets mapping
     if not os.path.exists(json_path):
         print(f"[-] Error: Targets mapping {json_path} not found!")

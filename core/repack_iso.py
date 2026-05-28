@@ -6,7 +6,7 @@ import struct
 import mmap
 
 def repack_iso():
-    iso_path = 'iso/unmodified/EQOA_Frontiers.iso'
+    iso_path = 'iso/unpatched/EQOA_Frontiers.iso'
     patched_path = 'iso/patched/EQOA_Frontiers_Patched.iso'
     tmp_path = patched_path + '.tmp'
     esf_path = 'workspace/FINAL_CHAR_MERGED.ESF'

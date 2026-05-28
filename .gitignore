@@ -24,3 +24,5 @@ __pycache__/
 logs/
 *.log
 diagnostics/logs/
+
+LIGHTWEIGHT_CUSTOMER_DELIVERY/

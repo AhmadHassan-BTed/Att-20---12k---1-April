@@ -43,8 +43,8 @@ To completely bypass these architecture mismatches, we implemented the **Geometr
 1. Clone or download this repository.
 2. Double-click **`setup_environment.bat`**.
 3. The script will automatically download the required baseline ISOs directly into the correct folders:
-   - `iso/unmodified/EQOA_Original.iso` (Vanilla)
-   - `iso/unmodified/EQOA_Frontiers.iso` (Expansion)
+   - `iso/unpatched/EQOA_Original.iso` (Vanilla)
+   - `iso/unpatched/EQOA_Frontiers.iso` (Expansion)
 
 Once the setup script finishes, you are ready to patch!
 

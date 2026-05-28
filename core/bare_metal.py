@@ -33,7 +33,7 @@ def extract_iso(iso_path, out_dir):
     print("[+] Extraction complete.")
 
 def main():
-    unmod_iso = "iso/unmodified/EQOA_Frontiers.iso"
+    unmod_iso = "iso/unpatched/EQOA_Frontiers.iso"
     extracted_dir = "workspace/ISO_EXTRACTED"
     patched_esf = "workspace/FINAL_CHAR_MERGED.ESF"
     

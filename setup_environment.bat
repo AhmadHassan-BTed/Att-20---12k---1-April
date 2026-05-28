@@ -13,17 +13,17 @@ echo Press any key to start downloading...
 pause >nul
 
 :: Create required directories
-mkdir iso\unmodified 2>nul
+mkdir iso\unpatched 2>nul
 mkdir iso\legacy 2>nul
 mkdir iso\patched 2>nul
 
 echo.
 echo [*] Downloading 1/3: EQOA Original Version (Vanilla)...
-curl -L -C - -o "iso\unmodified\EQOA_Original.iso" "https://www.dropbox.com/scl/fi/p19wxx8crqn1p38s713dy/EverQuest-Online-Adventures.iso?rlkey=fg8bp96e6qy0a6p0tocmoj9y7&st=zny0qnik&dl=1"
+curl -L -C - -o "iso\unpatched\EQOA_Original.iso" "https://www.dropbox.com/scl/fi/p19wxx8crqn1p38s713dy/EverQuest-Online-Adventures.iso?rlkey=fg8bp96e6qy0a6p0tocmoj9y7&st=zny0qnik&dl=1"
 
 echo.
 echo [*] Downloading 2/3: EQOA Frontiers Expansion...
-curl -L -C - -o "iso\unmodified\EQOA_Frontiers.iso" "https://www.dropbox.com/scl/fi/tezjukiyt9hctyxwadqzs/EverQuest-Online-Adventures-Frontiers-USA.iso?rlkey=phbn4feje480xyetjrciweyty&st=7srx9uiz&dl=1"
+curl -L -C - -o "iso\unpatched\EQOA_Frontiers.iso" "https://www.dropbox.com/scl/fi/tezjukiyt9hctyxwadqzs/EverQuest-Online-Adventures-Frontiers-USA.iso?rlkey=phbn4feje480xyetjrciweyty&st=7srx9uiz&dl=1"
 
 echo.
 echo [*] Downloading 3/3: Previous Contractor Custom ISO (For reference)...

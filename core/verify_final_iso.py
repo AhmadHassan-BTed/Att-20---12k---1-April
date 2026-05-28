@@ -35,7 +35,7 @@ def get_iso_file_info(iso_path, target_filename):
         return f"Error: {e}", None
 
 def main():
-    unmod_iso = "iso/unmodified/EQOA_Frontiers.iso"
+    unmod_iso = "iso/unpatched/EQOA_Frontiers.iso"
     patch_iso = "iso/patched/EQOA_Frontiers_Patched.iso"
     
     if not os.path.exists(unmod_iso) or not os.path.exists(patch_iso):
