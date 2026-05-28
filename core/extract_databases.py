@@ -34,7 +34,7 @@ def extract_esf_from_iso(iso_path, output_path):
     print(f"[+] Successfully extracted {output_path}")
 
 def main():
-    vanilla_iso = 'iso/unpatched/EQOA_Vanilla.iso'
+    vanilla_iso = 'iso/unpatched/EQOA_Original.iso'
     frontiers_iso = 'iso/unpatched/EQOA_Frontiers.iso'
     
     vanilla_out = 'workspace/original/CHAR.ESF'
@@ -52,7 +52,7 @@ def main():
 
     if not os.path.exists(vanilla_iso):
         print(f"[-] Error: Could not find Vanilla ISO at {vanilla_iso}")
-        print("[-] Please place your original EQOA Vanilla ISO named 'EQOA_Vanilla.iso' in the 'iso/unpatched' folder.")
+        print("[-] Please place your original EQOA Vanilla ISO named 'EQOA_Original.iso' in the 'iso/unpatched' folder.")
         sys.exit(1)
 
     if not os.path.exists(frontiers_iso):
