@@ -16,9 +16,9 @@ Previous attempts at replacing the model geometry caused the character to become
 ## Step-by-Step Instructions
 
 1. **Prepare your workspace**
-   Ensure you have your unmodified ISOs available.
-   Place the original ISO at: `iso/unmodified/EQOA_Frontiers.iso`
    Ensure your Python environment is set up (Python 3.12+ recommended).
+   Double-click `setup_environment.bat` to automatically download the required baseline ISOs directly into the correct `iso/unmodified/` folders.
+   *(Alternatively, if you already have the ISOs, place the Frontiers ISO at: `iso/unmodified/EQOA_Frontiers.iso`)*
 
 2. **Run the Injection Pipeline**
    Open a terminal in the root directory (where this walkthrough is located). Run the automated native injection script:
