@@ -233,17 +233,17 @@ def pristine_structural_upgrade(vanilla_bytes: bytes, frontiers_bytes: bytes, as
     print(f"    [+] Using Frontiers template (0x72700) as base for engine compatibility")
     
     # ─── 1. MESH INJECTION: Replace Frontiers mesh with Vanilla mesh ────────
-    # The 0x02610 node contains the actual 3D geometry (vertices, UVs, triangle strips)
+    # The 0x02800 node (CSpriteArray) contains the actual 3D geometry (variants/meshes)
     # that determines what the character looks like. Swapping this gives us the
     # classic Vanilla character appearance.
-    van_mesh = next((c for c in van_node['children'] if c['type_id'] == 0x02610), None)
-    graft_mesh_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] == 0x02610), None)
+    van_mesh = next((c for c in van_node['children'] if c['type_id'] == 0x02800), None)
+    graft_mesh_idx = next((i for i, c in enumerate(graft_root['children']) if c['type_id'] == 0x02800), None)
     
     if van_mesh is not None and graft_mesh_idx is not None:
         graft_root['children'][graft_mesh_idx] = copy.deepcopy(van_mesh)
-        print(f"    [+] Injected Vanilla mesh (0x02610) -> {van_mesh['child_count']} sub-meshes, {van_mesh['data_size']:,} bytes")
+        print(f"    [+] Injected Vanilla mesh (0x02800) -> {van_mesh['child_count']} variants, {van_mesh['data_size']:,} bytes")
     else:
-        print(f"    [!] Warning: Mesh container (0x02610) not found for {asset_label}!")
+        print(f"    [!] Warning: Mesh container (0x02800) not found for {asset_label}!")
         
     # ─── 2. TEXTURE INJECTION: Graft Vanilla textures with TEX0 patching ───
     # The 0x11110 MaterialPalette contains the texture data (Surface arrays)
