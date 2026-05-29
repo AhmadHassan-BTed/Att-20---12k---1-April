@@ -200,31 +200,41 @@ t:\Att 20 - 12k - 1 April\
 │   ├── SOLUTION_REPORT.md                   # Technical problem analysis
 │   ├── TESTING_GUIDE.md                     # User testing instructions
 │   ├── DIAGNOSTICS_GUIDE.md                 # Complete tool reference (NEW)
+│   ├── PATCH_GUIDE.md                       # High-fidelity 4-step patch guide [NEW]
+│   ├── WALKTHROUGH_DEV.md                   # Low-level architecture & surgical walkthrough [NEW]
 │   └── docs/implementation_plan.md          # Original implementation plan
 │
-├── [DIAGNOSTIC TOOLS - INTEGRATED]
-│   ├── integrated_diagnostics.py            # Master unified diagnostic (NEW)
-│   ├── run_all_diagnostics.py               # Orchestrator script (NEW)
-│   ├── run_diagnostics.bat                  # Windows wrapper (NEW)
+├── [DIAGNOSTIC & MASTER TOOLS]
+│   ├── integrated_diagnostics.py            # Master unified diagnostic
+│   ├── run_all_diagnostics.py               # Orchestrator script
+│   ├── EQOA_MASTER_TOOL.bat                 # Windows interactive menu wrapper [NEW]
 │   └── workspace/scratch/
-│       ├── check_iso_appended_bytes.py      # Patch verification (RESTORED)
-│       ├── check_pcsx2_open_files.py        # PCSX2 access check (RESTORED)
-│       ├── compare_esf_sizes.py             # Asset comparison (RESTORED)
+│       ├── check_iso_appended_bytes.py      # Patch verification
+│       ├── check_pcsx2_open_files.py        # PCSX2 access check
+│       ├── compare_esf_sizes.py             # Asset comparison
 │       ├── final_verification.py            # Quick verify
-│       └── [archived diagnostic tools]
 │
-├── [CORE PIPELINE]
-│   ├── vanilla_to_frontiers_transplant.py   # Master pipeline
-│   ├── run_patcher.bat                      # Automation wrapper
+├── [CORE DECOUPLED PIPELINE]
+│   ├── step1_create_patched_iso.bat         # Step 1: Create Initial frontiers patched ISO [NEW]
+│   ├── step2_extract_assets.bat             # Step 2: Extract baseline Frontiers assets [NEW]
+│   ├── step3_merge_assets.bat               # Step 3: Merge Vanilla and Frontiers assets [NEW]
+│   ├── step4_inject_assets.bat              # Step 4: Inject assets and verify [NEW]
 │   └── core/
 │       ├── esf_parser.py                    # ESF parsing engine
 │       ├── esf_rebuilder.py                 # Database rebuilder
+│       ├── merge_assets.py                  # Asset merger [NEW]
+│       ├── extract_frontiers_assets.py      # Baseline Frontiers assets extractor [NEW]
+│       ├── patch_placed_assets.py           # Surgical in-place LBA/UDF asset patcher [NEW]
 │       ├── repack_iso.py                    # ISO repacker
 │       ├── patch_udf_char_esf_v2.py         # UDF patcher
-│       ├── verify_final_patch.py            # Verification tools
-│       └── verify_final_iso.py
+│       ├── verify_final_patch.py            # UDF/ISO record verification
+│       └── verify_final_iso.py              # Sector-level binary validator
 │
-├── [DATA & ASSETS]
+├── [DATA & ASSETS (RESTRUCTURED)]
+│   ├── assets/                              # Parent Assets Directory [NEW]
+│   │   ├── Vanilla/                         # Baseline Vanilla assets [NEW]
+│   │   ├── Frontiers/                       # Baseline extracted Frontiers assets [NEW]
+│   │   └── merged-assets/                   # Combined temporary assets folder [GIT-IGNORED]
 │   ├── workspace/
 │   │   ├── original/CHAR.ESF                # Vanilla database
 │   │   ├── expansion/CHAR.ESF               # Frontiers database

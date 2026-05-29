@@ -49,29 +49,38 @@ t:\Att 20 - 12k - 1 April\
 │   ├── geometry_sanitizer.py       # VU1 math and weight normalization [ACTIVE]
 │   ├── esf_parser.py               # FJBO recursive parsing engine [ACTIVE]
 │   ├── esf_rebuilder.py            # ESF model container database rebuilder [ACTIVE]
+│   ├── merge_assets.py             # Decoupled asset merger [NEW]
+│   ├── extract_frontiers_assets.py # Decoupled baseline assets extractor [NEW]
+│   ├── patch_placed_assets.py      # Surgical in-place multi-asset patcher [NEW]
 │   ├── repack_iso.py               # ISO repacking and sector aligner [TO MODIFY]
 │   ├── patch_udf_char_esf_v2.py    # Surgical logical LBA and size patcher [TO MODIFY]
 │   ├── verify_final_patch.py       # PVD and File Entry validator [TO MODIFY]
 │   └── verify_final_iso.py         # Sector-level binary validator [TO MODIFY]
-├── workspace/                      # Layer 3: Target Resources & Assets
+├── assets/                         # Layer 3: Decoupled Multi-Asset Storage
+│   ├── Vanilla/                    # Baseline Vanilla game assets
+│   ├── Frontiers/                  # Baseline Frontiers game assets and overlays
+│   └── merged-assets/              # Combined Vanilla and Frontiers assets [GIT-IGNORED]
+├── workspace/                      # Layer 4: Target Resources & Temporary Build Data
 │   ├── target_assets.json          # Configuration list for the 11 character hashes
 │   ├── original/                   # Original Vanilla CHAR.ESF database
 │   ├── expansion/                  # Native Frontiers CHAR.ESF database
 │   └── FINAL_CHAR_MERGED.ESF       # Rebuilt and injected custom ESF database
-├── EQOA_REPO_COLLECTION/           # Layer 4: Standardized Community Toolsets [NEW]
+├── EQOA_REPO_COLLECTION/           # Layer 5: Standardized Community Toolsets [NEW]
 │   ├── eqoa-esf-tools/             # Core serialization library (DabDavis)
 │   ├── EQOA-Data/                  # Official ID schemas and JSON definitions (Jadiction)
 │   └── EQOA-Frontiers-ISO-Patch/   # DNAS & Sector routing logic (devin103)
-├── iso/                            # Layer 5: Source & Patched ISO Storage (Structured)
+├── iso/                            # Layer 6: Source & Patched ISO Storage (Structured)
 │   ├── unmodified/                 # Unmodified base/original input ISOs [NEW]
 │   │   ├── EQOA_Original.iso       # Unmodified original base ISO
 │   │   ├── EQOA_Frontiers.iso      # Unmodified frontiers expansion base ISO
 │   │   └── EQOA_Backup.iso         # Base backup copy
 │   └── patched/                    # Compiled and sector-aligned output ISOs [NEW]
 │       └── EQOA_Frontiers_Patched.iso # The final generated patched ISO
-├── vanilla_to_frontiers_transplant.py # Master Pristine Structural Transplant Pipeline
-└── run_patcher.bat                 # Master automation wrapper [TO MODIFY]
-
+├── step1_create_patched_iso.bat    # Step 1 automation script
+├── step2_extract_assets.bat        # Step 2 automation script
+├── step3_merge_assets.bat          # Step 3 automation script
+├── step4_inject_assets.bat         # Step 4 automation script
+└── EQOA_MASTER_TOOL.bat            # Master menu interactive script
 ```
 
 ---
@@ -129,13 +138,12 @@ with open('iso/patched/EQOA_Frontiers_Patched.iso', 'rb') as f:
 
 ```
 
-#### [MODIFY] `run_patcher.bat`
+#### [MODIFY] `EQOA_MASTER_TOOL.bat`
 
-Update final success message print to guide the user to the correct folder:
+Update options to allow sequential execution of the 4 decoupled patch steps:
 
 ```batch
 echo Your new game file is: iso/patched/EQOA_Frontiers_Patched.iso
-
 ```
 
 ---
