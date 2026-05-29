@@ -4,6 +4,7 @@ workspace/expansion/
 workspace/payloads/
 
 *.ESF
+*.CSF
 
 *.iso
 

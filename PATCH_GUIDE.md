@@ -11,15 +11,15 @@ This guide describes how to patch and restore original character models and cust
 
 *(Alternatively, if you already have clean unpatched copies of these ISOs, you can place them manually into the `iso/unpatched/` folder under these exact names).*
 
-## 📁 Custom Assets Placement (Dual-Assets Folder System)
+## 📁 Custom Assets Placement (Simplified Assets Directory)
 
-The pipeline uses a **Dual-Assets** architecture to organize baseline assets and custom overlays separately. Place your assets into the respective directories:
+The pipeline organizes assets under a single parent **`assets/`** directory to keep baseline resources and custom overlays clean and distinct:
 
-* **`Vanilla-assets/`**: Contains the baseline Vanilla game assets (character models, custom select files, etc.).
-* **`Frontiers-assets/`**: Place any custom/Frontiers overlay assets here.
+* **`assets/Vanilla/`**: Contains the baseline Vanilla game assets (character models, custom select files, etc.).
+* **`assets/Frontiers/`**: Contains baseline Frontiers assets or your custom overlay patches.
 
 ### Directory Structure & File Naming:
-Within each folder, files must be structured as follows:
+Within each folder under `assets/`, files must be structured as follows:
 * **`data/`**:
   - `CHAR.ESF` — Character model database.
   - `CHARCUST.ESF` — Character customizer database.
@@ -30,21 +30,23 @@ Within each folder, files must be structured as follows:
   - `CHARFACE.ESF` — Character face database.
   - `CHARSEL1.CSF`, `CHARSEL2.CSF`, `CHARSEL3.CSF`, `CHARSEL4.CSF` — Compressed character select files.
 
-*(Note: Pre-packaged fully verified custom assets are included in `Vanilla-assets/` by default. Placeholders in `Frontiers-assets/` indicate where to add custom overlays).*
+*(Note: Baseline assets are preloaded in `assets/Vanilla/`. Step 2 extracts clean baseline files into `assets/Frontiers/` so you can customize them).*
 
-## ⚙️ Running the Automated Patch Pipeline
+## ⚙️ Running the 4-Step Automated Patch Pipeline
 
-1. Ensure the PCSX2 emulator is **closed** to prevent file lock conflicts on the ISO files.
-2. Double-click **`EQOA_MASTER_TOOL.bat`**.
-3. Choose Option **`[1] Patch Game ISO`** and hit enter.
+To patch the game ISO and inject custom assets, run the following four batch scripts in order:
 
-### What the Automated Tool Does:
-- **Phase 1**: Commences low-level clean graft surgery to re-compile the 11 character model databases.
-- **Phase 2 (Asset Merger)**: Automatically merges the baseline files from `Vanilla-assets/` and overlays from `Frontiers-assets/` into a temporary `merged-assets/` directory. (If any frontiers files exist, they override the baseline vanilla files).
-- **Phase 3**: Overwrites the corresponding workspace files with the merged files from `merged-assets/`.
-- **Phase 4**: Copies the unpatched base ISO and appends the recompiled databases and custom CSF/ESF asset payloads to the end of the partition.
-- **Phase 5**: Surgically byte-patches all **ISO 9660 Directory Records** and **UDF File Entries (FEs)** in-place with the exact new sector LBAs and sizes.
-- **Phase 6**: Aligns the Primary Volume Descriptor (PVD) sector count, appends the UDF AVDP sector at the final sector boundary, and runs a comprehensive validation suite to ensure 100% data integrity and readable sectors.
+### 1️⃣ Step 1: Create Initial Frontiers Patched ISO (`step1_create_patched_iso.bat`)
+- **What it does**: Re-compiles the 11 native character model databases (Vanilla geometry grafted onto Frontiers skeleton) and repacks them into a baseline frontiers ISO (`iso/patched/EQOA_Frontiers_Patched.iso`).
+
+### 2️⃣ Step 2: Extract Baseline Frontiers Assets (`step2_extract_assets.bat`)
+- **What it does**: Automatically extracts baseline Frontiers CSF/ESF database files directly from your clean unpatched Frontiers ISO and saves them into the `assets/Frontiers/` directory. This is useful for customizing or referencing raw Frontiers assets.
+
+### 3️⃣ Step 3: Merge Assets (`step3_merge_assets.bat`)
+- **What it does**: Merges baseline Vanilla assets from `assets/Vanilla/` and custom Frontiers overlays from `assets/Frontiers/` into a temporary `merged-assets/` folder. (Custom Frontiers files take priority and overwrite matching Vanilla files).
+
+### 4️⃣ Step 4: Inject Assets (`step4_inject_assets.bat`)
+- **What it does**: Forcefully terminates any running `pcsx2-qt.exe` process (to prevent file lock conflicts), copies combined assets from `merged-assets/` into the workspace folders, and surgically patches them in-place directly into the patched ISO. It concludes by running a high-integrity verification suite.
 
 ## 🎮 Playing the Game
 

@@ -13,18 +13,18 @@ To bypass this constraint, this pipeline implements **Zero-Reorganization Sector
 4. Surgically byte-patch both the **ISO 9660 directory records** and **UDF File Entries** to point to the new sectors.
 5. Append the UDF Anchor Volume Descriptor Pointer (AVDP) sector as an extra final sector to preserve partition layout without overlapping file sectors.
 
-## 📁 Dual-Assets Folder Structure & Overlay Pipeline
+## 📁 Parent Assets Folder Structure & Decoupled Overlay Pipeline
 
-The repository uses a **Dual-Assets** folder system:
-- **`Vanilla-assets/`**: The baseline assets containing original models and databases.
-- **`Frontiers-assets/`**: Placed placeholder folders where custom Frontiers asset overlays are placed.
+The repository organizes database and layout assets under a unified parent directory:
+- **`assets/Vanilla/`**: Baseline assets containing original Vanilla EQOA models and select screen files.
+- **`assets/Frontiers/`**: Destination folder where clean Frontiers base assets are extracted, and where custom overlays can be placed.
 
-### 🔄 The Merge Pipeline (`core/merge_assets.py`)
-Before patching the ISO, the automated master pipeline invokes `core.merge_assets`. This script:
-1. Clears and creates the temporary `merged-assets/` folder.
-2. Recursively copies the baseline files from `Vanilla-assets/`.
-3. Recursively overlays files from `Frontiers-assets/` on top of the baseline files, automatically overriding files with matching filenames.
-4. The subsequent step (`core/patch_placed_assets.py`) reads the merged results from `merged-assets/` as its definitive patch payload.
+### 🔄 The Decoupled Merge Pipeline (`core/merge_assets.py`)
+Decoupled from the initial database compilation, the merger script `core.merge_assets` is invoked as Step 3 in the pipeline. This script:
+1. Clears and creates the temporary `merged-assets/` folder (which is ignored by Git to avoid tracking transient compile artifacts).
+2. Recursively copies the baseline files from `assets/Vanilla/`.
+3. Recursively overlays files from `assets/Frontiers/` on top of the baseline files, automatically overriding files with matching filenames.
+4. The subsequent surgical patch step (`core/patch_placed_assets.py` as Step 4) reads these combined payloads from `merged-assets/` and applies them directly.
 
 ## 💾 Sector Mapping & Offsets
 

@@ -3,11 +3,11 @@ import shutil
 
 def merge_assets():
     print("=" * 80)
-    print("  EQOA ASSET MERGER PIPELINE (Vanilla-assets + Frontiers-assets)")
+    print("  EQOA ASSET MERGER PIPELINE (assets/Vanilla + assets/Frontiers)")
     print("=" * 80)
     
-    vanilla_dir = 'Vanilla-assets'
-    frontiers_dir = 'Frontiers-assets'
+    vanilla_dir = 'assets/Vanilla'
+    frontiers_dir = 'assets/Frontiers'
     merged_dir = 'merged-assets'
     
     # 1. Clean and recreate merged-assets folder
