@@ -28,3 +28,7 @@ logs/
 diagnostics/logs/
 
 LIGHTWEIGHT_CUSTOMER_DELIVERY/
+
+# Agent specific files
+.agents/
+skills-lock.json
