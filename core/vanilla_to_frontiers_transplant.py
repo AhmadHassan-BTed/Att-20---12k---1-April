@@ -321,6 +321,10 @@ def main():
     print("\n[*] Step 5: Patching UDF allocation descriptors logical mapping...")
     subprocess.run([sys.executable, "-m", "core.patch_udf_char_esf_v2"], check=True)
     
+    # 7.5 Apply Surgical Assets Injection/Patching from assets/ folder
+    print("\n[*] Step 5.5: Copying placed assets and patching them into the new ISO...")
+    subprocess.run([sys.executable, "-m", "core.patch_placed_assets"], check=True)
+    
     # 8. Execute Verification Pipeline
     print("\n[*] Step 6: Running high-integrity verification suite...")
     subprocess.run([sys.executable, "-m", "core.verify_injected_models"], check=True)

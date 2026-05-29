@@ -9,6 +9,8 @@ workspace/payloads/
 
 *.zip
 
+*.rar
+
 CHAR_MERGED_BROKEN.ESF
 
 workspace/FINAL_CHAR_MERGED.ESF
