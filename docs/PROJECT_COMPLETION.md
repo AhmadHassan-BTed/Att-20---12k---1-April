@@ -215,10 +215,11 @@ t:\Att 20 - 12k - 1 April\
 │       ├── final_verification.py            # Quick verify
 │
 ├── [CORE DECOUPLED PIPELINE]
-│   ├── step1_create_patched_iso.bat         # Step 1: Create Initial frontiers patched ISO [NEW]
-│   ├── step2_extract_assets.bat             # Step 2: Extract baseline Frontiers assets [NEW]
-│   ├── step3_merge_assets.bat               # Step 3: Merge Vanilla and Frontiers assets [NEW]
-│   ├── step4_inject_assets.bat              # Step 4: Inject assets and verify [NEW]
+│   ├── steps/                               # Decoupled pipeline step batch scripts [NEW]
+│   │   ├── step1_create_patched_iso.bat     # Step 1: Create Initial frontiers patched ISO
+│   │   ├── step2_extract_assets.bat         # Step 2: Extract baseline Frontiers assets
+│   │   ├── step3_merge_assets.bat           # Step 3: Merge Vanilla and Frontiers assets
+│   │   └── step4_inject_assets.bat          # Step 4: Inject assets and verify
 │   └── core/
 │       ├── esf_parser.py                    # ESF parsing engine
 │       ├── esf_rebuilder.py                 # Database rebuilder

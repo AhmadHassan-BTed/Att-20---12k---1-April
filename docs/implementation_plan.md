@@ -76,10 +76,11 @@ t:\Att 20 - 12k - 1 April\
 │   │   └── EQOA_Backup.iso         # Base backup copy
 │   └── patched/                    # Compiled and sector-aligned output ISOs [NEW]
 │       └── EQOA_Frontiers_Patched.iso # The final generated patched ISO
-├── step1_create_patched_iso.bat    # Step 1 automation script
-├── step2_extract_assets.bat        # Step 2 automation script
-├── step3_merge_assets.bat          # Step 3 automation script
-├── step4_inject_assets.bat         # Step 4 automation script
+├── steps/                          # Layer 7: Decoupled pipeline step batch scripts [NEW]
+│   ├── step1_create_patched_iso.bat # Step 1 automation script
+│   ├── step2_extract_assets.bat     # Step 2 automation script
+│   ├── step3_merge_assets.bat       # Step 3 automation script
+│   └── step4_inject_assets.bat      # Step 4 automation script
 └── EQOA_MASTER_TOOL.bat            # Master menu interactive script
 ```
 

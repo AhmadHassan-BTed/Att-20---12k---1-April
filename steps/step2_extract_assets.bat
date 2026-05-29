@@ -1,5 +1,5 @@
 @echo off
-cd /d "%~dp0"
+cd /d "%~dp0.."
 
 echo ========================================================
 echo STEP 2: EXTRACT BASELINE FRONTIERS ASSETS

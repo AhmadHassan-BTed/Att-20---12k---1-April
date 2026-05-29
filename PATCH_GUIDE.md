@@ -36,16 +36,16 @@ Within each folder under `assets/`, files must be structured as follows:
 
 To patch the game ISO and inject custom assets, run the following four batch scripts in order:
 
-### 1️⃣ Step 1: Create Initial Frontiers Patched ISO (`step1_create_patched_iso.bat`)
+### 1️⃣ Step 1: Create Initial Frontiers Patched ISO (`steps/step1_create_patched_iso.bat`)
 - **What it does**: Re-compiles the 11 native character model databases (Vanilla geometry grafted onto Frontiers skeleton) and repacks them into a baseline frontiers ISO (`iso/patched/EQOA_Frontiers_Patched.iso`).
 
-### 2️⃣ Step 2: Extract Baseline Frontiers Assets (`step2_extract_assets.bat`)
+### 2️⃣ Step 2: Extract Baseline Frontiers Assets (`steps/step2_extract_assets.bat`)
 - **What it does**: Automatically extracts baseline Frontiers CSF/ESF database files directly from your clean unpatched Frontiers ISO and saves them into the `assets/Frontiers/` directory. This is useful for customizing or referencing raw Frontiers assets.
 
-### 3️⃣ Step 3: Merge Assets (`step3_merge_assets.bat`)
+### 3️⃣ Step 3: Merge Assets (`steps/step3_merge_assets.bat`)
 - **What it does**: Merges baseline Vanilla assets from `assets/Vanilla/` and custom Frontiers overlays from `assets/Frontiers/` into a temporary `assets/merged-assets/` folder. (Custom Frontiers files take priority and overwrite matching Vanilla files).
 
-### 4️⃣ Step 4: Inject Assets (`step4_inject_assets.bat`)
+### 4️⃣ Step 4: Inject Assets (`steps/step4_inject_assets.bat`)
 - **What it does**: Forcefully terminates any running `pcsx2-qt.exe` process (to prevent file lock conflicts), copies combined assets from `assets/merged-assets/` into the workspace folders, and surgically patches them in-place directly into the patched ISO. It concludes by running a high-integrity verification suite.
 
 ## 🎮 Playing the Game

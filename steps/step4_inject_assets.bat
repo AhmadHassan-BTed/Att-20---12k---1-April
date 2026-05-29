@@ -1,5 +1,5 @@
 @echo off
-cd /d "%~dp0"
+cd /d "%~dp0.."
 
 echo ========================================================
 echo STEP 4: SURGICALLY PATCH ASSETS INTO EMULATOR ISO
