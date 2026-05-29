@@ -7,7 +7,7 @@ echo ========================================================
 echo.
 echo This step merges baseline Vanilla assets and custom Frontiers overlays 
 echo recursively, prioritizing custom Frontiers overlays when matching 
-echo files exist, and outputs to the 'merged-assets/' directory.
+echo files exist, and outputs to the 'assets/merged-assets/' directory.
 echo.
 python -m core.merge_assets
 if %errorlevel% neq 0 (
@@ -18,6 +18,6 @@ if %errorlevel% neq 0 (
 )
 echo.
 echo [SUCCESS] STEP 3 COMPLETE!
-echo Combined assets written to merged-assets/ directory.
+echo Combined assets written to assets/merged-assets/ directory.
 echo.
 pause

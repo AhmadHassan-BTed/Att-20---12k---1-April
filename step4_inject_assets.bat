@@ -5,7 +5,7 @@ echo ========================================================
 echo STEP 4: SURGICALLY PATCH ASSETS INTO EMULATOR ISO
 echo ========================================================
 echo.
-echo This step copies the combined assets from 'merged-assets/' to 
+echo This step copies the combined assets from 'assets/merged-assets/' to 
 echo the workspace folders, and surgically patches them into the new 
 echo game ISO (EQOA_Frontiers_Patched.iso) in-place without disc 
 echo reorganization (bypassing black screen boot issues).

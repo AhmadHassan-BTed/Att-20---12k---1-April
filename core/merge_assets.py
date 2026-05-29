@@ -8,9 +8,9 @@ def merge_assets():
     
     vanilla_dir = 'assets/Vanilla'
     frontiers_dir = 'assets/Frontiers'
-    merged_dir = 'merged-assets'
+    merged_dir = 'assets/merged-assets'
     
-    # 1. Clean and recreate merged-assets folder
+    # 1. Clean and recreate assets/merged-assets folder
     if os.path.exists(merged_dir):
         shutil.rmtree(merged_dir)
     os.makedirs(merged_dir)
@@ -40,7 +40,7 @@ def merge_assets():
     print("\n[*] Overlaying Frontiers-assets (if present)...")
     copy_assets_recursive(frontiers_dir, merged_dir)
     
-    print("\n[+] Asset merge complete! Final merged assets reside in 'merged-assets/' directory.")
+    print("\n[+] Asset merge complete! Final merged assets reside in 'assets/merged-assets/' directory.")
     print("=" * 80)
 
 if __name__ == '__main__':

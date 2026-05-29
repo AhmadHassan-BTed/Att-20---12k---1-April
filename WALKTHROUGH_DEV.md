@@ -21,10 +21,10 @@ The repository organizes database and layout assets under a unified parent direc
 
 ### 🔄 The Decoupled Merge Pipeline (`core/merge_assets.py`)
 Decoupled from the initial database compilation, the merger script `core.merge_assets` is invoked as Step 3 in the pipeline. This script:
-1. Clears and creates the temporary `merged-assets/` folder (which is ignored by Git to avoid tracking transient compile artifacts).
+1. Clears and creates the temporary `assets/merged-assets/` folder (which is ignored by Git to avoid tracking transient compile artifacts).
 2. Recursively copies the baseline files from `assets/Vanilla/`.
 3. Recursively overlays files from `assets/Frontiers/` on top of the baseline files, automatically overriding files with matching filenames.
-4. The subsequent surgical patch step (`core/patch_placed_assets.py` as Step 4) reads these combined payloads from `merged-assets/` and applies them directly.
+4. The subsequent surgical patch step (`core/patch_placed_assets.py` as Step 4) reads these combined payloads from `assets/merged-assets/` and applies them directly.
 
 ## 💾 Sector Mapping & Offsets
 

@@ -2,8 +2,8 @@
 import struct, os
 
 def main():
-    # If merged-assets/data/CHAR.ESF exists, that is the expected size. Otherwise, FINAL_CHAR_MERGED.ESF.
-    assets_esf = 'merged-assets/data/CHAR.ESF'
+    # If assets/merged-assets/data/CHAR.ESF exists, that is the expected size. Otherwise, FINAL_CHAR_MERGED.ESF.
+    assets_esf = 'assets/merged-assets/data/CHAR.ESF'
     fallback_esf = 'workspace/FINAL_CHAR_MERGED.ESF'
     
     if os.path.exists(assets_esf):
