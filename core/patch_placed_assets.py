@@ -37,16 +37,6 @@ def patch_iso_in_place():
                     dst2 = 'workspace/ISO_EXTRACTED/CHAR.ESF'
                     shutil.copy2(src, dst2)
                     print(f"  [+] Copied {src} -> {dst2}")
-                    
-                    dst3 = 'workspace/expansion/CHAR.ESF'
-                    os.makedirs(os.path.dirname(dst3), exist_ok=True)
-                    shutil.copy2(src, dst3)
-                    print(f"  [+] Copied {src} -> {dst3}")
-                    
-                    dst4 = 'workspace/original/CHAR.ESF'
-                    os.makedirs(os.path.dirname(dst4), exist_ok=True)
-                    shutil.copy2(src, dst4)
-                    print(f"  [+] Copied {src} -> {dst4}")
 
     # Copy assets/data2 files if they exist
     if os.path.exists(assets_data2):
@@ -76,11 +66,28 @@ def patch_iso_in_place():
     # We will append the modified files to the end of the ISO
     files_to_patch = []
     
-    # Only patch CHAR.ESF if it exists in assets/data
-    if os.path.exists(os.path.join(assets_data, 'CHAR.ESF')):
+    # Only patch CHAR.ESF if a custom Frontiers overlay version is present (i.e. different from baseline Vanilla)
+    custom_char_esf_present = False
+    char_esf_path = os.path.join(assets_data, 'CHAR.ESF')
+    vanilla_char_esf = 'assets/Vanilla/data/CHAR.ESF'
+    
+    if os.path.exists(char_esf_path):
+        import hashlib
+        def get_file_hash(p):
+            h = hashlib.sha256()
+            with open(p, 'rb') as f:
+                for chunk in iter(lambda: f.read(65536), b''):
+                    h.update(chunk)
+            return h.hexdigest()
+            
+        if os.path.exists(vanilla_char_esf):
+            if get_file_hash(char_esf_path) != get_file_hash(vanilla_char_esf):
+                custom_char_esf_present = True
+                
+    if custom_char_esf_present:
         files_to_patch.append(('workspace/ISO_EXTRACTED/DATA/CHAR.ESF', b'\x0ACHAR.ESF;1', 337))
     else:
-        print("\n[*] Info: assets/data/CHAR.ESF not found. Keeping the compiled CHAR.ESF inside the ISO.")
+        print("\n[*] Info: Preserving high-fidelity recompiled CHAR.ESF database (FINAL_CHAR_MERGED.ESF) inside the ISO.")
         
     # Add other CSF/ESF files from assets/data2 if they exist
     csf_mapping = [

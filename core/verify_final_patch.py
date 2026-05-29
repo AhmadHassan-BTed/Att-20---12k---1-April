@@ -2,13 +2,26 @@
 import struct, os
 
 def main():
-    # If assets/merged-assets/data/CHAR.ESF exists, that is the expected size. Otherwise, FINAL_CHAR_MERGED.ESF.
     assets_esf = 'assets/merged-assets/data/CHAR.ESF'
     fallback_esf = 'workspace/FINAL_CHAR_MERGED.ESF'
+    vanilla_char_esf = 'assets/Vanilla/data/CHAR.ESF'
     
-    if os.path.exists(assets_esf):
+    # We only treat placed asset as expected if it's different from the Vanilla baseline (i.e. custom overlay)
+    is_custom_placed = False
+    if os.path.exists(assets_esf) and os.path.exists(vanilla_char_esf):
+        import hashlib
+        def get_file_hash(p):
+            h = hashlib.sha256()
+            with open(p, 'rb') as f:
+                for chunk in iter(lambda: f.read(65536), b''):
+                    h.update(chunk)
+            return h.hexdigest()
+        if get_file_hash(assets_esf) != get_file_hash(vanilla_char_esf):
+            is_custom_placed = True
+            
+    if is_custom_placed:
         expected_size = os.path.getsize(assets_esf)
-        label = "Placed Asset CHAR.ESF"
+        label = "Custom Placed Asset CHAR.ESF"
     elif os.path.exists(fallback_esf):
         expected_size = os.path.getsize(fallback_esf)
         label = "Compiled FINAL_CHAR_MERGED.ESF"
