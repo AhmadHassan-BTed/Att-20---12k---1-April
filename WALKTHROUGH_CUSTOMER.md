@@ -1,36 +1,48 @@
-# EQOA PS2 Native Frontiers Injection - Walkthrough
+# EQOA PS2 Frontiers Custom Patch Guide
 
-This package contains the fully tested, structural pipeline to correctly inject the Original 11 character models into the EQOA Frontiers PlayStation 2 ISO.
+This guide describes how to patch and restore original character models and custom assets into the PlayStation 2 *EverQuest Online Adventures: Frontiers* game ISO using this fully automated reverse-engineering toolkit.
 
-## Why this pipeline?
-Previous attempts at replacing the model geometry caused the character to become invisible and crashed the game. The reason was a structural mismatch: the Vanilla models use a different skeleton hierarchy than the Frontiers models. Splicing Vanilla geometry onto a Frontiers skeleton corrupts the bone indices and vertices.
+## 🚀 Pre-requisites & Setup
 
-**The Fix:** The Frontiers expansion actually contains the correct, updated versions of these 11 models natively in its `CHAR.ESF` (as `0x72700` objects). This pipeline simply copies those perfect native models and ensures the ESF pointers and UDF file entry sizes are correctly updated. This guarantees 100% engine compatibility.
+1. **Python Environment**: Ensure you have Python installed (version 3.10 or higher is recommended).
+2. **Setup Workspace**: Double-click **`setup_environment.bat`** to automatically create the folder structures and download the required baseline clean game ISO files:
+   - `iso/unpatched/EQOA_Original.iso` (Original game disc)
+   - `iso/unpatched/EQOA_Frontiers.iso` (Frontiers expansion disc)
 
-## Included Files
-- `core/` - The Python scripts that handle parsing, patching, and rebuilding the ESF and ISO.
-- `EQOA_REPO_COLLECTION/` - Community structural tools used as a reference to map the data correctly.
-- `workspace/target_assets.json` - The index of the 11 character models to process.
-- `MANUAL_PATCH.iso` (If generated) - The final patched game image.
+*(Alternatively, if you already have clean unpatched copies of these ISOs, you can place them manually into the `iso/unpatched/` folder under these exact names).*
 
-## Step-by-Step Instructions
+## 📁 Custom Assets Placement
 
-1. **Prepare your workspace**
-   Ensure your Python environment is set up (Python 3.12+ recommended).
-   Double-click `setup_environment.bat` to automatically download the required baseline ISOs directly into the correct `iso/unpatched/` folders.
-   *(Alternatively, if you already have the ISOs, place the Frontiers ISO at: `iso/unpatched/EQOA_Frontiers.iso`)*
+The pipeline is pre-configured to automatically inject any assets placed in the **`assets/`** directory. If you have custom versions of these assets, ensure they are placed as follows:
 
-2. **Run the Injection Pipeline**
-   Double-click `EQOA_MASTER_TOOL.bat`.
-   When prompted, choose option **[1] Patch Game ISO**.
-   
-   *What this automated tool does:*
-   - Parses the `workspace/expansion/CHAR.ESF`
-   - Extracts the 11 native Frontiers models (perfect geometry and skeletons)
-   - Injects them back as unmodified payloads to preserve exact byte sizes and offsets
-   - Compiles `workspace/FINAL_CHAR_MERGED.ESF`
-   - Repacks the ISO to `iso/patched/EQOA_Frontiers_Patched.iso`
-   - Automatically verifies the UDF pointers
+* **`assets/data/`**:
+  - `CHAR.ESF` — Custom character model database.
+  - `CHARCUST.ESF` — Custom character customizer database.
+  
+* **`assets/data2/`**:
+  - `CHARCUST.CSF` — Compressed character customizer database.
+  - `CHARFACE.CSF` — Compressed character face database.
+  - `CHARFACE.ESF` — Character face database.
+  - `CHARSEL1.CSF`, `CHARSEL2.CSF`, `CHARSEL3.CSF`, `CHARSEL4.CSF` — Compressed character select files.
 
-3. **Play the Game!**
-   You can now load `iso/patched/EQOA_Frontiers_Patched.iso` into the PCSX2 emulator. The characters will render perfectly when you enter the world.
+*(Note: Pre-packaged fully verified custom assets are already included in the `assets/` directory in this repository by default).*
+
+## ⚙️ Running the Automated Patch Pipeline
+
+1. Ensure the PCSX2 emulator is **closed** to prevent file lock conflicts on the ISO files.
+2. Double-click **`EQOA_MASTER_TOOL.bat`**.
+3. Choose Option **`[1] Patch Game ISO`** and hit enter.
+
+### What the Automated Tool Does:
+- **Phase 1**: Commences low-level clean graft surgery to re-compile the 11 character model databases.
+- **Phase 2**: Overwrites the corresponding workspace files with the placed files inside the `assets/` folder.
+- **Phase 3**: Copies the unpatched base ISO and appends the recompiled databases and custom CSF/ESF asset payloads to the end of the partition.
+- **Phase 4**: Surgically byte-patches all **ISO 9660 Directory Records** and **UDF File Entries (FEs)** in-place with the exact new sector LBAs and sizes.
+- **Phase 5**: Aligns the Primary Volume Descriptor (PVD) sector count, appends the UDF AVDP sector at the final sector boundary, and runs a comprehensive validation suite to ensure 100% data integrity and readable sectors.
+
+## 🎮 Playing the Game
+
+Once the tool reports **`HIGH-FIDELITY STRUCTURAL TRANSPLANT PIPELINE EXECUTED SUCCESSFULLY`**:
+1. Open the PCSX2 emulator.
+2. Select and load: **`iso/patched/EQOA_Frontiers_Patched.iso`**.
+3. The custom assets and character models will render in-game with zero visual artifacts or engine rendering crashes.
