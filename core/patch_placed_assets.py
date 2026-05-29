@@ -10,8 +10,8 @@ def patch_iso_in_place():
     print("=" * 80)
     
     # Define source directories
-    assets_data = 'assets/data'
-    assets_data2 = 'assets/data2'
+    assets_data = 'merged-assets/data'
+    assets_data2 = 'merged-assets/data2'
     
     # Define target directories in workspace
     extracted_data = 'workspace/ISO_EXTRACTED/DATA'

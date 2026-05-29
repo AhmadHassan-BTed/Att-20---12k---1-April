@@ -13,6 +13,19 @@ To bypass this constraint, this pipeline implements **Zero-Reorganization Sector
 4. Surgically byte-patch both the **ISO 9660 directory records** and **UDF File Entries** to point to the new sectors.
 5. Append the UDF Anchor Volume Descriptor Pointer (AVDP) sector as an extra final sector to preserve partition layout without overlapping file sectors.
 
+## 📁 Dual-Assets Folder Structure & Overlay Pipeline
+
+The repository uses a **Dual-Assets** folder system:
+- **`Vanilla-assets/`**: The baseline assets containing original models and databases.
+- **`Frontiers-assets/`**: Placed placeholder folders where custom Frontiers asset overlays are placed.
+
+### 🔄 The Merge Pipeline (`core/merge_assets.py`)
+Before patching the ISO, the automated master pipeline invokes `core.merge_assets`. This script:
+1. Clears and creates the temporary `merged-assets/` folder.
+2. Recursively copies the baseline files from `Vanilla-assets/`.
+3. Recursively overlays files from `Frontiers-assets/` on top of the baseline files, automatically overriding files with matching filenames.
+4. The subsequent step (`core/patch_placed_assets.py`) reads the merged results from `merged-assets/` as its definitive patch payload.
+
 ## 💾 Sector Mapping & Offsets
 
 The pipeline targets 8 primary assets, whose exact sector offsets in the original Frontiers disc and their UDF File Entry sectors are documented below:

@@ -32,3 +32,6 @@ LIGHTWEIGHT_CUSTOMER_DELIVERY/
 # Agent specific files
 .agents/
 skills-lock.json
+
+# Merged temp files
+merged-assets/
