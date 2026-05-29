@@ -35,13 +35,13 @@ def merge_assets():
                 shutil.copy2(src_file, dst_file)
                 print(f"  [+] Merged: {src_file} -> {dst_file}")
                 
-    # 2. Copy Vanilla-assets first (baseline)
-    print("\n[*] Copying baseline Vanilla-assets...")
-    copy_assets_recursive(vanilla_dir, merged_dir, is_frontiers_overlay=False)
+    # 2. Copy baseline Frontiers-assets first
+    print("\n[*] Copying baseline Frontiers-assets...")
+    copy_assets_recursive(frontiers_dir, merged_dir, is_frontiers_overlay=False)
     
-    # 3. Overlay Frontiers-assets if they exist
-    print("\n[*] Overlaying Frontiers-assets (if present)...")
-    copy_assets_recursive(frontiers_dir, merged_dir, is_frontiers_overlay=True)
+    # 3. Overlay Vanilla-assets (prioritizing Vanilla assets!)
+    print("\n[*] Overlaying Vanilla-assets (prioritizing Vanilla)...")
+    copy_assets_recursive(vanilla_dir, merged_dir, is_frontiers_overlay=False)
     
     print("\n[+] Asset merge complete! Final merged assets reside in 'assets/merged-assets/' directory.")
     print("=" * 80)
